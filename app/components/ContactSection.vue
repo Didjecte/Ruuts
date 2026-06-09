@@ -123,6 +123,7 @@ const handleSubmit = () => {
   background-color: var(--bg-xuan-paper);
   border-top: 1px solid rgba(197, 160, 89, 0.15);
   position: relative;
+  overflow: hidden;
 }
 
 .contact-grid {
@@ -208,7 +209,7 @@ const handleSubmit = () => {
   gap: 2rem;
 }
 
-@media (max-width: 480px) {
+@media (max-width: 768px) {
   .qr-codes-container {
     flex-direction: column;
     gap: 1.5rem;
