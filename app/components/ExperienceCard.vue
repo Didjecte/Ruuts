@@ -1,51 +1,51 @@
 <template>
-  <div :class="['experience-card', { 'is-b2b': isB2b }]">
-    <div class="card-image-wrapper">
-      <img :src="experience.image" :alt="experience.title" class="card-image" />
-      <span class="card-tag">{{ tag }}</span>
+  <div :class="['flex flex-col bg-xuan-paper/60 border border-tea-gold/15 rounded-2xl overflow-hidden transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] h-full group hover:scale-[1.02] hover:border-tea-gold hover:shadow-[0_15px_35px_rgba(133,159,130,0.15)]', { 'is-b2b': isB2b }]">
+    <div class="relative w-full h-[280px] overflow-hidden">
+      <img :src="experience.image" :alt="experience.title" class="w-full h-full object-cover transition-transform duration-[800ms] ease-[cubic-bezier(0.25,1,0.5,1)] group-hover:scale-105" />
+      <span class="absolute top-4 left-4 bg-sage-green text-xuan-paper font-body text-[0.7rem] font-medium uppercase tracking-[0.1em] px-3 py-1.5 rounded-full border border-tea-gold/30">{{ tag }}</span>
     </div>
     
-    <div class="card-body">
-      <div class="card-header">
-        <span class="card-subtitle">{{ experience.subtitle }}</span>
-        <h3 class="card-title">{{ experience.title }}</h3>
+    <div class="p-[2.2rem_2rem] flex flex-col grow">
+      <div class="mb-5">
+        <span class="font-body text-[0.75rem] uppercase tracking-[0.15em] text-tea-gold block mb-[0.4rem]">{{ experience.subtitle }}</span>
+        <h3 class="text-[1.6rem] text-sage-green font-heading font-semibold">{{ experience.title }}</h3>
       </div>
       
-      <p class="card-description">{{ experience.description }}</p>
+      <p class="text-[0.88rem] leading-[1.65] text-oolong/80 mb-[1.8rem] grow">{{ experience.description }}</p>
       
       <!-- Specific B2C Details -->
-      <div v-if="!isB2b" class="card-meta">
-        <div class="meta-item">
-          <span class="meta-label">Duration</span>
-          <span class="meta-val">{{ experience.duration }}</span>
+      <div v-if="!isB2b" class="grid grid-cols-2 gap-[1.2rem] mb-6 bg-sage-green/[0.03] p-4 rounded-lg border border-tea-gold/15">
+        <div class="flex flex-col gap-[0.2rem]">
+          <span class="font-body text-[0.65rem] uppercase tracking-[0.05em] text-oolong/50">Duration</span>
+          <span class="font-body text-[0.85rem] font-semibold text-sage-green">{{ experience.duration }}</span>
         </div>
-        <div class="meta-item">
-          <span class="meta-label">Capacity</span>
-          <span class="meta-val">Up to {{ experience.maxGuests }} guests</span>
+        <div class="flex flex-col gap-[0.2rem]">
+          <span class="font-body text-[0.65rem] uppercase tracking-[0.05em] text-oolong/50">Capacity</span>
+          <span class="font-body text-[0.85rem] font-semibold text-sage-green">Up to {{ experience.maxGuests }} guests</span>
         </div>
-        <div class="meta-item">
-          <span class="meta-label">Price / Guest</span>
-          <span class="meta-val">¥{{ experience.pricePerGuest }}</span>
+        <div class="flex flex-col gap-[0.2rem]">
+          <span class="font-body text-[0.65rem] uppercase tracking-[0.05em] text-oolong/50">Price / Guest</span>
+          <span class="font-body text-[0.85rem] font-semibold text-sage-green">¥{{ experience.pricePerGuest }}</span>
         </div>
-        <div class="meta-item">
-          <span class="meta-label">Min Booking</span>
-          <span class="meta-val">¥{{ experience.minBookingValue }}</span>
+        <div class="flex flex-col gap-[0.2rem]">
+          <span class="font-body text-[0.65rem] uppercase tracking-[0.05em] text-oolong/50">Min Booking</span>
+          <span class="font-body text-[0.85rem] font-semibold text-sage-green">¥{{ experience.minBookingValue }}</span>
         </div>
       </div>
 
       <!-- Specific B2B Details -->
-      <div v-else class="card-meta-b2b">
-        <span class="b2b-focus-label">Strategic Focus</span>
-        <span class="b2b-focus-val">{{ experience.focus }}</span>
+      <div v-else class="flex flex-col gap-[0.2rem] mb-6 bg-tea-gold/[0.05] p-4 rounded-lg border-l-[3px] border-tea-gold">
+        <span class="font-body text-[0.65rem] uppercase tracking-[0.05em] text-tea-gold">Strategic Focus</span>
+        <span class="font-heading text-[1.1rem] font-medium text-sage-green">{{ experience.focus }}</span>
       </div>
 
-      <div class="card-divider"></div>
+      <div class="h-[1px] bg-tea-gold/15 mb-6"></div>
       
-      <div class="card-bullets">
-        <h4 class="bullets-title">Highlights</h4>
-        <ul>
-          <li v-for="(bullet, index) in bullets" :key="index">
-            <svg class="bullet-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <div class="mb-8">
+        <h4 class="font-body text-[0.75rem] uppercase tracking-[0.08em] text-tea-gold mb-3">Highlights</h4>
+        <ul class="flex flex-col gap-2">
+          <li v-for="(bullet, index) in bullets" :key="index" class="flex items-start gap-[0.6rem] text-[0.85rem] text-oolong/85 leading-[1.4]">
+            <svg class="w-[14px] h-[14px] text-tea-gold mt-[2px] shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <polyline points="20 6 9 17 4 12"></polyline>
             </svg>
             <span>{{ bullet }}</span>
@@ -53,8 +53,8 @@
         </ul>
       </div>
 
-      <div class="card-action">
-        <NuxtLink to="/#contact" class="btn-card">Book Session</NuxtLink>
+      <div>
+        <NuxtLink to="/#contact" class="flex items-center justify-center w-full p-[0.8rem] border border-sage-green rounded-[50px] font-body text-[0.8rem] uppercase tracking-[0.1em] font-medium transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] group-hover:bg-sage-green group-hover:text-xuan-paper hover:!bg-tea-gold hover:!border-tea-gold hover:!text-xuan-paper">Book Session</NuxtLink>
       </div>
     </div>
   </div>
@@ -82,213 +82,3 @@ const bullets = computed(() => {
   return props.isB2b ? props.experience.highlights : props.experience.bullets
 })
 </script>
-
-<style scoped>
-.experience-card {
-  display: flex;
-  flex-direction: column;
-  background-color: rgba(250, 246, 240, 0.6);
-  border: 1px solid rgba(197, 160, 89, 0.15);
-  transition: var(--transition-smooth);
-  height: 100%;
-}
-
-.experience-card:hover {
-  transform: translateY(-5px);
-  border-color: var(--accent-antique-gold);
-  box-shadow: 0 15px 40px rgba(10, 60, 50, 0.06);
-}
-
-.card-image-wrapper {
-  position: relative;
-  width: 100%;
-  height: 280px;
-  overflow: hidden;
-}
-
-.card-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
-}
-
-.experience-card:hover .card-image {
-  transform: scale(1.05);
-}
-
-.card-tag {
-  position: absolute;
-  top: 1rem;
-  left: 1rem;
-  background-color: var(--brand-deep-jade);
-  color: var(--bg-xuan-paper);
-  font-family: var(--font-body);
-  font-size: 0.7rem;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  padding: 0.4rem 0.8rem;
-  border: 1px solid rgba(197, 160, 89, 0.3);
-}
-
-.card-body {
-  padding: 2.2rem 2rem;
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
-}
-
-.card-header {
-  margin-bottom: 1.2rem;
-}
-
-.card-subtitle {
-  font-family: var(--font-body);
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 0.15em;
-  color: var(--accent-antique-gold);
-  display: block;
-  margin-bottom: 0.4rem;
-}
-
-.card-title {
-  font-size: 1.6rem;
-  color: var(--brand-deep-jade);
-}
-
-.card-description {
-  font-size: 0.88rem;
-  line-height: 1.65;
-  color: rgba(36, 30, 26, 0.8);
-  margin-bottom: 1.8rem;
-  flex-grow: 1;
-}
-
-/* B2C Meta Grid */
-.card-meta {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1.2rem;
-  margin-bottom: 1.5rem;
-  background-color: rgba(10, 60, 50, 0.02);
-  padding: 1rem;
-  border: 1px solid rgba(197, 160, 89, 0.1);
-}
-
-.meta-item {
-  display: flex;
-  flex-direction: column;
-  gap: 0.2rem;
-}
-
-.meta-label {
-  font-family: var(--font-body);
-  font-size: 0.65rem;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: rgba(36, 30, 26, 0.5);
-}
-
-.meta-val {
-  font-family: var(--font-body);
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: var(--brand-deep-jade);
-}
-
-/* B2B Meta */
-.card-meta-b2b {
-  display: flex;
-  flex-direction: column;
-  gap: 0.2rem;
-  margin-bottom: 1.5rem;
-  background-color: rgba(197, 160, 89, 0.05);
-  padding: 1rem;
-  border-left: 3px solid var(--accent-antique-gold);
-}
-
-.b2b-focus-label {
-  font-family: var(--font-body);
-  font-size: 0.65rem;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: var(--accent-antique-gold);
-}
-
-.b2b-focus-val {
-  font-family: var(--font-heading);
-  font-size: 1.1rem;
-  font-weight: 500;
-  color: var(--brand-deep-jade);
-}
-
-.card-divider {
-  height: 1px;
-  background-color: rgba(197, 160, 89, 0.15);
-  margin-bottom: 1.5rem;
-}
-
-/* Bullets */
-.bullets-title {
-  font-family: var(--font-body);
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--accent-antique-gold);
-  margin-bottom: 0.8rem;
-}
-
-.card-bullets ul {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  margin-bottom: 2rem;
-}
-
-.card-bullets li {
-  display: flex;
-  align-items: flex-start;
-  gap: 0.6rem;
-  font-size: 0.85rem;
-  color: rgba(36, 30, 26, 0.85);
-  line-height: 1.4;
-}
-
-.bullet-icon {
-  width: 14px;
-  height: 14px;
-  color: var(--accent-antique-gold);
-  margin-top: 2px;
-  flex-shrink: 0;
-}
-
-/* Button action */
-.btn-card {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  padding: 0.8rem;
-  border: 1px solid var(--brand-deep-jade);
-  font-family: var(--font-body);
-  font-size: 0.8rem;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  font-weight: 500;
-  transition: var(--transition-smooth);
-}
-
-.experience-card:hover .btn-card {
-  background-color: var(--brand-deep-jade);
-  color: var(--bg-xuan-paper);
-}
-
-.btn-card:hover {
-  background-color: var(--accent-antique-gold) !important;
-  border-color: var(--accent-antique-gold) !important;
-  color: var(--brand-deep-jade) !important;
-}
-</style>

@@ -1,20 +1,20 @@
 <template>
-  <div class="experiences-page section-padding">
-    <div class="container page-header reveal-item">
-      <span class="page-tag">Offerings</span>
-      <h1 class="page-title">Our Experiences</h1>
-      <p class="page-description">Carefully composed private encounters where Chinese tea culture, sound, breath, and presence meet. Find the perfect session for your group.</p>
+  <div class="bg-xuan-paper pt-[150px] section-padding">
+    <div class="max-w-[1200px] mx-auto px-6 w-full page-header reveal-item">
+      <span class="font-body text-[0.75rem] uppercase tracking-[0.2em] text-tea-gold block mb-2">Offerings</span>
+      <h1 class="text-[3rem] tracking-[0.05em] mb-6 font-heading font-semibold text-sage-green">Our Experiences</h1>
+      <p class="text-[1.05rem] text-oolong/80 max-w-[600px] leading-[1.8] mb-12">Carefully composed private encounters where Chinese tea culture, sound, breath, and presence meet. Find the perfect session for your group.</p>
       
       <!-- Premium Tab Switcher -->
-      <div class="switcher-container">
+      <div class="inline-flex border border-tea-gold/30 rounded-[50px] p-1 bg-sage-green/[0.03]">
         <button 
-          :class="['switch-btn', { 'is-active': activeTab === 'b2c' }]" 
+          :class="['bg-transparent border-none rounded-[50px] font-body text-[0.8rem] font-medium uppercase tracking-[0.1em] text-oolong py-[0.8rem] px-[1.8rem] cursor-pointer transition-colors duration-500', { '!bg-sage-green !text-xuan-paper': activeTab === 'b2c' }]" 
           @click="setTab('b2c')"
         >
           For Individuals (B2C)
         </button>
         <button 
-          :class="['switch-btn', { 'is-active': activeTab === 'b2b' }]" 
+          :class="['bg-transparent border-none rounded-[50px] font-body text-[0.8rem] font-medium uppercase tracking-[0.1em] text-oolong py-[0.8rem] px-[1.8rem] cursor-pointer transition-colors duration-500', { '!bg-sage-green !text-xuan-paper': activeTab === 'b2b' }]" 
           @click="setTab('b2b')"
         >
           For Professionals (B2B)
@@ -23,8 +23,8 @@
     </div>
 
     <!-- Experiences Grid -->
-    <div class="container grid-container">
-      <div class="experiences-grid">
+    <div class="max-w-[1200px] mx-auto px-6 w-full mt-16 mb-24">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
         <div 
           v-for="exp in activeExperiences" 
           :key="exp.id"
@@ -36,50 +36,50 @@
     </div>
 
     <!-- Booking Policy Details (from Ruuts.pdf) -->
-    <div class="booking-policy-section">
-      <div class="container">
-        <div class="policy-header reveal-item text-center">
-          <span class="policy-tag">Terms</span>
-          <h2 class="policy-title">Private Session Policies</h2>
-          <p class="policy-intro-p">To preserve the quality of each experience and the integrity of the hosting space, the following guidelines govern all bookings.</p>
+    <div class="bg-sage-green/[0.03] border-t border-tea-gold/15 py-24">
+      <div class="max-w-[1200px] mx-auto px-6 w-full">
+        <div class="text-center reveal-item">
+          <span class="font-body text-[0.75rem] uppercase tracking-[0.2em] text-tea-gold block mb-2">Terms</span>
+          <h2 class="font-heading text-[2.4rem] tracking-[0.05em] mb-4 font-semibold text-sage-green">Private Session Policies</h2>
+          <p class="text-[0.95rem] text-oolong/75 max-w-[550px] mx-auto mb-16 leading-[1.7]">To preserve the quality of each experience and the integrity of the hosting space, the following guidelines govern all bookings.</p>
         </div>
 
-        <div class="policy-grid">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
           <!-- Session Confirmation -->
-          <div class="policy-card reveal-item">
-            <h3>1. Session Confirmation</h3>
-            <ul>
-              <li v-for="(item, idx) in bookingPolicy.confirmation" :key="idx">{{ item }}</li>
+          <div class="bg-xuan-paper border border-tea-gold/15 rounded-2xl p-[2.5rem_2rem] reveal-item">
+            <h3 class="font-body text-[0.95rem] uppercase tracking-[0.05em] text-sage-green border-b border-tea-gold pb-[0.8rem] mb-[1.5rem]">1. Session Confirmation</h3>
+            <ul class="flex flex-col gap-[0.8rem]">
+              <li v-for="(item, idx) in bookingPolicy.confirmation" :key="idx" class="text-[0.85rem] leading-[1.5] text-oolong/80 relative pl-[1.2rem] before:content-['•'] before:text-tea-gold before:text-[1.2rem] before:absolute before:left-0 before:-top-[2px]">{{ item }}</li>
             </ul>
           </div>
 
           <!-- Modification Policy -->
-          <div class="policy-card reveal-item">
-            <h3>2. Modification Policy</h3>
-            <ul>
-              <li v-for="(item, idx) in bookingPolicy.modification" :key="idx">{{ item }}</li>
+          <div class="bg-xuan-paper border border-tea-gold/15 rounded-2xl p-[2.5rem_2rem] reveal-item">
+            <h3 class="font-body text-[0.95rem] uppercase tracking-[0.05em] text-sage-green border-b border-tea-gold pb-[0.8rem] mb-[1.5rem]">2. Modification Policy</h3>
+            <ul class="flex flex-col gap-[0.8rem]">
+              <li v-for="(item, idx) in bookingPolicy.modification" :key="idx" class="text-[0.85rem] leading-[1.5] text-oolong/80 relative pl-[1.2rem] before:content-['•'] before:text-tea-gold before:text-[1.2rem] before:absolute before:left-0 before:-top-[2px]">{{ item }}</li>
             </ul>
           </div>
 
           <!-- Cancellation Policy -->
-          <div class="policy-card reveal-item">
-            <h3>3. Cancellation Policy</h3>
-            <div class="cancellation-schedule">
+          <div class="bg-xuan-paper border border-tea-gold/15 rounded-2xl p-[2.5rem_2rem] reveal-item">
+            <h3 class="font-body text-[0.95rem] uppercase tracking-[0.05em] text-sage-green border-b border-tea-gold pb-[0.8rem] mb-[1.5rem]">3. Cancellation Policy</h3>
+            <div class="flex flex-col gap-[0.8rem]">
               <div 
                 v-for="(sched, idx) in bookingPolicy.cancellation" 
                 :key="idx"
-                class="cancellation-row"
+                class="flex justify-between border-b border-dashed border-tea-gold/15 pb-[0.6rem] text-[0.82rem] gap-4"
               >
-                <span class="cancel-range">{{ sched.range }}</span>
-                <span class="cancel-refund">{{ sched.refund }}</span>
+                <span class="text-oolong/85">{{ sched.range }}</span>
+                <span class="font-semibold text-cinnabar shrink-0">{{ sched.refund }}</span>
               </div>
             </div>
           </div>
 
           <!-- Force Majeure -->
-          <div class="policy-card reveal-item full-width-card">
-            <h3>4. Force Majeure</h3>
-            <p class="force-majeure-text">{{ bookingPolicy.forceMajeure }}</p>
+          <div class="bg-xuan-paper border border-tea-gold/15 rounded-2xl p-[2.5rem_2rem] lg:col-span-3 reveal-item">
+            <h3 class="font-body text-[0.95rem] uppercase tracking-[0.05em] text-sage-green border-b border-tea-gold pb-[0.8rem] mb-[1.5rem]">4. Force Majeure</h3>
+            <p class="text-[0.88rem] leading-[1.7] text-oolong/80">{{ bookingPolicy.forceMajeure }}</p>
           </div>
         </div>
       </div>
@@ -142,7 +142,7 @@ onMounted(() => {
   })
 
   // Reveal policy cards
-  const policyItems = document.querySelectorAll('.policy-card, .policy-header')
+  const policyItems = document.querySelectorAll('.reveal-item')
   policyItems.forEach((item) => {
     gsap.fromTo(item,
       { y: 35, opacity: 0 },
@@ -161,212 +161,3 @@ onMounted(() => {
   })
 })
 </script>
-
-<style scoped>
-.experiences-page {
-  background-color: var(--bg-xuan-paper);
-  padding-top: 150px;
-}
-
-.page-tag {
-  font-family: var(--font-body);
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 0.2em;
-  color: var(--accent-antique-gold);
-  display: block;
-  margin-bottom: 0.5rem;
-}
-
-.page-title {
-  font-size: 3rem;
-  letter-spacing: 0.05em;
-  margin-bottom: 1.5rem;
-}
-
-.page-description {
-  font-size: 1.05rem;
-  color: rgba(36, 30, 26, 0.8);
-  max-width: 600px;
-  line-height: 1.8;
-  margin-bottom: 3rem;
-}
-
-/* Premium Tab Switcher */
-.switcher-container {
-  display: inline-flex;
-  border: 1px solid rgba(197, 160, 89, 0.3);
-  padding: 4px;
-  background-color: rgba(10, 60, 50, 0.02);
-}
-
-.switch-btn {
-  background: none;
-  border: none;
-  font-family: var(--font-body);
-  font-size: 0.8rem;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--text-oolong);
-  padding: 0.8rem 1.8rem;
-  cursor: pointer;
-  transition: var(--transition-smooth);
-}
-
-.switch-btn.is-active {
-  background-color: var(--brand-deep-jade);
-  color: var(--bg-xuan-paper);
-}
-
-/* Grid layout */
-.grid-container {
-  margin-top: 4rem;
-  margin-bottom: 6rem;
-}
-
-.experiences-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2.5rem;
-}
-
-@media (max-width: 992px) {
-  .experiences-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 650px) {
-  .experiences-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-/* Booking policies section */
-.booking-policy-section {
-  background-color: rgba(10, 60, 50, 0.02);
-  border-top: 1px solid rgba(197, 160, 89, 0.15);
-  padding: 6rem 0;
-}
-
-.policy-tag {
-  font-family: var(--font-body);
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 0.2em;
-  color: var(--accent-antique-gold);
-  display: block;
-  margin-bottom: 0.5rem;
-}
-
-.policy-title {
-  font-size: 2.4rem;
-  letter-spacing: 0.05em;
-  margin-bottom: 1rem;
-}
-
-.policy-intro-p {
-  font-size: 0.95rem;
-  color: rgba(36, 30, 26, 0.75);
-  max-width: 550px;
-  margin: 0 auto 4rem auto;
-  line-height: 1.7;
-}
-
-.policy-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2rem;
-}
-
-@media (max-width: 992px) {
-  .policy-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-.policy-card {
-  background-color: var(--bg-xuan-paper);
-  border: 1px solid rgba(197, 160, 89, 0.15);
-  padding: 2.5rem 2rem;
-}
-
-.policy-card h3 {
-  font-family: var(--font-body);
-  font-size: 0.95rem;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: var(--brand-deep-jade);
-  border-bottom: 1px solid var(--accent-antique-gold);
-  padding-bottom: 0.8rem;
-  margin-bottom: 1.5rem;
-}
-
-.policy-card ul {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 0.8rem;
-}
-
-.policy-card li {
-  font-size: 0.85rem;
-  line-height: 1.5;
-  color: rgba(36, 30, 26, 0.8);
-  position: relative;
-  padding-left: 1.2rem;
-}
-
-.policy-card li::before {
-  content: '•';
-  color: var(--accent-antique-gold);
-  font-size: 1.2rem;
-  position: absolute;
-  left: 0;
-  top: -2px;
-}
-
-/* Cancellation list */
-.cancellation-schedule {
-  display: flex;
-  flex-direction: column;
-  gap: 0.8rem;
-}
-
-.cancellation-row {
-  display: flex;
-  justify-content: space-between;
-  border-bottom: 1px dashed rgba(197, 160, 89, 0.15);
-  padding-bottom: 0.6rem;
-  font-size: 0.82rem;
-  gap: 1rem;
-}
-
-.cancel-range {
-  color: rgba(36, 30, 26, 0.85);
-}
-
-.cancel-refund {
-  font-weight: 600;
-  color: var(--accent-cinnabar);
-  flex-shrink: 0;
-}
-
-/* Full width card */
-.full-width-card {
-  grid-column: span 3;
-}
-
-@media (max-width: 992px) {
-  .full-width-card {
-    grid-column: span 1;
-  }
-}
-
-.force-majeure-text {
-  font-size: 0.88rem;
-  line-height: 1.7;
-  color: rgba(36, 30, 26, 0.8);
-}
-</style>

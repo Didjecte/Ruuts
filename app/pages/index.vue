@@ -1,23 +1,23 @@
 <template>
-  <div class="home-page">
+  <div>
     <!-- Hero Section -->
-    <section class="hero-section">
-      <div class="hero-bg-overlay"></div>
-      <div class="hero-container container">
-        <div class="hero-content">
-          <span class="hero-tagline">Ruuts &bull; Tea & Presence</span>
-          <h1 class="hero-title">Reconnecting With Origin</h1>
-          <p class="hero-description">Premium group tea experiences and tea rituals designed to foster presence, connection, and intercultural discovery in an intimate setting.</p>
-          <div class="hero-actions">
+    <section class="h-screen min-h-[650px] relative flex items-center bg-[url('https://images.unsplash.com/photo-1544787219-7f47ccb76574?q=80&w=1600&auto=format&fit=crop')] bg-cover bg-center text-xuan-paper">
+      <div class="absolute inset-0 bg-gradient-to-br from-sage-green/90 to-oolong/80 z-[1]"></div>
+      <div class="relative z-[2] mt-[40px] max-w-[1200px] mx-auto px-6 w-full">
+        <div class="max-w-[650px]">
+          <span class="hero-tagline font-body text-[0.8rem] font-medium uppercase tracking-[0.3em] text-tea-gold block mb-4">Ruuts &bull; Tea & Presence</span>
+          <h1 class="hero-title font-heading text-[2.8rem] md:text-[3.8rem] font-semibold text-xuan-paper leading-[1.15] tracking-[-0.02em] mb-6">Reconnecting With Origin</h1>
+          <p class="hero-description text-[1.05rem] leading-[1.8] text-xuan-paper/85 mb-10">Premium group tea experiences and tea rituals designed to foster presence, connection, and intercultural discovery in an intimate setting.</p>
+          <div class="hero-actions flex flex-col sm:flex-row gap-4 sm:gap-6">
             <NuxtLink to="/experiences" class="btn-primary">Explore Sessions</NuxtLink>
-            <NuxtLink to="/#about" class="btn-secondary btn-hero-sec">Our Story</NuxtLink>
+            <NuxtLink to="/#about" class="btn-secondary !border-xuan-paper/50 !text-xuan-paper hover:!bg-xuan-paper hover:!text-sage-green hover:!border-xuan-paper">Our Story</NuxtLink>
           </div>
         </div>
       </div>
       
-      <div class="scroll-indicator">
-        <span class="scroll-dot"></span>
-        <span class="scroll-text">Scroll to explore</span>
+      <div class="scroll-indicator absolute bottom-10 left-1/2 -translate-x-1/2 z-[2] flex flex-col items-center gap-2">
+        <span class="scroll-dot w-[6px] h-[10px] bg-tea-gold rounded-[3px]"></span>
+        <span class="font-body text-[0.65rem] uppercase tracking-[0.15em] text-xuan-paper/60">Scroll to explore</span>
       </div>
     </section>
 
@@ -25,7 +25,7 @@
     <AboutSection />
 
     <!-- Divider Decor -->
-    <div class="container">
+    <div class="max-w-[1200px] mx-auto px-6 w-full">
       <div class="gold-divider"></div>
     </div>
 
@@ -113,121 +113,8 @@ onMounted(() => {
 </script>
 
 <style scoped>
-.hero-section {
-  height: 100vh;
-  min-height: 650px;
-  position: relative;
-  display: flex;
-  align-items: center;
-  background-image: url('https://images.unsplash.com/photo-1544787219-7f47ccb76574?q=80&w=1600&auto=format&fit=crop');
-  background-size: cover;
-  background-position: center;
-  color: var(--bg-xuan-paper);
-}
-
-.hero-bg-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(135deg, rgba(10, 60, 50, 0.9) 0%, rgba(36, 30, 26, 0.8) 100%);
-  z-index: 1;
-}
-
-.hero-container {
-  position: relative;
-  z-index: 2;
-  margin-top: 40px;
-}
-
-.hero-content {
-  max-width: 650px;
-}
-
-.hero-tagline {
-  font-family: var(--font-body);
-  font-size: 0.8rem;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.3em;
-  color: var(--accent-antique-gold);
-  display: block;
-  margin-bottom: 1rem;
-}
-
-.hero-title {
-  font-size: 3.8rem;
-  font-weight: 600;
-  color: var(--bg-xuan-paper);
-  line-height: 1.15;
-  letter-spacing: -0.02em;
-  margin-bottom: 1.5rem;
-}
-
-@media (max-width: 768px) {
-  .hero-title {
-    font-size: 2.8rem;
-  }
-}
-
-.hero-description {
-  font-size: 1.05rem;
-  line-height: 1.8;
-  color: rgba(250, 246, 240, 0.85);
-  margin-bottom: 2.5rem;
-}
-
-.hero-actions {
-  display: flex;
-  gap: 1.5rem;
-}
-
-@media (max-width: 480px) {
-  .hero-actions {
-    flex-direction: column;
-    gap: 1rem;
-  }
-}
-
-.btn-hero-sec {
-  border-color: rgba(250, 246, 240, 0.5);
-  color: var(--bg-xuan-paper);
-}
-
-.btn-hero-sec:hover {
-  background-color: var(--bg-xuan-paper);
-  color: var(--brand-deep-jade);
-  border-color: var(--bg-xuan-paper);
-}
-
-/* Scroll indicator */
-.scroll-indicator {
-  position: absolute;
-  bottom: 2.5rem;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 2;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.5rem;
-}
-
 .scroll-dot {
-  width: 6px;
-  height: 10px;
-  background-color: var(--accent-antique-gold);
-  border-radius: 3px;
   animation: scrollPulse 2s infinite ease-in-out;
-}
-
-.scroll-text {
-  font-family: var(--font-body);
-  font-size: 0.65rem;
-  text-transform: uppercase;
-  letter-spacing: 0.15em;
-  color: rgba(250, 246, 240, 0.6);
 }
 
 @keyframes scrollPulse {

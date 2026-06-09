@@ -1,139 +1,46 @@
 <template>
-  <div class="site-wrapper">
+  <div class="flex flex-col min-h-screen">
     <Navbar />
     
-    <main class="main-content">
+    <main class="flex-[1_0_auto]">
       <slot />
     </main>
 
-    <footer class="site-footer">
-      <div class="container footer-grid">
-        <div class="footer-brand">
-          <h2 class="footer-logo">RUUTS</h2>
-          <p class="footer-tagline">Reconnecting with origin through Chinese tea ceremonies and premium group experiences.</p>
+    <footer class="bg-sage-green text-xuan-paper pt-16 pb-8 border-t border-tea-gold">
+      <div class="max-w-[1200px] mx-auto px-6 w-full grid grid-cols-1 md:grid-cols-[2fr_1fr_1fr] gap-8 md:gap-12 mb-12">
+        <div>
+          <h2 class="text-tea-gold text-[2rem] font-heading tracking-[0.15em] mb-4">RUUTS</h2>
+          <p class="text-[0.9rem] text-xuan-paper/90 max-w-[380px]">Reconnecting with origin through Chinese tea ceremonies and premium group experiences.</p>
         </div>
-        <div class="footer-links">
-          <h3>Explore</h3>
-          <ul>
-            <li><NuxtLink to="/">About & Story</NuxtLink></li>
-            <li><NuxtLink to="/experiences">Experiences</NuxtLink></li>
-            <li><NuxtLink to="/insights">Insights</NuxtLink></li>
-            <li><NuxtLink to="/#contact">Contact</NuxtLink></li>
+        <div>
+          <h3 class="font-body text-[0.8rem] uppercase tracking-[0.1em] text-tea-gold mb-[1.2rem]">Explore</h3>
+          <ul class="list-none">
+            <li class="mb-[0.6rem]">
+              <NuxtLink to="/" class="text-[0.9rem] text-xuan-paper/75 transition-all duration-200 hover:text-tea-gold hover:pl-1 block w-fit">About & Story</NuxtLink>
+            </li>
+            <li class="mb-[0.6rem]">
+              <NuxtLink to="/experiences" class="text-[0.9rem] text-xuan-paper/75 transition-all duration-200 hover:text-tea-gold hover:pl-1 block w-fit">Experiences</NuxtLink>
+            </li>
+            <li class="mb-[0.6rem]">
+              <NuxtLink to="/insights" class="text-[0.9rem] text-xuan-paper/75 transition-all duration-200 hover:text-tea-gold hover:pl-1 block w-fit">Insights</NuxtLink>
+            </li>
+            <li class="mb-[0.6rem]">
+              <NuxtLink to="/#contact" class="text-[0.9rem] text-xuan-paper/75 transition-all duration-200 hover:text-tea-gold hover:pl-1 block w-fit">Contact</NuxtLink>
+            </li>
           </ul>
         </div>
-        <div class="footer-contact-summary">
-          <h3>Inquiries</h3>
-          <p>contact@theruuts.com</p>
-          <p>+86 18217180655</p>
+        <div>
+          <h3 class="font-body text-[0.8rem] uppercase tracking-[0.1em] text-tea-gold mb-[1.2rem]">Inquiries</h3>
+          <p class="text-[0.9rem] text-xuan-paper/75 mb-2">contact@theruuts.com</p>
+          <p class="text-[0.9rem] text-xuan-paper/75 mb-2">+86 18217180655</p>
         </div>
       </div>
-      <div class="footer-bottom">
-        <div class="container footer-bottom-flex">
+      <div class="border-t border-tea-gold/15 pt-8">
+        <div class="max-w-[1200px] mx-auto px-6 w-full flex flex-col md:flex-row justify-between items-center text-[0.8rem] text-xuan-paper/50 gap-4 md:gap-0 text-center md:text-left">
           <p>&copy; {{ new Date().getFullYear() }} Ruuts. All rights reserved.</p>
-          <p class="footer-credit">Designed for Premium Experiences</p>
+          <p>Designed for Premium Experiences</p>
         </div>
       </div>
     </footer>
   </div>
 </template>
-
-<style scoped>
-.site-wrapper {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
-
-.main-content {
-  flex: 1 0 auto;
-}
-
-.site-footer {
-  background-color: var(--brand-deep-jade);
-  color: var(--bg-xuan-paper);
-  padding: 4rem 0 2rem 0;
-  border-top: 1px solid var(--accent-antique-gold);
-}
-
-.footer-grid {
-  display: grid;
-  grid-template-columns: 2fr 1fr 1fr;
-  gap: 3rem;
-  margin-bottom: 3rem;
-}
-
-@media (max-width: 768px) {
-  .footer-grid {
-    grid-template-columns: 1fr;
-    gap: 2rem;
-  }
-}
-
-.footer-logo {
-  color: var(--accent-antique-gold);
-  font-size: 2rem;
-  letter-spacing: 0.15em;
-  margin-bottom: 1rem;
-}
-
-.footer-tagline {
-  font-size: 0.9rem;
-  color: rgba(250, 246, 240, 0.75);
-  max-width: 380px;
-}
-
-.footer-links h3,
-.footer-contact-summary h3 {
-  font-family: var(--font-body);
-  font-size: 0.8rem;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--accent-antique-gold);
-  margin-bottom: 1.2rem;
-}
-
-.footer-links ul {
-  list-style: none;
-}
-
-.footer-links li {
-  margin-bottom: 0.6rem;
-}
-
-.footer-links a {
-  font-size: 0.9rem;
-  color: rgba(250, 246, 240, 0.75);
-}
-
-.footer-links a:hover {
-  color: var(--accent-antique-gold);
-  padding-left: 4px;
-}
-
-.footer-contact-summary p {
-  font-size: 0.9rem;
-  color: rgba(250, 246, 240, 0.75);
-  margin-bottom: 0.5rem;
-}
-
-.footer-bottom {
-  border-top: 1px solid rgba(197, 160, 89, 0.15);
-  padding-top: 2rem;
-}
-
-.footer-bottom-flex {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 0.8rem;
-  color: rgba(250, 246, 240, 0.5);
-}
-
-@media (max-width: 480px) {
-  .footer-bottom-flex {
-    flex-direction: column;
-    gap: 1rem;
-    text-align: center;
-  }
-}
-</style>

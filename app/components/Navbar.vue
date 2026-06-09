@@ -1,40 +1,51 @@
 <template>
-  <header :class="['site-header', { 'is-scrolled': isScrolled }]">
-    <div class="container nav-container">
-      <NuxtLink to="/" class="logo">RUUTS</NuxtLink>
+  <header :class="['fixed top-0 left-0 w-full h-[80px] flex items-center z-[100] transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] border-b border-transparent bg-transparent', { 'h-[70px] !bg-xuan-paper/85 backdrop-blur-[12px] !border-tea-gold/15': isScrolled }]">
+    <div class="flex justify-between items-center w-full max-w-[1200px] mx-auto px-6">
+      <NuxtLink to="/" class="font-heading text-[1.6rem] font-bold tracking-[0.15em] text-sage-green">RUUTS</NuxtLink>
       
       <!-- Desktop Menu -->
-      <nav class="desktop-nav">
-        <NuxtLink to="/" class="nav-link">About</NuxtLink>
-        <NuxtLink to="/experiences" class="nav-link">Experiences</NuxtLink>
-        <NuxtLink to="/insights" class="nav-link">Insights</NuxtLink>
-        <NuxtLink to="/#contact" class="nav-link contact-btn">Contact</NuxtLink>
+      <nav class="hidden md:flex items-center gap-10">
+        <NuxtLink to="/" class="font-body text-[0.85rem] font-medium uppercase tracking-[0.1em] text-oolong relative py-[0.2rem] group hover:text-sage-green transition-colors duration-200">
+          About
+          <span class="absolute bottom-0 left-0 w-0 h-[1px] bg-tea-gold transition-all duration-200 group-hover:w-full"></span>
+        </NuxtLink>
+        <NuxtLink to="/experiences" class="font-body text-[0.85rem] font-medium uppercase tracking-[0.1em] text-oolong relative py-[0.2rem] group hover:text-sage-green transition-colors duration-200">
+          Experiences
+          <span class="absolute bottom-0 left-0 w-0 h-[1px] bg-tea-gold transition-all duration-200 group-hover:w-full"></span>
+        </NuxtLink>
+        <NuxtLink to="/insights" class="font-body text-[0.85rem] font-medium uppercase tracking-[0.1em] text-oolong relative py-[0.2rem] group hover:text-sage-green transition-colors duration-200">
+          Insights
+          <span class="absolute bottom-0 left-0 w-0 h-[1px] bg-tea-gold transition-all duration-200 group-hover:w-full"></span>
+        </NuxtLink>
+        <NuxtLink to="/#contact" class="font-body text-[0.85rem] font-medium uppercase tracking-[0.1em] text-oolong border border-sage-green px-[1.2rem] py-[0.5rem] rounded-[50px] transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] hover:bg-sage-green hover:text-xuan-paper">
+          Contact
+        </NuxtLink>
       </nav>
 
       <!-- Burger Button (Mobile) -->
       <button 
-        class="burger-btn" 
+        class="flex md:hidden flex-col justify-between w-[30px] h-[20px] bg-transparent border-none cursor-pointer relative z-[101]" 
         :aria-expanded="isMenuOpen" 
         aria-label="Toggle menu"
         @click="toggleMenu"
       >
-        <span class="burger-line line-1"></span>
-        <span class="burger-line line-2"></span>
-        <span class="burger-line line-3"></span>
+        <span class="burger-line line-1 block w-full h-[2px] bg-sage-green transition-colors duration-300"></span>
+        <span class="burger-line line-2 block w-full h-[2px] bg-sage-green transition-colors duration-300"></span>
+        <span class="burger-line line-3 block w-full h-[2px] bg-sage-green transition-colors duration-300"></span>
       </button>
     </div>
 
     <!-- Mobile Fullscreen Overlay -->
-    <div ref="mobileOverlay" class="mobile-menu-overlay">
-      <div class="mobile-menu-content">
-        <nav class="mobile-nav">
-          <NuxtLink to="/" class="mobile-nav-link" @click="closeMenu">About & Story</NuxtLink>
-          <NuxtLink to="/experiences" class="mobile-nav-link" @click="closeMenu">Experiences</NuxtLink>
-          <NuxtLink to="/insights" class="mobile-nav-link" @click="closeMenu">Insights</NuxtLink>
-          <NuxtLink to="/#contact" class="mobile-nav-link" @click="closeMenu">Contact</NuxtLink>
+    <div ref="mobileOverlay" class="fixed top-0 left-0 w-screen h-screen bg-sage-green z-[99] flex justify-center items-center pointer-events-none [clip-path:circle(0px_at_90%_5%)]">
+      <div class="flex flex-col items-center justify-between h-[60%] w-full">
+        <nav class="flex flex-col items-center gap-8">
+          <NuxtLink to="/" class="mobile-nav-link font-heading text-[2.2rem] text-xuan-paper tracking-[0.05em] opacity-0 hover:text-tea-gold transition-colors duration-200" @click="closeMenu">About & Story</NuxtLink>
+          <NuxtLink to="/experiences" class="mobile-nav-link font-heading text-[2.2rem] text-xuan-paper tracking-[0.05em] opacity-0 hover:text-tea-gold transition-colors duration-200" @click="closeMenu">Experiences</NuxtLink>
+          <NuxtLink to="/insights" class="mobile-nav-link font-heading text-[2.2rem] text-xuan-paper tracking-[0.05em] opacity-0 hover:text-tea-gold transition-colors duration-200" @click="closeMenu">Insights</NuxtLink>
+          <NuxtLink to="/#contact" class="mobile-nav-link font-heading text-[2.2rem] text-xuan-paper tracking-[0.05em] opacity-0 hover:text-tea-gold transition-colors duration-200" @click="closeMenu">Contact</NuxtLink>
         </nav>
         
-        <div class="mobile-menu-footer">
+        <div class="mobile-menu-footer text-center text-xuan-paper/70 text-[0.85rem] flex flex-col gap-2 opacity-0">
           <p>contact@theruuts.com</p>
           <p>+86 18217180655</p>
         </div>
@@ -127,183 +138,3 @@ onUnmounted(() => {
   document.body.style.overflow = ''
 })
 </script>
-
-<style scoped>
-.site-header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 80px;
-  display: flex;
-  align-items: center;
-  z-index: 100;
-  transition: var(--transition-smooth);
-  border-bottom: 1px solid transparent;
-  background-color: transparent;
-}
-
-.site-header.is-scrolled {
-  height: 70px;
-  background-color: rgba(250, 246, 240, 0.85);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(197, 160, 89, 0.15);
-}
-
-.nav-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-}
-
-.logo {
-  font-family: var(--font-heading);
-  font-size: 1.6rem;
-  font-weight: 700;
-  letter-spacing: 0.15em;
-  color: var(--brand-deep-jade);
-}
-
-/* Desktop Nav Styles */
-.desktop-nav {
-  display: flex;
-  align-items: center;
-  gap: 2.5rem;
-}
-
-@media (max-width: 768px) {
-  .desktop-nav {
-    display: none;
-  }
-}
-
-.nav-link {
-  font-size: 0.85rem;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--text-oolong);
-  position: relative;
-  padding: 0.2rem 0;
-}
-
-.nav-link::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 0;
-  height: 1px;
-  background-color: var(--accent-antique-gold);
-  transition: var(--transition-fast);
-}
-
-.nav-link:hover::after {
-  width: 100%;
-}
-
-.nav-link:hover {
-  color: var(--brand-deep-jade);
-}
-
-.contact-btn {
-  border: 1px solid var(--brand-deep-jade);
-  padding: 0.5rem 1.2rem;
-  border-radius: 0;
-  transition: var(--transition-smooth);
-}
-
-.contact-btn:hover {
-  background-color: var(--brand-deep-jade);
-  color: var(--bg-xuan-paper) !important;
-}
-
-.contact-btn::after {
-  display: none;
-}
-
-/* Mobile Burger Button */
-.burger-btn {
-  display: none;
-  background: none;
-  border: none;
-  cursor: pointer;
-  width: 30px;
-  height: 20px;
-  position: relative;
-  z-index: 101;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-@media (max-width: 768px) {
-  .burger-btn {
-    display: flex;
-  }
-}
-
-.burger-line {
-  display: block;
-  width: 100%;
-  height: 2px;
-  background-color: var(--brand-deep-jade);
-  transition: background-color 0.3s;
-}
-
-/* Mobile Fullscreen Overlay */
-.mobile-menu-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: var(--brand-deep-jade);
-  z-index: 99;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  pointer-events: none;
-  clip-path: circle(0px at 90% 5%);
-  transition: none; /* Controlled by GSAP */
-}
-
-.mobile-menu-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  height: 60%;
-  width: 100%;
-}
-
-.mobile-nav {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 2rem;
-}
-
-.mobile-nav-link {
-  font-family: var(--font-heading);
-  font-size: 2.2rem;
-  color: var(--bg-xuan-paper);
-  letter-spacing: 0.05em;
-  opacity: 0;
-}
-
-.mobile-nav-link:hover {
-  color: var(--accent-antique-gold);
-}
-
-.mobile-menu-footer {
-  text-align: center;
-  color: rgba(250, 246, 240, 0.7);
-  font-size: 0.85rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  opacity: 0;
-}
-</style>
