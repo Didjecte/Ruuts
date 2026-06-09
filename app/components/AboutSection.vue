@@ -87,6 +87,7 @@
 <style scoped>
 .about-section {
   background-color: var(--bg-xuan-paper);
+  overflow: hidden;
 }
 
 .section-tag {
@@ -163,6 +164,11 @@
   .story-image {
     height: 350px;
   }
+
+  .image-frame-decor {
+    top: 0.75rem;
+    left: 0.75rem;
+  }
 }
 
 /* Founder Styling */
@@ -219,6 +225,11 @@
   
   .founder-image {
     height: 350px;
+  }
+
+  .image-frame-decor-left {
+    top: 0.75rem;
+    right: 0.75rem;
   }
 }
 
