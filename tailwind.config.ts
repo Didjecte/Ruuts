@@ -12,16 +12,17 @@ export default <Partial<Config>>{
   theme: {
     extend: {
       colors: {
-        'xuan-paper': '#FAF6F0',
-        'xuan-paper-darker': '#EFEBE5',
-        'sage-green': '#859F82',
-        'tea-gold': '#B67B1E',
-        'oolong': '#241E1A',
-        'cinnabar': '#B33C26',
+        'light': '#F9F6F0',
+        'light-darker': '#EFEBE5',
+        'primary': '#88A95B',
+        'secondary': '#D4AF37',
+        'dark': '#2C302E',
+        'accent': '#B33C26',
       },
       fontFamily: {
-        heading: ['Fraunces', 'Georgia', 'serif'],
+        heading: ['Norican', 'cursive'],
         body: ['Montserrat', 'system-ui', 'sans-serif'],
+        logo: ['Kalnia', 'serif'],
       },
       transitionTimingFunction: {
         'smooth': 'cubic-bezier(0.25, 1, 0.5, 1)',

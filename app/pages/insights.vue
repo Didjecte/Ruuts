@@ -1,16 +1,16 @@
 <template>
-  <div class="bg-xuan-paper pt-[150px] section-padding">
+  <div class="bg-light pt-[150px] section-padding">
     <div class="max-w-[1200px] mx-auto px-6 w-full page-header reveal-item">
-      <span class="font-body text-[0.75rem] uppercase tracking-[0.2em] text-tea-gold block mb-2">Journal</span>
-      <h1 class="font-heading text-[3rem] tracking-[0.05em] mb-6 font-semibold text-sage-green">Insights & Media</h1>
-      <p class="text-[1.05rem] text-oolong/80 max-w-[600px] leading-[1.8] mb-12">Deep dives into tea ceremonies, photographic journals of mountain harvests, and auditory experiences of traditional instruments.</p>
+      <span class="font-body text-[0.75rem] uppercase tracking-[0.2em] text-secondary block mb-2">Journal</span>
+      <h1 class="font-heading text-[3rem] tracking-[0.05em] mb-6 font-semibold text-dark">Insights & Media</h1>
+      <p class="text-[1.05rem] text-dark/80 max-w-[600px] leading-[1.8] mb-12">Deep dives into tea ceremonies, photographic journals of mountain harvests, and auditory experiences of traditional instruments.</p>
       
       <!-- Top filter navbar -->
-      <nav class="flex gap-2 sm:gap-4 border-b border-tea-gold/20 pb-[0.6rem] sm:pb-4 w-full overflow-x-auto scrollbar-hide">
+      <nav class="flex gap-2 sm:gap-4 border-b border-secondary/20 pb-[0.6rem] sm:pb-4 w-full overflow-x-auto scrollbar-hide">
         <button 
           v-for="filter in filterOptions" 
           :key="filter.value"
-          :class="['bg-transparent border-none font-body text-[0.8rem] font-medium uppercase tracking-[0.1em] text-oolong/60 py-2 px-[1.2rem] cursor-pointer transition-colors duration-200 relative shrink-0 hover:text-sage-green', { '!text-sage-green font-semibold after:content-[\'\'] after:absolute after:-bottom-[0.6rem] sm:after:-bottom-4 after:left-0 after:w-full after:h-[2px] after:bg-sage-green': activeFilter === filter.value }]"
+          :class="['bg-transparent border-none font-body text-[0.8rem] font-medium uppercase tracking-[0.1em] text-dark/60 py-2 px-[1.2rem] cursor-pointer transition-colors duration-200 relative shrink-0 hover:text-primary', { '!text-primary font-semibold after:content-[\'\'] after:absolute after:-bottom-[0.6rem] sm:after:-bottom-4 after:left-0 after:w-full after:h-[2px] after:bg-primary': activeFilter === filter.value }]"
           @click="setFilter(filter.value)"
         >
           {{ filter.label }}
@@ -20,17 +20,17 @@
 
     <!-- Insights Grid -->
     <div class="max-w-[1200px] mx-auto px-6 w-full mt-14 mb-24">
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[2.2rem]">
+      <div class="columns-1 sm:columns-2 lg:columns-3 gap-[2.2rem]">
         <div 
           v-for="post in filteredPosts" 
           :key="post.id"
-          class="insight-item-animate"
+          class="insight-item-animate break-inside-avoid mb-[2.2rem]"
         >
           <MediaCard :post="post" />
         </div>
       </div>
       
-      <div v-if="filteredPosts.length === 0" class="py-16 text-oolong/50 text-[0.95rem] text-center">
+      <div v-if="filteredPosts.length === 0" class="py-16 text-dark/50 text-[0.95rem] text-center">
         <p>No posts found matching the selected filter.</p>
       </div>
     </div>

@@ -1,29 +1,35 @@
-@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Kalnia:wght@100..700&family=Long+Cang&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Norican&family=Zhi+Mang+Xing&display=swap");
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
-  html, body {
+  html,
+  body {
     overflow-x: hidden;
     max-width: 100vw;
     width: 100%;
   }
 
   html {
-    @apply font-body text-oolong bg-xuan-paper;
+    @apply font-body text-dark bg-light;
     scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
 
   body {
-    @apply bg-xuan-paper;
+    @apply bg-light;
   }
 
-  h1, h2, h3, h4, h5, h6 {
-    @apply font-heading font-semibold leading-tight text-sage-green;
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-heading font-semibold leading-tight text-dark;
   }
 
   p {
@@ -41,16 +47,16 @@
   }
 
   .btn-primary {
-    @apply inline-flex items-center justify-center px-8 py-3 bg-sage-green text-xuan-paper font-body font-medium text-[0.85rem] tracking-widest uppercase border border-sage-green rounded-[50px] cursor-pointer transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] relative overflow-hidden z-10;
+    @apply inline-flex items-center justify-center px-8 py-3 bg-primary text-light font-body font-medium text-[0.85rem] tracking-widest uppercase border border-primary rounded-[50px] cursor-pointer transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] relative overflow-hidden z-10;
   }
 
   .btn-primary::before {
-    content: '';
-    @apply absolute top-0 left-0 w-full h-full bg-tea-gold translate-y-full transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] -z-10;
+    content: "";
+    @apply absolute top-0 left-0 w-full h-full bg-secondary translate-y-full transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] -z-10;
   }
 
   .btn-primary:hover {
-    @apply text-xuan-paper border-tea-gold;
+    @apply text-dark border-secondary;
   }
 
   .btn-primary:hover::before {
@@ -58,23 +64,28 @@
   }
 
   .btn-secondary {
-    @apply inline-flex items-center justify-center px-8 py-3 bg-transparent text-sage-green font-body font-medium text-[0.85rem] tracking-widest uppercase border border-sage-green rounded-[50px] cursor-pointer transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)];
+    @apply inline-flex items-center justify-center px-8 py-3 bg-transparent text-primary font-body font-medium text-[0.85rem] tracking-widest uppercase border border-primary rounded-[50px] cursor-pointer transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)];
   }
 
   .btn-secondary:hover {
-    @apply bg-sage-green text-xuan-paper;
+    @apply bg-primary text-light;
   }
 
   .glass-panel {
-    background: rgba(250, 246, 240, 0.75);
+    background: rgba(249, 246, 240, 0.75);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(182, 123, 30, 0.15);
+    border: 1px solid rgba(212, 175, 55, 0.15);
   }
 
   .gold-divider {
     height: 1px;
-    background: linear-gradient(90deg, transparent, theme('colors.tea-gold'), transparent);
+    background: linear-gradient(
+      90deg,
+      transparent,
+      theme("colors.secondary"),
+      transparent
+    );
     @apply w-full my-8;
   }
 }
