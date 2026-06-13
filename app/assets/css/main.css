@@ -33,7 +33,7 @@
   }
 
   p {
-    @apply leading-relaxed text-[0.95rem] font-normal;
+    @apply font-medium leading-relaxed;
   }
 
   a {
@@ -47,7 +47,7 @@
   }
 
   .btn-primary {
-    @apply inline-flex items-center justify-center px-8 py-3 bg-primary text-light font-body font-medium text-[0.85rem] tracking-widest uppercase border border-primary rounded-[50px] cursor-pointer transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] relative overflow-hidden z-10;
+    @apply inline-flex items-center justify-center px-8 py-3 bg-primary text-light font-body font-medium text-xs tracking-widest uppercase border border-primary rounded-[50px] cursor-pointer transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] relative overflow-hidden z-10;
   }
 
   .btn-primary::before {
@@ -64,7 +64,7 @@
   }
 
   .btn-secondary {
-    @apply inline-flex items-center justify-center px-8 py-3 bg-transparent text-primary font-body font-medium text-[0.85rem] tracking-widest uppercase border border-primary rounded-[50px] cursor-pointer transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)];
+    @apply inline-flex items-center justify-center px-8 py-3 bg-transparent text-primary font-body font-medium text-xs tracking-widest uppercase border border-primary rounded-[50px] cursor-pointer transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)];
   }
 
   .btn-secondary:hover {

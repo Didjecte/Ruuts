@@ -21,11 +21,11 @@
           </div>
         </div>
         
-        <span class="absolute top-3 left-3 bg-light/95 text-primary font-body text-[0.6rem] font-semibold uppercase tracking-[0.1em] px-[0.6rem] py-[0.3rem] rounded-[50px] backdrop-blur-sm shadow-sm">{{ post.type }}</span>
+        <span class="absolute top-3 left-3 bg-light/95 text-primary font-body text-xs font-semibold uppercase px-[0.6rem] py-[0.3rem] rounded-[50px] backdrop-blur-sm shadow-sm">{{ post.type }}</span>
       </div>
       
       <div class="p-[1.1rem]">
-        <h3 class="font-body text-[0.95rem] font-medium leading-[1.5] text-dark group-hover:text-primary transition-colors duration-200 line-clamp-2">{{ post.title }}</h3>
+        <h3 class="font-body text-sm font-medium leading-[1.5] text-dark group-hover:text-primary transition-colors duration-200 line-clamp-2">{{ post.title }}</h3>
       </div>
     </NuxtLink>
   </article>
