@@ -110,98 +110,102 @@
     </div>
 
     <!-- Our Mission -->
-    <div class="max-w-[1200px] mx-auto px-6 w-full section-padding">
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
-        <!-- Left Side: Image and Quote -->
-        <div class="flex flex-col gap-10 reveal-item">
-          <div
-            class="w-full rounded-2xl overflow-hidden shadow-[0_20px_40px_rgba(136,169,91,0.15)] parallax-container"
-          >
-            <img
-              src="~/assets/images/mission.jpg"
-              alt="Ruuts Mission"
-              class="w-full h-[300px] md:h-[350px] object-cover parallax-img scale-[1.2]"
-            />
-          </div>
-
-          <!-- Quote Callout -->
-          <div class="text-center relative px-4 py-6">
+    <div class="bg-primary">
+      <div class="max-w-[1200px] mx-auto px-6 w-full section-padding">
+        <div
+          class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start"
+        >
+          <!-- Left Side: Image and Quote -->
+          <div class="flex flex-col gap-10 reveal-item">
             <div
-              class="absolute -top-6 left-1/2 -translate-x-1/2 font-heading text-8xl text-secondary/20 z-0 leading-none"
+              class="w-full rounded-2xl overflow-hidden shadow-[0_20px_40px_rgba(136,169,91,0.15)] parallax-container"
             >
-              “
+              <img
+                src="~/assets/images/mission.jpg"
+                alt="Ruuts Mission"
+                class="w-full h-[300px] md:h-[350px] object-cover parallax-img scale-[1.2]"
+              />
             </div>
-            <p
-              class="font-heading text-xl md:text-[1.7em] italic text-dark relative z-10 mb-4"
-            >
-              "Taking one’s time is the best way for not wasting it."
-            </p>
-            <p
-              class="font-body uppercase tracking-[0.1em] text-secondary relative z-10"
-            >
-              &mdash; Nicolas Bouvier
-            </p>
-          </div>
-        </div>
 
-        <!-- Right Side: Accordion -->
-        <div class="reveal-item">
-          <div class="mb-10">
-            <h2
-              class="text-5xl mb-8 relative font-heading font-semibold text-dark"
-            >
-              Our Mission
-            </h2>
-          </div>
-          <div class="flex flex-col border-t border-dark/10">
-            <div
-              v-for="(mission, index) in missions"
-              :key="index"
-              class="border-b border-dark/10 group cursor-pointer"
-              @click="activeMission = activeMission === index ? null : index"
-              @mouseenter="activeMission = index"
-            >
-              <!-- Accordion Header -->
+            <!-- Quote Callout -->
+            <div class="text-center relative px-4 py-6">
               <div
-                class="py-3 lg:py-6 flex items-center justify-between transition-colors duration-300"
+                class="absolute -top-6 left-1/2 -translate-x-1/2 font-heading text-8xl text-secondary/20 z-0 leading-none"
               >
-                <h3
-                  class="font-body text-xl sm:text-xl lg:text-xl text-dark group-hover:text-primary transition-colors duration-300"
-                >
-                  {{ mission.title }}
-                </h3>
-                <div
-                  class="relative w-4 h-4 sm:w-6 sm:h-6 flex items-center justify-center shrink-0 ml-6"
-                >
-                  <span
-                    class="absolute w-full h-[1px] bg-dark/40 group-hover:bg-primary transition-colors duration-300"
-                  ></span>
-                  <span
-                    class="absolute w-[1px] h-full bg-dark/40 group-hover:bg-primary transition-all duration-300"
-                    :class="
-                      activeMission === index
-                        ? 'rotate-90 opacity-0'
-                        : 'rotate-0 opacity-100'
-                    "
-                  ></span>
-                </div>
+                “
               </div>
-
-              <!-- Accordion Content -->
-              <div
-                class="grid transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)]"
-                :style="{
-                  gridTemplateRows: activeMission === index ? '1fr' : '0fr',
-                  opacity: activeMission === index ? 1 : 0,
-                }"
+              <p
+                class="font-heading text-xl md:text-[1.7em] italic text-dark relative z-10 mb-4"
               >
-                <div class="overflow-hidden min-h-0">
-                  <div class="pb-6 max-w-[600px] pr-8">
-                    <p
-                      class="text-dark/85 text-sm sm:text-base leading-relaxed"
-                    >
-                      {{ mission.description }}
-                    </p>
+                "Taking one’s time is the best way for not wasting it."
+              </p>
+              <p
+                class="font-body uppercase tracking-[0.1em] text-secondary relative z-10"
+              >
+                &mdash; Nicolas Bouvier
+              </p>
+            </div>
+          </div>
+
+          <!-- Right Side: Accordion -->
+          <div class="reveal-item">
+            <div class="mb-10">
+              <h2
+                class="text-5xl mb-8 relative font-heading font-semibold text-dark"
+              >
+                Our Mission
+              </h2>
+            </div>
+            <div class="flex flex-col border-t border-dark/10">
+              <div
+                v-for="(mission, index) in missions"
+                :key="index"
+                class="border-b border-dark/10 group cursor-pointer"
+                @click="activeMission = activeMission === index ? null : index"
+                @mouseenter="activeMission = index"
+              >
+                <!-- Accordion Header -->
+                <div
+                  class="py-3 lg:py-6 flex items-center justify-between transition-colors duration-300"
+                >
+                  <h3
+                    class="font-body text-xl sm:text-xl lg:text-xl text-dark group-hover:text-primary transition-colors duration-300"
+                  >
+                    {{ mission.title }}
+                  </h3>
+                  <div
+                    class="relative w-4 h-4 sm:w-6 sm:h-6 flex items-center justify-center shrink-0 ml-6"
+                  >
+                    <span
+                      class="absolute w-full h-[1px] bg-dark/40 group-hover:bg-primary transition-colors duration-300"
+                    ></span>
+                    <span
+                      class="absolute w-[1px] h-full bg-dark/40 group-hover:bg-primary transition-all duration-300"
+                      :class="
+                        activeMission === index
+                          ? 'rotate-90 opacity-0'
+                          : 'rotate-0 opacity-100'
+                      "
+                    ></span>
+                  </div>
+                </div>
+
+                <!-- Accordion Content -->
+                <div
+                  class="grid transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)]"
+                  :style="{
+                    gridTemplateRows: activeMission === index ? '1fr' : '0fr',
+                    opacity: activeMission === index ? 1 : 0,
+                  }"
+                >
+                  <div class="overflow-hidden min-h-0">
+                    <div class="pb-6 max-w-[600px] pr-8">
+                      <p
+                        class="text-dark/85 text-sm sm:text-base leading-relaxed"
+                      >
+                        {{ mission.description }}
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>
