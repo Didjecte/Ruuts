@@ -2,21 +2,19 @@
   <div>
     <!-- Hero Section -->
     <section
-      class="dark h-screen min-h-[650px] relative flex items-center hero-bg text-dark dark:text-light"
+      class="dark h-screen min-h-[650px] relative flex items-center hero-bg text-foreground"
     >
       <div
-        class="absolute inset-0 bg-gradient-to-br from-primary/80 to-dark/80 z-[1]"
+        class="absolute inset-0 bg-gradient-to-br from-primary/80 to-primary/80 z-[1]"
       ></div>
       <div class="relative z-[2] mt-[40px] max-w-[1200px] mx-auto px-6 w-full">
         <div class="max-w-[650px]">
           <h1
-            class="hero-title font-heading text-5xl md:text-6xl font-semibold text-dark dark:text-secondary tracking-[0.03em] leading-[1.15] mb-6"
+            class="hero-title font-heading text-5xl md:text-6xl font-semibold text-foreground dark:text-secondary tracking-[0.03em] leading-[1.15] mb-6"
           >
             Tea anywhere
           </h1>
-          <p
-            class="hero-description text-xl text-dark/85 dark:text-light font-medium mb-10"
-          >
+          <p class="hero-description text-xl text-foreground font-medium mb-10">
             An experience crafted only for you.
           </p>
           <div class="hero-actions flex flex-col sm:flex-row gap-4 sm:gap-6">
@@ -25,7 +23,7 @@
             >
             <NuxtLink
               to="/#about"
-              class="btn-secondary !border-dark/50 !text-dark hover:!bg-dark hover:!text-primary hover:!border-dark dark:!border-light/50 dark:!text-light dark:hover:!bg-light dark:hover:!text-primary dark:hover:!border-light"
+              class="btn-secondary !border-foreground/50 !text-foreground hover:!bg-foreground hover:!text-primary hover:!border-foreground"
               >Our Story</NuxtLink
             >
           </div>
@@ -38,8 +36,7 @@
         <span
           class="scroll-dot w-[6px] h-[10px] bg-secondary rounded-[3px]"
         ></span>
-        <span
-          class="font-body text-xs uppercase text-dark/60 dark:text-light/60"
+        <span class="font-body text-xs uppercase text-foreground/60"
           >Scroll to explore</span
         >
       </div>

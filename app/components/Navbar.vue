@@ -3,7 +3,7 @@
     :class="[
       'fixed top-0 left-0 w-full h-[80px] flex items-center z-[100] transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] border-b border-transparent bg-transparent',
       {
-        'h-[70px] !bg-light/85 backdrop-blur-[12px] !border-secondary/15':
+        'h-[70px] !bg-background/85 backdrop-blur-[12px] !border-secondary/15':
           isScrolled,
       },
     ]"
@@ -15,7 +15,7 @@
         to="/"
         :class="[
           'font-logo text-3xl font-medium transition-colors duration-500',
-          isTransparentNavbar ? 'text-light hover:text-secondary' : 'text-dark hover:text-primary'
+          isTransparentNavbar ? 'text-foreground-inverse hover:text-secondary' : 'text-foreground hover:text-primary'
         ]"
         >RUUTS</NuxtLink
       >
@@ -26,7 +26,7 @@
           to="/"
           :class="[
             'font-body text-sm font-medium uppercase tracking-[0.1em] relative py-[0.2rem] group transition-colors duration-500',
-            isTransparentNavbar ? 'text-light hover:text-secondary' : 'text-dark hover:text-primary'
+            isTransparentNavbar ? 'text-foreground-inverse hover:text-secondary' : 'text-foreground hover:text-primary'
           ]"
         >
           About
@@ -41,7 +41,7 @@
           to="/experiences"
           :class="[
             'font-body text-sm font-medium uppercase tracking-[0.1em] relative py-[0.2rem] group transition-colors duration-500',
-            isTransparentNavbar ? 'text-light hover:text-secondary' : 'text-dark hover:text-primary'
+            isTransparentNavbar ? 'text-foreground-inverse hover:text-secondary' : 'text-foreground hover:text-primary'
           ]"
         >
           Experiences
@@ -56,7 +56,7 @@
           to="/insights"
           :class="[
             'font-body text-sm font-medium uppercase tracking-[0.1em] relative py-[0.2rem] group transition-colors duration-500',
-            isTransparentNavbar ? 'text-light hover:text-secondary' : 'text-dark hover:text-primary'
+            isTransparentNavbar ? 'text-foreground-inverse hover:text-secondary' : 'text-foreground hover:text-primary'
           ]"
         >
           Insights
@@ -72,8 +72,8 @@
           :class="[
             'font-body text-sm font-medium uppercase tracking-[0.1em] px-[1.2rem] py-[0.5rem] rounded-[50px] transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)]',
             isTransparentNavbar
-              ? 'text-light border border-light/40 hover:bg-light hover:text-dark hover:border-light'
-              : 'text-dark border border-primary hover:bg-secondary hover:text-dark hover:border-secondary'
+              ? 'text-foreground-inverse border border-foreground-inverse/40 hover:bg-foreground-inverse hover:text-background-inverse hover:border-foreground-inverse'
+              : 'text-foreground border border-primary hover:bg-secondary hover:text-secondary-foreground hover:border-secondary'
           ]"
         >
           Contact
@@ -90,19 +90,19 @@
         <span
           :class="[
             'burger-line line-1 block w-full h-[2px] transition-all duration-300',
-            (isTransparentNavbar || isMenuOpen) ? 'bg-light' : 'bg-primary'
+            (isTransparentNavbar || isMenuOpen) ? 'bg-foreground-inverse' : 'bg-primary'
           ]"
         ></span>
         <span
           :class="[
             'burger-line line-2 block w-full h-[2px] transition-all duration-300',
-            (isTransparentNavbar || isMenuOpen) ? 'bg-light' : 'bg-primary'
+            (isTransparentNavbar || isMenuOpen) ? 'bg-foreground-inverse' : 'bg-primary'
           ]"
         ></span>
         <span
           :class="[
             'burger-line line-3 block w-full h-[2px] transition-all duration-300',
-            (isTransparentNavbar || isMenuOpen) ? 'bg-light' : 'bg-primary'
+            (isTransparentNavbar || isMenuOpen) ? 'bg-foreground-inverse' : 'bg-primary'
           ]"
         ></span>
       </button>
@@ -111,38 +111,38 @@
     <!-- Mobile Fullscreen Overlay -->
     <div
       ref="mobileOverlay"
-      class="fixed top-0 left-0 w-screen h-screen bg-dark z-[99] flex justify-center items-center pointer-events-none [clip-path:circle(0px_at_90%_5%)]"
+      class="fixed top-0 left-0 w-screen h-screen dark bg-background z-[99] flex justify-center items-center pointer-events-none [clip-path:circle(0px_at_90%_5%)]"
     >
       <div class="flex flex-col items-center justify-between h-[60%] w-full">
         <nav class="flex flex-col items-center gap-8">
           <NuxtLink
             to="/"
-            class="mobile-nav-link font-heading text-4xl text-light tracking-[0.05em] opacity-0 hover:text-primary transition-colors duration-200"
+            class="mobile-nav-link font-heading text-4xl text-foreground tracking-[0.05em] opacity-0 hover:text-primary transition-colors duration-200"
             @click="closeMenu"
             >About & Story</NuxtLink
           >
           <NuxtLink
             to="/experiences"
-            class="mobile-nav-link font-heading text-4xl text-light tracking-[0.05em] opacity-0 hover:text-primary transition-colors duration-200"
+            class="mobile-nav-link font-heading text-4xl text-foreground tracking-[0.05em] opacity-0 hover:text-primary transition-colors duration-200"
             @click="closeMenu"
             >Experiences</NuxtLink
           >
           <NuxtLink
             to="/insights"
-            class="mobile-nav-link font-heading text-4xl text-light tracking-[0.05em] opacity-0 hover:text-primary transition-colors duration-200"
+            class="mobile-nav-link font-heading text-4xl text-foreground tracking-[0.05em] opacity-0 hover:text-primary transition-colors duration-200"
             @click="closeMenu"
             >Insights</NuxtLink
           >
           <NuxtLink
             to="/#contact"
-            class="mobile-nav-link font-heading text-4xl text-light tracking-[0.05em] opacity-0 hover:text-primary transition-colors duration-200"
+            class="mobile-nav-link font-heading text-4xl text-foreground tracking-[0.05em] opacity-0 hover:text-primary transition-colors duration-200"
             @click="closeMenu"
             >Contact</NuxtLink
           >
         </nav>
 
         <div
-          class="mobile-menu-footer text-center text-light/70 text-sm flex flex-col gap-2 opacity-0"
+          class="mobile-menu-footer text-center text-foreground/70 text-sm flex flex-col gap-2 opacity-0"
         >
           <p>contact@theruuts.com</p>
           <p>+86 18217180655</p>

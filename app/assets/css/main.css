@@ -5,6 +5,171 @@
 @tailwind utilities;
 
 @layer base {
+  :root {
+    --background: 249 246 240;
+    --surface: 239 235 229;
+    --foreground: 44 48 46;
+    --muted: 115 120 117;
+    --border: 215 210 200;
+
+    --primary: 136 169 91;
+    --primary-hover: 115 145 75;
+    --primary-foreground: 255 255 255;
+
+    --secondary: 219 177 36;
+    --secondary-hover: 195 155 25;
+    --secondary-foreground: 44 48 46;
+
+    --accent: 179 60 38;
+    --accent-hover: 150 45 25;
+    --accent-foreground: 255 255 255;
+
+    --background-inverse: 44 48 46;
+    --surface-inverse: 60 65 62;
+    --foreground-inverse: 249 246 240;
+    --muted-inverse: 160 165 162;
+    --border-inverse: 80 85 82;
+  }
+
+  html.theme-white {
+    --background: 255 255 255;
+    --surface: 245 245 245;
+    --foreground: 18 18 18;
+    --muted: 110 110 110;
+    --border: 220 220 220;
+
+    --primary: 34 34 34;
+    --primary-hover: 60 60 60;
+    --primary-foreground: 255 255 255;
+
+    --secondary: 197 160 89;
+    --secondary-hover: 170 135 70;
+    --secondary-foreground: 18 18 18;
+
+    --accent: 153 51 51;
+    --accent-hover: 120 40 40;
+    --accent-foreground: 255 255 255;
+
+    --background-inverse: 18 18 18;
+    --surface-inverse: 34 34 34;
+    --foreground-inverse: 255 255 255;
+    --muted-inverse: 160 160 160;
+    --border-inverse: 60 60 60;
+  }
+
+  html.theme-black {
+    --background: 10 10 10;
+    --surface: 24 24 24;
+    --foreground: 249 246 240;
+    --muted: 150 150 150;
+    --border: 50 50 50;
+
+    --primary: 249 246 240;
+    --primary-hover: 153 153 153;
+    --primary-foreground: 10 10 10;
+
+    --secondary: 219 177 36;
+    --secondary-hover: 195 155 25;
+    --secondary-foreground: 10 10 10;
+
+    --accent: 239 68 68;
+    --accent-hover: 200 50 50;
+    --accent-foreground: 255 255 255;
+
+    --background-inverse: 249 246 240;
+    --surface-inverse: 239 235 229;
+    --foreground-inverse: 10 10 10;
+    --muted-inverse: 115 120 117;
+    --border-inverse: 215 210 200;
+  }
+
+  html.theme-forest {
+    --background: 249 246 240;
+    --surface: 239 235 229;
+    --foreground: 36 30 26;
+    --muted: 120 115 110;
+    --border: 215 210 200;
+
+    --primary: 10 60 50;
+    --primary-hover: 5 45 38;
+    --primary-foreground: 255 255 255;
+
+    --secondary: 197 160 89;
+    --secondary-hover: 170 135 70;
+    --secondary-foreground: 36 30 26;
+
+    --accent: 179 60 38;
+    --accent-hover: 150 45 25;
+    --accent-foreground: 255 255 255;
+
+    --background-inverse: 10 60 50;
+    --surface-inverse: 15 75 62;
+    --foreground-inverse: 249 246 240;
+    --muted-inverse: 180 210 200;
+    --border-inverse: 25 100 85;
+  }
+
+  html.theme-matcha {
+    --background: 26 28 26;
+    --surface: 36 39 36;
+    --foreground: 240 238 233;
+    --muted: 139 148 138;
+    --border: 58 64 58;
+
+    --primary: 122 159 93;
+    --primary-hover: 100 133 74;
+    --primary-foreground: 255 255 255;
+
+    --secondary: 205 166 123;
+    --secondary-hover: 179 141 98;
+    --secondary-foreground: 26 28 26;
+
+    --accent: 184 95 91;
+    --accent-hover: 154 75 72;
+    --accent-foreground: 255 255 255;
+
+    --background-inverse: 247 245 240;
+    --surface-inverse: 255 255 255;
+    --foreground-inverse: 26 28 26;
+    --muted-inverse: 111 122 110;
+    --border-inverse: 226 221 211;
+  }
+
+  html.theme-elegant {
+    --background: 10 12 16;
+    --surface: 20 24 32;
+    --foreground: 248 250 252;
+    --muted: 148 163 184;
+    --border: 30 41 59;
+
+    --primary: 212 184 140;
+    --primary-hover: 190 155 110;
+    --primary-foreground: 10 12 16;
+
+    --secondary: 180 170 160;
+    --secondary-hover: 150 140 130;
+    --secondary-foreground: 10 12 16;
+
+    --accent: 128 32 48;
+    --accent-hover: 100 20 30;
+    --accent-foreground: 255 255 255;
+
+    --background-inverse: 255 255 255;
+    --surface-inverse: 248 250 252;
+    --foreground-inverse: 10 12 16;
+    --muted-inverse: 100 116 139;
+    --border-inverse: 226 232 240;
+  }
+
+  /* Override color variables for dark containers */
+  .dark {
+    --background: var(--background-inverse);
+    --surface: var(--surface-inverse);
+    --foreground: var(--foreground-inverse);
+    --muted: var(--muted-inverse);
+    --border: var(--border-inverse);
+  }
+
   html,
   body {
     overflow-x: hidden;
@@ -13,14 +178,14 @@
   }
 
   html {
-    @apply font-body text-dark bg-light;
+    @apply font-body text-foreground bg-background;
     scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
 
   body {
-    @apply bg-light;
+    @apply bg-background;
   }
 
   h1,
@@ -29,7 +194,7 @@
   h4,
   h5,
   h6 {
-    @apply font-heading font-semibold leading-tight text-dark;
+    @apply font-heading font-semibold leading-tight text-foreground;
   }
 
   p {
@@ -47,16 +212,16 @@
   }
 
   .btn-primary {
-    @apply inline-flex items-center justify-center px-8 py-3 bg-primary text-light font-body font-medium text-xs tracking-widest uppercase border border-primary rounded-[50px] cursor-pointer transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] relative overflow-hidden z-10;
+    @apply inline-flex items-center justify-center px-8 py-3 bg-primary text-primary-foreground font-body font-medium text-xs tracking-widest uppercase border border-primary rounded-[50px] cursor-pointer transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] relative overflow-hidden z-10;
   }
 
   .btn-primary::before {
     content: "";
-    @apply absolute top-0 left-0 w-full h-full bg-secondary translate-y-full transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] -z-10;
+    @apply absolute top-0 left-0 w-full h-full bg-secondary-hover translate-y-full transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] -z-10;
   }
 
   .btn-primary:hover {
-    @apply text-dark border-secondary;
+    @apply text-secondary-foreground border-secondary-hover;
   }
 
   .btn-primary:hover::before {
@@ -68,14 +233,14 @@
   }
 
   .btn-secondary:hover {
-    @apply bg-primary text-light;
+    @apply bg-primary-hover text-primary-foreground border-primary-hover;
   }
 
   .glass-panel {
-    background: rgba(249, 246, 240, 0.75);
+    background: rgba(var(--background), 0.75);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(212, 175, 55, 0.15);
+    border: 1px solid rgba(var(--secondary), 0.15);
   }
 
   .gold-divider {
@@ -83,7 +248,7 @@
     background: linear-gradient(
       90deg,
       transparent,
-      theme("colors.secondary"),
+      rgba(var(--secondary), 0.3),
       transparent
     );
     @apply w-full my-8;
