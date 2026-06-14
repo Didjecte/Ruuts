@@ -161,6 +161,32 @@
     --border-inverse: 226 232 240;
   }
 
+  html.theme-gathering {
+    --background: 28 24 22;
+    --surface: 43 37 34;
+    --foreground: 242 238 233;
+    --muted: 156 142 136;
+    --border: 66 56 51;
+
+    --primary: 198 106 63;
+    --primary-hover: 173 88 48;
+    --primary-foreground: 255 255 255;
+
+    --secondary: 143 158 139;
+    --secondary-hover: 119 135 115;
+    --secondary-foreground: 28 24 22;
+
+    --accent: 227 172 68;
+    --accent-hover: 201 146 46;
+    --accent-foreground: 28 24 22;
+
+    --background-inverse: 250 246 240;
+    --surface-inverse: 255 255 255;
+    --foreground-inverse: 28 24 22;
+    --muted-inverse: 133 122 115;
+    --border-inverse: 222 214 206;
+  }
+
   /* Override color variables for dark containers */
   .dark {
     --background: var(--background-inverse);

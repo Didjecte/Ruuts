@@ -199,6 +199,29 @@
               <span class="w-3.5 h-3.5 rounded-full" style="background-color: #b4aaa0" title="Secondary"></span>
             </div>
           </button>
+
+          <!-- Tea Gathering Theme Button -->
+          <button
+            @click="setTheme('gathering')"
+            class="flex items-center justify-between p-3 rounded-xl border transition-all duration-300 text-left w-full hover:scale-[1.02]"
+            :class="[
+              activeTheme === 'gathering'
+                ? 'bg-primary/10 border-primary shadow-sm'
+                : 'bg-background/40 border-foreground/5 hover:border-primary/30'
+            ]"
+          >
+            <div class="flex flex-col gap-0.5">
+              <span class="text-xs font-semibold">Tea Gathering</span>
+              <span class="text-[10px] opacity-65">Amber & Sencha Sage</span>
+            </div>
+            <!-- Colors Preview -->
+            <div class="flex items-center gap-1.5 bg-foreground/5 p-1 rounded-lg">
+              <span class="w-3.5 h-3.5 rounded-full border border-foreground/10" style="background-color: #1c1816" title="Background"></span>
+              <span class="w-3.5 h-3.5 rounded-full" style="background-color: #f2eee9" title="Text"></span>
+              <span class="w-3.5 h-3.5 rounded-full" style="background-color: #c66a3f" title="Primary"></span>
+              <span class="w-3.5 h-3.5 rounded-full" style="background-color: #8f9e8b" title="Secondary"></span>
+            </div>
+          </button>
         </div>
       </div>
     </Transition>
@@ -218,7 +241,7 @@ const setTheme = (theme) => {
   localStorage.setItem('ruuts-theme', theme);
 
   const html = document.documentElement;
-  html.classList.remove('theme-white', 'theme-black', 'theme-forest', 'theme-matcha', 'theme-elegant');
+  html.classList.remove('theme-white', 'theme-black', 'theme-forest', 'theme-matcha', 'theme-elegant', 'theme-gathering');
 
   if (theme === 'white') {
     html.classList.add('theme-white');
@@ -230,6 +253,8 @@ const setTheme = (theme) => {
     html.classList.add('theme-matcha');
   } else if (theme === 'elegant') {
     html.classList.add('theme-elegant');
+  } else if (theme === 'gathering') {
+    html.classList.add('theme-gathering');
   }
 };
 
