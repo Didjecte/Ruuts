@@ -1,17 +1,17 @@
 <template>
   <section
     id="contact"
-    class="bg-light border-t border-secondary/20 relative overflow-hidden"
+    class="bg-background border-t border-secondary/20 relative overflow-hidden"
   >
     <div
       class="grid grid-cols-1 lg:grid-cols-[1fr_1.2fr] gap-12 lg:gap-20 items-start max-w-[1200px] mx-auto px-6 w-full section-padding"
     >
       <!-- Contact details & QR Codes (2nd part of the page) -->
-      <div class="reveal-item">
-        <h2 class="font-heading text-5xl font-semibold text-dark mb-6">
+      <div class="reveal-item text-foreground">
+        <h2 class="font-heading text-5xl font-semibold text-foreground mb-6">
           Get In Touch
         </h2>
-        <p class="text-dark/85 leading-[1.8] mb-10">
+        <p class="text-foreground/85 leading-[1.8] mb-10">
           We host private sessions for individual tea enthusiasts and corporate
           events. Contact us to learn more about partner rates and custom
           bookings.
@@ -25,7 +25,7 @@
             >
             <a
               href="mailto:contact@theruuts.com"
-              class="text-xl text-dark transition-colors duration-200 inline-block w-fit hover:text-primary"
+              class="text-xl text-foreground transition-colors duration-200 inline-block w-fit hover:text-primary"
               >contact@theruuts.com</a
             >
           </div>
@@ -36,7 +36,7 @@
             >
             <a
               href="tel:+8618217180655"
-              class="text-xl text-dark transition-colors duration-200 inline-block w-fit hover:text-primary"
+              class="text-xl text-foreground transition-colors duration-200 inline-block w-fit hover:text-primary"
               >+86 18217180655</a
             >
           </div>
@@ -47,7 +47,7 @@
             class="flex items-center gap-4 bg-primary/[0.03] border border-dashed border-secondary/30 rounded-2xl p-4 w-full"
           >
             <div
-              class="w-[80px] h-[80px] bg-light border border-secondary/20 rounded-lg flex flex-col items-center justify-center text-secondary shrink-0"
+              class="w-[80px] h-[80px] bg-background border border-secondary/20 rounded-lg flex flex-col items-center justify-center text-secondary shrink-0"
             >
               <svg
                 width="40"
@@ -64,17 +64,17 @@
               <span class="text-[10px] uppercase mt-1">Scan QR</span>
             </div>
             <div class="flex flex-col gap-1">
-              <span class="font-body text-xs font-medium text-dark"
+              <span class="font-body text-xs font-medium text-foreground"
                 >WeChat Official</span
               >
-              <span class="text-xs text-dark/60">RUUTS 丝络嘉木</span>
+              <span class="text-xs text-foreground/60">RUUTS 丝络嘉木</span>
             </div>
           </div>
           <div
             class="flex items-center gap-4 bg-primary/[0.03] border border-dashed border-secondary/30 rounded-2xl p-4 w-full"
           >
             <div
-              class="w-[80px] h-[80px] bg-light border border-secondary/20 rounded-lg flex flex-col items-center justify-center text-secondary shrink-0"
+              class="w-[80px] h-[80px] bg-background border border-secondary/20 rounded-lg flex flex-col items-center justify-center text-secondary shrink-0"
             >
               <svg
                 width="40"
@@ -91,10 +91,10 @@
               <span class="text-[10px] uppercase mt-1">Scan QR</span>
             </div>
             <div class="flex flex-col gap-1">
-              <span class="font-body text-xs font-medium text-dark"
+              <span class="font-body text-xs font-medium text-foreground"
                 >Rednote (小红书)</span
               >
-              <span class="text-xs text-dark/60">Feifei ou thé</span>
+              <span class="text-xs text-foreground/60">Feifei ou thé</span>
             </div>
           </div>
         </div>
@@ -108,7 +108,7 @@
           <div class="flex flex-col gap-2">
             <label
               for="name"
-              class="font-body text-xs font-medium uppercase text-dark"
+              class="font-body text-xs font-medium uppercase text-foreground"
               >Your Name</label
             >
             <input
@@ -117,14 +117,14 @@
               v-model="form.name"
               required
               placeholder="E.g., Julianne Mercier"
-              class="font-body text-sm px-4 py-3 bg-light border border-secondary/30 text-dark rounded-lg transition-colors w-full focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/20"
+              class="font-body text-sm px-4 py-3 bg-background border border-secondary/30 text-foreground rounded-lg transition-colors w-full focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/20"
             />
           </div>
 
           <div class="flex flex-col gap-2">
             <label
               for="email"
-              class="font-body text-xs font-medium uppercase text-dark"
+              class="font-body text-xs font-medium uppercase text-foreground"
               >Email Address</label
             >
             <input
@@ -133,21 +133,21 @@
               v-model="form.email"
               required
               placeholder="E.g., name@domain.com"
-              class="font-body text-sm px-4 py-3 bg-light border border-secondary/30 text-dark rounded-lg transition-colors w-full focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/20"
+              class="font-body text-sm px-4 py-3 bg-background border border-secondary/30 text-foreground rounded-lg transition-colors w-full focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/20"
             />
           </div>
 
           <div class="flex flex-col gap-2">
             <label
               for="type"
-              class="font-body text-xs font-medium uppercase text-dark"
+              class="font-body text-xs font-medium uppercase text-foreground"
               >Inquiry Type</label
             >
             <select
               id="type"
               v-model="form.type"
               required
-              class="font-body text-sm px-4 py-3 bg-light border border-secondary/30 text-dark rounded-lg transition-colors w-full focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/20"
+              class="font-body text-sm px-4 py-3 bg-background border border-secondary/30 text-foreground rounded-lg transition-colors w-full focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/20"
             >
               <option value="" disabled selected>Select an option...</option>
               <option value="b2c">B2C / Private Group Session</option>
@@ -159,7 +159,7 @@
           <div class="flex flex-col gap-2">
             <label
               for="message"
-              class="font-body text-xs font-medium uppercase text-dark"
+              class="font-body text-xs font-medium uppercase text-foreground"
               >Message</label
             >
             <textarea
@@ -168,7 +168,7 @@
               rows="5"
               required
               placeholder="Tell us about your event, preferred date, and number of guests..."
-              class="font-body text-sm px-4 py-3 bg-light border border-secondary/30 text-dark rounded-lg transition-colors w-full focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/20"
+              class="font-body text-sm px-4 py-3 bg-background border border-secondary/30 text-foreground rounded-lg transition-colors w-full focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/20"
             ></textarea>
           </div>
 

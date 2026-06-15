@@ -1,5 +1,5 @@
 <template>
-  <section id="about" class="bg-light overflow-hidden">
+  <section id="about" class="bg-background overflow-hidden">
     <!-- Our Story -->
     <div class="max-w-[1200px] mx-auto px-6 w-full section-padding">
       <div
@@ -7,11 +7,11 @@
       >
         <div class="reveal-item">
           <h2
-            class="text-5xl relative font-heading font-semibold text-dark mb-2"
+            class="text-5xl relative font-heading font-semibold text-foreground mb-2"
           >
             Our Story
           </h2>
-          <div class="space-y-4">
+          <div class="space-y-4 text-foreground">
             <p
               class="font-body text-xl tracking-[0.01em] text-secondary leading-relaxed"
             >
@@ -53,7 +53,7 @@
     </div>
 
     <!-- Founder -->
-    <div class="bg-light-darker border-y border-dark/10">
+    <div class="bg-surface border-y border-border/10">
       <div class="max-w-[1200px] mx-auto px-6 w-full section-padding">
         <div
           class="grid grid-cols-1 lg:grid-cols-[1fr_1.2fr] gap-12 lg:gap-16 items-center"
@@ -69,11 +69,11 @@
           </div>
           <div class="order-1 lg:order-2 reveal-item">
             <h2
-              class="text-5xl relative font-heading font-semibold text-dark mb-2"
+              class="text-5xl relative font-heading font-semibold text-foreground mb-2"
             >
               The Founder
             </h2>
-            <div class="space-y-4">
+            <div class="space-y-4 text-foreground">
               <p
                 class="font-body text-xl tracking-[0.01em] text-secondary leading-relaxed"
               >
@@ -110,7 +110,7 @@
     </div>
 
     <!-- Our Mission -->
-    <div class="bg-primary">
+    <div class="dark bg-background text-foreground">
       <div class="max-w-[1200px] mx-auto px-6 w-full section-padding">
         <div
           class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start"
@@ -135,7 +135,7 @@
                 “
               </div>
               <p
-                class="font-heading text-xl md:text-[1.7em] italic text-dark relative z-10 mb-4"
+                class="font-heading text-xl md:text-[1.7em] italic relative z-10 mb-4"
               >
                 "Taking one’s time is the best way for not wasting it."
               </p>
@@ -150,17 +150,15 @@
           <!-- Right Side: Accordion -->
           <div class="reveal-item">
             <div class="mb-10">
-              <h2
-                class="text-5xl mb-8 relative font-heading font-semibold text-dark"
-              >
+              <h2 class="text-5xl mb-8 relative font-heading font-semibold">
                 Our Mission
               </h2>
             </div>
-            <div class="flex flex-col border-t border-dark/10">
+            <div class="flex flex-col border-t border-foreground/10">
               <div
                 v-for="(mission, index) in missions"
                 :key="index"
-                class="border-b border-dark/10 group cursor-pointer"
+                class="border-b border-foreground/10 group cursor-pointer"
                 @click="activeMission = activeMission === index ? null : index"
                 @mouseenter="activeMission = index"
               >
@@ -169,7 +167,7 @@
                   class="py-3 lg:py-6 flex items-center justify-between transition-colors duration-300"
                 >
                   <h3
-                    class="font-body text-xl sm:text-xl lg:text-xl text-dark group-hover:text-primary transition-colors duration-300"
+                    class="font-body text-xl sm:text-xl lg:text-xl group-hover:text-secondary transition-colors duration-300"
                   >
                     {{ mission.title }}
                   </h3>
@@ -177,10 +175,10 @@
                     class="relative w-4 h-4 sm:w-6 sm:h-6 flex items-center justify-center shrink-0 ml-6"
                   >
                     <span
-                      class="absolute w-full h-[1px] bg-dark/40 group-hover:bg-primary transition-colors duration-300"
+                      class="absolute w-full h-[1px] bg-foreground/40 group-hover:bg-secondary transition-colors duration-300"
                     ></span>
                     <span
-                      class="absolute w-[1px] h-full bg-dark/40 group-hover:bg-primary transition-all duration-300"
+                      class="absolute w-[1px] h-full bg-foreground/40 group-hover:bg-secondary transition-all duration-300"
                       :class="
                         activeMission === index
                           ? 'rotate-90 opacity-0'
@@ -201,7 +199,7 @@
                   <div class="overflow-hidden min-h-0">
                     <div class="pb-6 max-w-[600px] pr-8">
                       <p
-                        class="text-dark/85 text-sm sm:text-base leading-relaxed"
+                        class="text-foreground/85 text-sm sm:text-base leading-relaxed"
                       >
                         {{ mission.description }}
                       </p>

@@ -5,6 +5,41 @@
 @tailwind utilities;
 
 @layer base {
+  :root {
+    --background: 249 246 240;
+    --surface: 239 235 229;
+    --foreground: 36 30 26;
+    --muted: 120 115 110;
+    --border: 215 210 200;
+
+    --primary: 10 60 50;
+    --primary-hover: 5 45 38;
+    --primary-foreground: 255 255 255;
+
+    --secondary: 197 160 89;
+    --secondary-hover: 170 135 70;
+    --secondary-foreground: 36 30 26;
+
+    --accent: 179 60 38;
+    --accent-hover: 150 45 25;
+    --accent-foreground: 255 255 255;
+
+    --background-inverse: 10 60 50;
+    --surface-inverse: 15 75 62;
+    --foreground-inverse: 249 246 240;
+    --muted-inverse: 180 210 200;
+    --border-inverse: 25 100 85;
+  }
+
+  /* Override color variables for dark containers */
+  .dark {
+    --background: var(--background-inverse);
+    --surface: var(--surface-inverse);
+    --foreground: var(--foreground-inverse);
+    --muted: var(--muted-inverse);
+    --border: var(--border-inverse);
+  }
+
   html,
   body {
     overflow-x: hidden;
@@ -13,14 +48,14 @@
   }
 
   html {
-    @apply font-body text-dark bg-light;
+    @apply font-body text-foreground bg-background;
     scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
 
   body {
-    @apply bg-light;
+    @apply bg-background;
   }
 
   h1,
@@ -29,7 +64,7 @@
   h4,
   h5,
   h6 {
-    @apply font-heading font-semibold leading-tight text-dark;
+    @apply font-heading font-semibold leading-tight text-foreground;
   }
 
   p {
@@ -47,16 +82,16 @@
   }
 
   .btn-primary {
-    @apply inline-flex items-center justify-center px-8 py-3 bg-primary text-light font-body font-medium text-xs tracking-widest uppercase border border-primary rounded-[50px] cursor-pointer transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] relative overflow-hidden z-10;
+    @apply inline-flex items-center justify-center px-8 py-3 bg-primary text-primary-foreground font-body font-medium text-xs tracking-widest uppercase border border-primary rounded-[50px] cursor-pointer transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] relative overflow-hidden z-10;
   }
 
   .btn-primary::before {
     content: "";
-    @apply absolute top-0 left-0 w-full h-full bg-secondary translate-y-full transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] -z-10;
+    @apply absolute top-0 left-0 w-full h-full bg-secondary-hover translate-y-full transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] -z-10;
   }
 
   .btn-primary:hover {
-    @apply text-dark border-secondary;
+    @apply text-secondary-foreground border-secondary-hover;
   }
 
   .btn-primary:hover::before {
@@ -68,14 +103,14 @@
   }
 
   .btn-secondary:hover {
-    @apply bg-primary text-light;
+    @apply bg-primary-hover text-primary-foreground border-primary-hover;
   }
 
   .glass-panel {
-    background: rgba(249, 246, 240, 0.75);
+    background: rgba(var(--background), 0.75);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(212, 175, 55, 0.15);
+    border: 1px solid rgba(var(--secondary), 0.15);
   }
 
   .gold-divider {
@@ -83,7 +118,7 @@
     background: linear-gradient(
       90deg,
       transparent,
-      theme("colors.secondary"),
+      rgba(var(--secondary), 0.3),
       transparent
     );
     @apply w-full my-8;
