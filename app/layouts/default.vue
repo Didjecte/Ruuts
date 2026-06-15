@@ -77,6 +77,5 @@
         </div>
       </div>
     </footer>
-    <ThemeSwitcher />
   </div>
 </template>
