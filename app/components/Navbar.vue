@@ -1,7 +1,9 @@
 <template>
   <header
+    ref="headerRef"
     :class="[
-      'fixed top-0 left-0 w-full h-[80px] flex items-center z-[100] transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] border-b border-transparent bg-transparent',
+      'fixed top-0 left-0 w-full h-[80px] flex items-center z-[100] border-b border-transparent bg-transparent',
+      'transition-[height,background-color,border-color,backdrop-filter] duration-500 ease-[cubic-bezier(0.25,1,0.5,1)]',
       {
         'h-[70px] !bg-background/85 backdrop-blur-[12px] !border-secondary/15':
           isScrolled,
@@ -13,67 +15,94 @@
     >
       <NuxtLink
         to="/"
+        @click="(e) => handleNavLinkClick(e, '/')"
         :class="[
-          'font-logo text-3xl font-medium transition-colors duration-500',
-          isTransparentNavbar ? 'text-foreground-inverse hover:text-secondary' : 'text-foreground hover:text-primary'
+          'flex items-center gap-1 group transition-colors duration-500',
+          isTransparentNavbar
+            ? 'text-foreground-inverse hover:text-secondary'
+            : 'text-primary',
         ]"
-        >RUUTS</NuxtLink
       >
+        <div
+          class="h-10 w-8 bg-current -translate-y-1.5 transition-colors duration-500"
+          style="
+            mask-image: url(&quot;/logo.svg&quot;);
+            mask-size: contain;
+            mask-repeat: no-repeat;
+            mask-position: center;
+            -webkit-mask-image: url(&quot;/logo.svg&quot;);
+            -webkit-mask-size: contain;
+            -webkit-mask-repeat: no-repeat;
+            -webkit-mask-position: center;
+          "
+        ></div>
+        <span class="font-logo text-3xl font-medium"> RUUTS </span>
+      </NuxtLink>
 
       <!-- Desktop Menu -->
       <nav class="hidden md:flex items-center gap-10">
         <NuxtLink
-          to="/"
+          to="/about"
+          @click="(e) => handleNavLinkClick(e, '/about')"
           :class="[
             'font-body text-sm font-medium uppercase tracking-[0.1em] relative py-[0.2rem] group transition-colors duration-500',
-            isTransparentNavbar ? 'text-foreground-inverse hover:text-secondary' : 'text-foreground hover:text-primary'
+            isTransparentNavbar
+              ? 'text-foreground-inverse hover:text-secondary'
+              : 'text-foreground hover:text-primary',
           ]"
         >
           About
           <span
             :class="[
               'absolute bottom-0 left-0 w-0 h-[1px] transition-all duration-200 group-hover:w-full',
-              isTransparentNavbar ? 'bg-secondary' : 'bg-primary'
+              isTransparentNavbar ? 'bg-secondary' : 'bg-primary',
             ]"
           ></span>
         </NuxtLink>
         <NuxtLink
           to="/experiences"
+          @click="(e) => handleNavLinkClick(e, '/experiences')"
           :class="[
             'font-body text-sm font-medium uppercase tracking-[0.1em] relative py-[0.2rem] group transition-colors duration-500',
-            isTransparentNavbar ? 'text-foreground-inverse hover:text-secondary' : 'text-foreground hover:text-primary'
+            isTransparentNavbar
+              ? 'text-foreground-inverse hover:text-secondary'
+              : 'text-foreground hover:text-primary',
           ]"
         >
           Experiences
           <span
             :class="[
               'absolute bottom-0 left-0 w-0 h-[1px] transition-all duration-200 group-hover:w-full',
-              isTransparentNavbar ? 'bg-secondary' : 'bg-primary'
+              isTransparentNavbar ? 'bg-secondary' : 'bg-primary',
             ]"
           ></span>
         </NuxtLink>
         <NuxtLink
           to="/insights"
+          @click="(e) => handleNavLinkClick(e, '/insights')"
           :class="[
             'font-body text-sm font-medium uppercase tracking-[0.1em] relative py-[0.2rem] group transition-colors duration-500',
-            isTransparentNavbar ? 'text-foreground-inverse hover:text-secondary' : 'text-foreground hover:text-primary'
+            isTransparentNavbar
+              ? 'text-foreground-inverse hover:text-secondary'
+              : 'text-foreground hover:text-primary',
           ]"
         >
           Insights
           <span
             :class="[
               'absolute bottom-0 left-0 w-0 h-[1px] transition-all duration-200 group-hover:w-full',
-              isTransparentNavbar ? 'bg-secondary' : 'bg-primary'
+              isTransparentNavbar ? 'bg-secondary' : 'bg-primary',
             ]"
           ></span>
         </NuxtLink>
         <NuxtLink
-          to="/#contact"
+          to="/contact"
+          @click="(e) => handleNavLinkClick(e, '/contact')"
           :class="[
-            'font-body text-sm font-medium uppercase tracking-[0.1em] px-[1.2rem] py-[0.5rem] rounded-[50px] transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)]',
+            'inline-block font-body text-sm font-medium uppercase tracking-[0.1em] px-[1.2rem] py-[0.5rem] rounded-[50px] transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)]',
             isTransparentNavbar
-              ? 'text-foreground-inverse border border-foreground-inverse/40 hover:bg-foreground-inverse hover:text-background-inverse hover:border-foreground-inverse'
-              : 'text-foreground border border-primary hover:bg-secondary hover:text-secondary-foreground hover:border-secondary'
+              ? 'style-gold'
+              : 'text-foreground border border-primary hover:bg-secondary hover:text-secondary-foreground hover:border-secondary',
           ]"
         >
           Contact
@@ -82,7 +111,7 @@
 
       <!-- Burger Button (Mobile) -->
       <button
-        class="flex md:hidden flex-col justify-between w-[30px] h-[20px] bg-transparent border-none cursor-pointer relative z-[101]"
+        class="flex md:hidden flex-col justify-between w-[50px] h-[40px] p-[10px] -mr-[10px] bg-transparent border-none cursor-pointer relative z-[101]"
         :aria-expanded="isMenuOpen"
         aria-label="Toggle menu"
         @click="toggleMenu"
@@ -90,19 +119,25 @@
         <span
           :class="[
             'burger-line line-1 block w-full h-[2px] transition-all duration-300',
-            (isTransparentNavbar || isMenuOpen) ? 'bg-foreground-inverse' : 'bg-primary'
+            isTransparentNavbar || isMenuOpen
+              ? 'bg-foreground-inverse'
+              : 'bg-primary',
           ]"
         ></span>
         <span
           :class="[
             'burger-line line-2 block w-full h-[2px] transition-all duration-300',
-            (isTransparentNavbar || isMenuOpen) ? 'bg-foreground-inverse' : 'bg-primary'
+            isTransparentNavbar || isMenuOpen
+              ? 'bg-foreground-inverse'
+              : 'bg-primary',
           ]"
         ></span>
         <span
           :class="[
             'burger-line line-3 block w-full h-[2px] transition-all duration-300',
-            (isTransparentNavbar || isMenuOpen) ? 'bg-foreground-inverse' : 'bg-primary'
+            isTransparentNavbar || isMenuOpen
+              ? 'bg-foreground-inverse'
+              : 'bg-primary',
           ]"
         ></span>
       </button>
@@ -116,27 +151,27 @@
       <div class="flex flex-col items-center justify-between h-[60%] w-full">
         <nav class="flex flex-col items-center gap-8">
           <NuxtLink
-            to="/"
+            to="/about"
             class="mobile-nav-link font-heading text-4xl text-foreground tracking-[0.05em] opacity-0 hover:text-primary transition-colors duration-200"
-            @click="closeMenu"
+            @click="(e) => handleNavLinkClick(e, '/about')"
             >About & Story</NuxtLink
           >
           <NuxtLink
             to="/experiences"
             class="mobile-nav-link font-heading text-4xl text-foreground tracking-[0.05em] opacity-0 hover:text-primary transition-colors duration-200"
-            @click="closeMenu"
+            @click="(e) => handleNavLinkClick(e, '/experiences')"
             >Experiences</NuxtLink
           >
           <NuxtLink
             to="/insights"
             class="mobile-nav-link font-heading text-4xl text-foreground tracking-[0.05em] opacity-0 hover:text-primary transition-colors duration-200"
-            @click="closeMenu"
+            @click="(e) => handleNavLinkClick(e, '/insights')"
             >Insights</NuxtLink
           >
           <NuxtLink
-            to="/#contact"
+            to="/contact"
             class="mobile-nav-link font-heading text-4xl text-foreground tracking-[0.05em] opacity-0 hover:text-primary transition-colors duration-200"
-            @click="closeMenu"
+            @click="(e) => handleNavLinkClick(e, '/contact')"
             >Contact</NuxtLink
           >
         </nav>
@@ -158,18 +193,63 @@ import { useRoute } from "vue-router";
 import { gsap } from "gsap";
 
 const route = useRoute();
+const headerRef = ref(null);
 const isScrolled = ref(false);
 const isMenuOpen = ref(false);
 const mobileOverlay = ref(null);
+
+let navTranslateY = 0;
+let lastScrollY = 0;
+let ticking = false;
 
 const isTransparentNavbar = computed(() => {
   return route.meta.transparentHeader && !isScrolled.value;
 });
 
+const handleNavLinkClick = (e, path) => {
+  if (route.path === path) {
+    e.preventDefault();
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }
+  closeMenu();
+};
+
 let menuTimeline = null;
 
+const updateNav = () => {
+  const currentScrollY = window.scrollY;
+
+  const pastThreshold = currentScrollY > 80;
+  if (isScrolled.value !== pastThreshold) {
+    isScrolled.value = pastThreshold;
+  }
+
+  if (!isMenuOpen.value) {
+    const delta = currentScrollY - lastScrollY;
+
+    if (currentScrollY <= 0) {
+      navTranslateY = 0;
+    } else {
+      navTranslateY = Math.max(-80, Math.min(0, navTranslateY - delta));
+    }
+
+    if (headerRef.value) {
+      headerRef.value.style.transform = `translateY(${navTranslateY}px)`;
+    }
+  }
+
+  lastScrollY = currentScrollY;
+  ticking = false;
+};
+
 const handleScroll = () => {
-  isScrolled.value = window.scrollY > 20;
+  if (!ticking) {
+    window.requestAnimationFrame(updateNav);
+    ticking = true;
+  }
 };
 
 const toggleMenu = () => {
@@ -191,7 +271,7 @@ const closeMenu = () => {
 };
 
 onMounted(() => {
-  window.addEventListener("scroll", handleScroll);
+  window.addEventListener("scroll", handleScroll, { passive: true });
   handleScroll();
 
   // Initialize GSAP timeline for mobile menu

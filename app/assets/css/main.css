@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Kalnia:wght@100..700&family=Long+Cang&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Norican&family=Zhi+Mang+Xing&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Kalnia:wght@100..700&family=Long+Cang&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Gabriela&family=Zhi+Mang+Xing&display=swap");
 
 @tailwind base;
 @tailwind components;
@@ -64,7 +64,7 @@
   h4,
   h5,
   h6 {
-    @apply font-heading font-semibold leading-tight text-foreground;
+    @apply font-heading font-semibold leading-tight text-primary dark:text-foreground;
   }
 
   p {
@@ -104,6 +104,18 @@
 
   .btn-secondary:hover {
     @apply bg-primary-hover text-primary-foreground border-primary-hover;
+  }
+
+  .style-gold {
+    @apply bg-secondary text-secondary-foreground border border-secondary transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)];
+  }
+
+  .style-gold:hover {
+    @apply bg-secondary-hover border-secondary-hover;
+  }
+
+  .btn-gold {
+    @apply inline-flex items-center justify-center px-8 py-3 font-body font-medium text-xs tracking-widest uppercase rounded-[50px] cursor-pointer style-gold;
   }
 
   .glass-panel {

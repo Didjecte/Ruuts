@@ -10,6 +10,7 @@
         :src="experience.image"
         :alt="experience.title"
         class="w-full h-full object-cover transition-transform duration-[800ms] ease-[cubic-bezier(0.25,1,0.5,1)] group-hover:scale-105"
+        loading="lazy"
       />
       <span
         class="absolute top-4 left-4 bg-primary text-primary-foreground font-body text-xs font-medium uppercase px-3 py-1.5 rounded-full border border-secondary/30"
@@ -19,7 +20,7 @@
 
     <div class="p-[2.2rem_2rem] flex flex-col grow">
       <div class="mb-5">
-        <h3 class="text-2xl text-foreground font-heading font-semibold">
+        <h3 class="text-2xl text-primary font-heading font-semibold">
           {{ experience.title }}
         </h3>
       </div>
@@ -45,22 +46,6 @@
             >Up to {{ experience.maxGuests }} guests</span
           >
         </div>
-        <div class="flex flex-col gap-[0.2rem]">
-          <span class="font-body text-xs uppercase text-foreground/50"
-            >Price / Guest</span
-          >
-          <span class="font-body text-sm font-semibold text-foreground"
-            >¥{{ experience.pricePerGuest }}</span
-          >
-        </div>
-        <div class="flex flex-col gap-[0.2rem]">
-          <span class="font-body text-xs uppercase text-foreground/50"
-            >Min Booking</span
-          >
-          <span class="font-body text-sm font-semibold text-foreground"
-            >¥{{ experience.minBookingValue }}</span
-          >
-        </div>
       </div>
 
       <!-- Specific B2B Details -->
@@ -72,7 +57,7 @@
           class="font-body text-xs uppercase tracking-[0.05em] text-secondary"
           >Strategic Focus</span
         >
-        <span class="font-heading text-lg font-medium text-foreground">{{
+        <span class="font-heading text-lg font-medium text-primary">{{
           experience.focus
         }}</span>
       </div>
@@ -87,16 +72,43 @@
             :key="index"
             class="flex items-start gap-[0.6rem] text-sm text-foreground/85 leading-[1.4]"
           >
-            <svg
-              class="w-[14px] h-[14px] text-primary mt-[2px] shrink-0"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-            >
-              <polyline points="20 6 9 17 4 12"></polyline>
-            </svg>
-            <span>{{ bullet }}</span>
+            <template v-if="isLanguageBullet(bullet)">
+              <svg
+                class="w-[14px] h-[14px] text-primary mt-[2px] shrink-0"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+              <div class="flex items-center gap-2 flex-wrap">
+                <span class="inline-flex items-center gap-1.5">
+                  <span class="fi fi-gb rounded-sm shadow-sm"></span>
+                  <span>EN</span>
+                </span>
+                <span class="inline-flex items-center gap-1.5">
+                  <span class="fi fi-fr rounded-sm shadow-sm"></span>
+                  <span>FR</span>
+                </span>
+                <span class="inline-flex items-center gap-1.5">
+                  <span class="fi fi-cn rounded-sm shadow-sm"></span>
+                  <span>CN</span>
+                </span>
+              </div>
+            </template>
+            <template v-else>
+              <svg
+                class="w-[14px] h-[14px] text-primary mt-[2px] shrink-0"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+              <span>{{ bullet }}</span>
+            </template>
           </li>
         </ul>
       </div>
@@ -133,4 +145,9 @@ const tag = computed(() => {
 const bullets = computed(() => {
   return props.isB2b ? props.experience.highlights : props.experience.bullets;
 });
+
+const isLanguageBullet = (bullet) => {
+  const lower = bullet.toLowerCase();
+  return lower.includes("available in english") || lower.includes("bilingual execution");
+};
 </script>

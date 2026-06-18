@@ -17,7 +17,7 @@
       <article v-if="post.type === 'article'">
         <header class="mb-12 reveal-item-detail">
           <span class="font-body text-xs font-semibold uppercase tracking-[0.25em] text-secondary block mb-3">{{ post.type }}</span>
-          <h1 class="text-3xl md:text-5xl leading-[1.25] mb-[1.2rem] text-dark font-heading">{{ post.title }}</h1>
+          <h1 class="text-3xl md:text-5xl leading-[1.25] mb-[1.2rem] text-primary font-heading">{{ post.title }}</h1>
           <div class="font-body text-xs text-dark/60">
             <span>{{ formattedDate }}</span>
             <span v-if="post.readTime">&bull; {{ post.readTime }}</span>
@@ -25,7 +25,7 @@
         </header>
 
         <div class="w-full h-[300px] md:h-[480px] mb-14 rounded-2xl border border-secondary/20 overflow-hidden reveal-item-detail">
-          <img :src="post.mediaUrl" :alt="post.title" class="w-full h-full object-cover" />
+          <img :src="post.mediaUrl" :alt="post.title" class="w-full h-full object-cover" loading="lazy" />
         </div>
 
         <div class="reveal-item-detail [&>p]:text-base [&>p]:leading-[1.85] [&>p]:text-dark [&>p]:mb-[1.8rem] [&>h3]:text-2xl [&>h3]:mt-10 [&>h3]:mb-4 [&>h3]:text-dark [&>h3]:font-heading [&>ul]:ml-6 [&>ul]:mb-[1.8rem] [&>ol]:ml-6 [&>ol]:mb-[1.8rem] [&>ul>li]:text-base [&>ul>li]:leading-[1.7] [&>ul>li]:text-dark [&>ul>li]:mb-2 [&>blockquote]:font-heading [&>blockquote]:text-xl [&>blockquote]:italic [&>blockquote]:text-dark [&>blockquote]:border-l-[3px] [&>blockquote]:border-secondary [&>blockquote]:pl-6 [&>blockquote]:my-10" v-html="post.body"></div>
@@ -35,14 +35,14 @@
       <article v-else-if="post.type === 'photo'">
         <header class="mb-12 reveal-item-detail text-center">
           <span class="font-body text-xs font-semibold uppercase tracking-[0.25em] text-secondary block mb-3">{{ post.type }}</span>
-          <h1 class="text-3xl md:text-5xl leading-[1.25] mb-[1.2rem] text-dark font-heading">{{ post.title }}</h1>
+          <h1 class="text-3xl md:text-5xl leading-[1.25] mb-[1.2rem] text-primary font-heading">{{ post.title }}</h1>
           <div class="font-body text-xs text-dark/60">
             <span>Published on {{ formattedDate }}</span>
           </div>
         </header>
 
         <div class="w-full rounded-2xl border border-secondary/20 overflow-hidden mb-12 reveal-item-detail">
-          <img :src="post.mediaUrl" :alt="post.title" class="w-full block" />
+          <img :src="post.mediaUrl" :alt="post.title" class="w-full block" loading="lazy" />
         </div>
 
         <div class="reveal-item-detail">
@@ -50,16 +50,16 @@
           
           <div class="h-[1px] bg-gradient-to-r from-transparent via-secondary/30 to-transparent mb-12"></div>
           
-          <h3 class="font-heading text-2xl text-dark mb-6">Visual Journal Gallery</h3>
+          <h3 class="font-heading text-2xl text-primary mb-6">Visual Journal Gallery</h3>
           <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
             <div class="rounded-lg border border-secondary/20 overflow-hidden h-[180px]">
-              <img src="https://images.unsplash.com/photo-1576092768241-dec231879fc3?q=80&w=500&auto=format&fit=crop" alt="Pouring tea" class="w-full h-full object-cover" />
+              <img src="https://images.unsplash.com/photo-1576092768241-dec231879fc3?q=80&w=500&auto=format&fit=crop" alt="Pouring tea" class="w-full h-full object-cover" loading="lazy" />
             </div>
             <div class="rounded-lg border border-secondary/20 overflow-hidden h-[180px]">
-              <img src="https://images.unsplash.com/photo-1563822249548-9a72b6353cd1?q=80&w=500&auto=format&fit=crop" alt="Tea tray detail" class="w-full h-full object-cover" />
+              <img src="https://images.unsplash.com/photo-1563822249548-9a72b6353cd1?q=80&w=500&auto=format&fit=crop" alt="Tea tray detail" class="w-full h-full object-cover" loading="lazy" />
             </div>
             <div class="rounded-lg border border-secondary/20 overflow-hidden h-[180px]">
-              <img src="https://images.unsplash.com/photo-1544787219-7f47ccb76574?q=80&w=500&auto=format&fit=crop" alt="Guzheng wood details" class="w-full h-full object-cover" />
+              <img src="https://images.unsplash.com/photo-1544787219-7f47ccb76574?q=80&w=500&auto=format&fit=crop" alt="Guzheng wood details" class="w-full h-full object-cover" loading="lazy" />
             </div>
           </div>
         </div>
@@ -69,7 +69,7 @@
       <article v-else-if="post.type === 'video'">
         <header class="mb-12 reveal-item-detail text-center">
           <span class="font-body text-xs font-semibold uppercase tracking-[0.25em] text-secondary block mb-3">{{ post.type }}</span>
-          <h1 class="text-3xl md:text-5xl leading-[1.25] mb-[1.2rem] text-dark font-heading">{{ post.title }}</h1>
+          <h1 class="text-3xl md:text-5xl leading-[1.25] mb-[1.2rem] text-primary font-heading">{{ post.title }}</h1>
           <div class="font-body text-xs text-dark/60">
             <span>Published on {{ formattedDate }}</span>
           </div>
@@ -78,7 +78,7 @@
         <!-- Video Player Mock -->
         <div class="w-full mb-12 reveal-item-detail">
           <div class="w-full h-[300px] md:h-[480px] relative rounded-2xl border border-secondary/20 overflow-hidden bg-dark">
-            <img :src="post.mediaUrl" :alt="post.title" class="w-full h-full object-cover opacity-75" />
+            <img :src="post.mediaUrl" :alt="post.title" class="w-full h-full object-cover opacity-75" loading="lazy" />
             <div class="absolute inset-0 flex items-center justify-center">
               <button class="w-[70px] h-[70px] rounded-full border border-primary bg-primary/85 text-light flex items-center justify-center cursor-pointer transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] hover:scale-110 hover:bg-secondary hover:text-dark hover:border-secondary" aria-label="Play video">
                 <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor" stroke="none" class="ml-1">
@@ -112,7 +112,7 @@
   </div>
   
   <div v-else class="pt-[180px] text-center max-w-[1200px] mx-auto px-6 w-full section-padding">
-    <h2 class="font-heading text-3xl text-dark mb-4">Post Not Found</h2>
+    <h2 class="font-heading text-3xl text-primary mb-4">Post Not Found</h2>
     <p class="text-base text-dark mb-6">The requested journal entry could not be located.</p>
     <NuxtLink to="/insights" class="btn-primary mt-4 inline-block">Return to Journal</NuxtLink>
   </div>

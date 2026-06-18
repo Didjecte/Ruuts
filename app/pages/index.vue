@@ -7,18 +7,24 @@
       <div
         class="absolute inset-0 bg-gradient-to-br from-primary/80 to-primary/80 z-[1]"
       ></div>
-      <div class="relative z-[2] mt-[40px] max-w-[1200px] mx-auto px-6 w-full">
-        <div class="max-w-[650px]">
-          <h1
-            class="hero-title font-heading text-5xl md:text-6xl font-semibold text-foreground dark:text-secondary tracking-[0.03em] leading-[1.15] mb-6"
-          >
-            Tea anywhere
-          </h1>
-          <p class="hero-description text-xl text-foreground font-medium mb-10">
-            An experience crafted only for you.
-          </p>
+      <div
+        class="relative z-[2] mt-[40px] max-w-[1200px] mx-auto px-6 w-full hero-content-container"
+      >
+        <div class="max-w-[650px] hero-inner-container">
+          <div class="hero-text-group">
+            <h1
+              class="hero-title font-heading text-5xl md:text-6xl font-semibold text-primary dark:text-secondary tracking-[0.03em] leading-[1.15] mb-6"
+            >
+              Tea anywhere
+            </h1>
+            <p
+              class="hero-description text-xl text-foreground font-medium mb-10"
+            >
+              An experience crafted only for you.
+            </p>
+          </div>
           <div class="hero-actions flex flex-col sm:flex-row gap-4 sm:gap-6">
-            <NuxtLink to="/experiences" class="btn-primary"
+            <NuxtLink to="/experiences" class="btn-gold"
               >Explore Sessions</NuxtLink
             >
             <NuxtLink
@@ -44,6 +50,12 @@
 
     <!-- About Section (Our Story, Founder, Mission) -->
     <AboutSection />
+
+    <!-- Experience Section -->
+    <ExperienceSection />
+
+    <!-- Insight Section -->
+    <InsightSection />
 
     <!-- Contact Section (Details, QRs, Form) -->
     <ContactSection />
@@ -72,14 +84,6 @@ useSeoMeta({
 
 onMounted(() => {
   // Page load animations
-  gsap.from(".hero-tagline", {
-    duration: 0.8,
-    y: 20,
-    opacity: 0,
-    ease: "power3.out",
-    delay: 0.2,
-  });
-
   gsap.from(".hero-title", {
     duration: 1,
     y: 30,
@@ -110,27 +114,6 @@ onMounted(() => {
     ease: "power2.out",
     delay: 1.2,
   });
-
-  // Scroll reveal animations for sections
-  const revealItems = document.querySelectorAll(".reveal-item");
-
-  revealItems.forEach((item) => {
-    gsap.fromTo(
-      item,
-      { y: 50, opacity: 0 },
-      {
-        scrollTrigger: {
-          trigger: item,
-          start: "top 85%",
-          toggleActions: "play none none none",
-        },
-        duration: 0.8,
-        y: 0,
-        opacity: 1,
-        ease: "power3.out",
-      },
-    );
-  });
 });
 </script>
 
@@ -154,6 +137,29 @@ onMounted(() => {
   .hero-bg::before {
     transform: scale(1.35);
     transform-origin: 0% 40%;
+  }
+}
+
+@media (max-width: 639px) {
+  .hero-content-container {
+    position: absolute;
+    inset: 0;
+    margin-top: 0 !important;
+    max-width: 100% !important;
+  }
+
+  .hero-inner-container {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 24px;
+    padding-top: 20vh;
+  }
+
+  .hero-actions {
+    margin-top: auto;
+    margin-bottom: 40vh;
   }
 }
 

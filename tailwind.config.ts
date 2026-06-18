@@ -50,7 +50,7 @@ export default <Partial<Config>>{
         },
       },
       fontFamily: {
-        heading: ["Norican", "cursive"],
+        heading: ["Gabriela", "serif"],
         body: ["Montserrat", "system-ui", "sans-serif"],
         logo: ["Kalnia", "serif"],
       },

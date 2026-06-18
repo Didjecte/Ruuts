@@ -5,9 +5,21 @@
       <div
         class="grid grid-cols-1 lg:grid-cols-[1.2fr_1fr] gap-12 lg:gap-16 items-center"
       >
-        <div class="reveal-item">
+        <!-- Image block first in HTML so it is on top on mobile, but ordered to be on the right on desktop -->
+        <div
+          class="relative w-full order-1 lg:order-2 reveal-item rounded-2xl overflow-hidden shadow-[0_20px_40px_rgba(0,0,0,0.15)] parallax-container"
+        >
+          <img
+            src="~/assets/images/origin.jpg"
+            alt="Terraced tea fields in China"
+            class="w-full h-[350px] lg:h-[480px] object-cover relative z-10 parallax-img"
+            loading="lazy"
+          />
+        </div>
+        <!-- Text block second in HTML, ordered to be on the left on desktop -->
+        <div class="order-2 lg:order-1 reveal-item">
           <h2
-            class="text-5xl relative font-heading font-semibold text-foreground mb-2"
+            class="text-5xl relative font-heading font-semibold text-primary mb-2"
           >
             Our Story
           </h2>
@@ -40,15 +52,6 @@
             </p>
           </div>
         </div>
-        <div
-          class="relative w-full reveal-item rounded-2xl overflow-hidden shadow-[0_20px_40px_rgba(133,159,130,0.15)] parallax-container"
-        >
-          <img
-            src="~/assets/images/origin.jpg"
-            alt="Terraced tea fields in China"
-            class="w-full h-[350px] lg:h-[480px] object-cover relative z-10 parallax-img scale-[1.2]"
-          />
-        </div>
       </div>
     </div>
 
@@ -59,17 +62,18 @@
           class="grid grid-cols-1 lg:grid-cols-[1fr_1.2fr] gap-12 lg:gap-16 items-center"
         >
           <div
-            class="relative w-full order-2 lg:order-1 reveal-item rounded-2xl overflow-hidden shadow-[0_20px_40px_rgba(136,169,91,0.15)] parallax-container"
+            class="relative w-full reveal-item rounded-2xl overflow-hidden shadow-[0_20px_40px_rgba(0,0,0,0.15)] parallax-container"
           >
             <img
               src="~/assets/images/founder.jpg"
               alt="Ophélie Hu - Founder of RUUTS"
-              class="w-full h-[350px] lg:h-[580px] object-cover relative z-10 parallax-img scale-[1.2]"
+              class="w-full h-[350px] lg:h-[580px] object-cover relative z-10 parallax-img"
+              loading="lazy"
             />
           </div>
-          <div class="order-1 lg:order-2 reveal-item">
+          <div class="reveal-item">
             <h2
-              class="text-5xl relative font-heading font-semibold text-foreground mb-2"
+              class="text-5xl relative font-heading font-semibold text-primary mb-2"
             >
               The Founder
             </h2>
@@ -123,7 +127,8 @@
               <img
                 src="~/assets/images/mission.jpg"
                 alt="Ruuts Mission"
-                class="w-full h-[300px] md:h-[350px] object-cover parallax-img scale-[1.2]"
+                class="w-full h-[300px] md:h-[350px] object-cover parallax-img"
+                loading="lazy"
               />
             </div>
 
@@ -232,13 +237,15 @@ onMounted(() => {
 
     parallaxContainers.forEach((container) => {
       const img = container.querySelector(".parallax-img");
+      if (!img) return;
 
       gsap.fromTo(
         img,
-        { yPercent: 8, xPercent: -14 },
+        { yPercent: 8, xPercent: -14, scale: 1.2 },
         {
           yPercent: -8,
           xPercent: 6,
+          scale: 1.2,
           ease: "none",
           scrollTrigger: {
             trigger: container,
@@ -247,6 +254,25 @@ onMounted(() => {
             scrub: true,
           },
         },
+      );
+    });
+
+    const revealItems = gsap.utils.toArray("#about .reveal-item");
+    revealItems.forEach((item) => {
+      gsap.fromTo(
+        item,
+        { y: 50, opacity: 0 },
+        {
+          scrollTrigger: {
+            trigger: item,
+            start: "top 85%",
+            toggleActions: "play none none none",
+          },
+          duration: 0.8,
+          y: 0,
+          opacity: 1,
+          ease: "power3.out",
+        }
       );
     });
   });

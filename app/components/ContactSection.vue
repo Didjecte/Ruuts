@@ -8,7 +8,7 @@
     >
       <!-- Contact details & QR Codes (2nd part of the page) -->
       <div class="reveal-item text-foreground">
-        <h2 class="font-heading text-5xl font-semibold text-foreground mb-6">
+        <h2 class="font-heading text-5xl font-semibold text-primary mb-6">
           Get In Touch
         </h2>
         <p class="text-foreground/85 leading-[1.8] mb-10">
@@ -190,7 +190,9 @@
 </template>
 
 <script setup>
-import { ref, reactive } from "vue";
+import { ref, reactive, onMounted } from "vue";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 const form = reactive({
   name: "",
@@ -216,4 +218,28 @@ const handleSubmit = () => {
     submitted.value = false;
   }, 5000);
 };
+
+onMounted(() => {
+  if (process.client) {
+    gsap.registerPlugin(ScrollTrigger);
+  }
+  const revealItems = document.querySelectorAll("#contact .reveal-item");
+  revealItems.forEach((item) => {
+    gsap.fromTo(
+      item,
+      { y: 50, opacity: 0 },
+      {
+        scrollTrigger: {
+          trigger: item,
+          start: "top 85%",
+          toggleActions: "play none none none",
+        },
+        duration: 0.8,
+        y: 0,
+        opacity: 1,
+        ease: "power3.out",
+      }
+    );
+  });
+});
 </script>
