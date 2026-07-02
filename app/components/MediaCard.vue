@@ -2,7 +2,7 @@
   <article
     class="group block cursor-pointer bg-surface rounded-lg sm:rounded-2xl overflow-hidden transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] hover:-translate-y-1 hover:shadow-[0_15px_35px_rgba(136,169,91,0.15)]"
   >
-    <NuxtLink :to="`/insights/${post.slug}`" class="block text-inherit">
+    <NuxtLink :to="`/testimonials/${post.slug}`" class="block text-inherit">
       <div class="relative w-full overflow-hidden">
         <img
           :src="post.mediaUrl"

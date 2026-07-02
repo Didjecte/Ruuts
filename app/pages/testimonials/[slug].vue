@@ -4,12 +4,12 @@
       
       <!-- Back Link -->
       <div class="mb-10 reveal-item-detail">
-        <NuxtLink to="/insights" class="font-body text-xs font-medium uppercase text-dark inline-flex items-center gap-2 transition-colors duration-200 group hover:text-primary">
+        <NuxtLink to="/testimonials" class="font-body text-xs font-medium uppercase text-dark inline-flex items-center gap-2 transition-colors duration-200 group hover:text-primary">
           <svg class="w-4 h-4 transform translate-x-0 transition-transform duration-200 group-hover:-translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <line x1="19" y1="12" x2="5" y2="12"></line>
             <polyline points="12 19 5 12 12 5"></polyline>
           </svg>
-          Back to Insights
+          Back to Testimonials
         </NuxtLink>
       </div>
 
@@ -113,8 +113,8 @@
   
   <div v-else class="pt-[180px] text-center max-w-[1200px] mx-auto px-6 w-full section-padding">
     <h2 class="font-heading text-3xl text-primary mb-4">Post Not Found</h2>
-    <p class="text-base text-dark mb-6">The requested journal entry could not be located.</p>
-    <NuxtLink to="/insights" class="btn-primary mt-4 inline-block">Return to Journal</NuxtLink>
+    <p class="text-base text-dark mb-6">The requested testimonial entry could not be located.</p>
+    <NuxtLink to="/testimonials" class="btn-primary mt-4 inline-block">Return to Testimonials</NuxtLink>
   </div>
 </template>
 
@@ -141,8 +141,8 @@ const formattedDate = computed(() => {
 })
 
 useSeoMeta({
-  title: computed(() => post.value ? `${post.value.title} - Ruuts Insights` : 'Insight Detail'),
-  description: computed(() => post.value ? post.value.description : 'Journal entry')
+  title: computed(() => post.value ? `${post.value.title} - Ruuts Testimonials` : 'Testimonial Detail'),
+  description: computed(() => post.value ? post.value.description : 'Testimonial entry')
 })
 
 onMounted(() => {

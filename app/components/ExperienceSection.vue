@@ -2,35 +2,12 @@
   <section id="experiences" class="bg-background pt-[90px] md:pt-[100px] pb-0">
     <div class="max-w-[1200px] mx-auto px-6 w-full page-header">
       <h1 class="text-5xl mb-6 font-heading font-semibold text-primary">
-        Our Experiences
+        Private Experiences
       </h1>
       <p class="text-foreground/80 max-w-[600px] leading-[1.8] mb-8">
         Carefully composed private encounters where Chinese tea culture, sound,
         breath, and presence meet. Find the perfect session for your group.
       </p>
-
-      <div
-        class="inline-flex border border-secondary/30 rounded-[50px] p-1 bg-primary/[0.03]"
-      >
-        <button
-          :class="[
-            'bg-transparent border-none rounded-[50px] font-body text-xs font-medium uppercase text-foreground py-[0.8rem] px-[1.8rem] cursor-pointer transition-colors duration-500',
-            { '!bg-primary !text-primary-foreground': activeTab === 'b2c' },
-          ]"
-          @click="setTab('b2c')"
-        >
-          <span class="hidden sm:inline">For </span>Individuals (B2C)
-        </button>
-        <button
-          :class="[
-            'bg-transparent border-none rounded-[50px] font-body text-xs font-medium uppercase text-foreground py-[0.8rem] px-[1.8rem] cursor-pointer transition-colors duration-500',
-            { '!bg-primary !text-primary-foreground': activeTab === 'b2b' },
-          ]"
-          @click="setTab('b2b')"
-        >
-          <span class="hidden sm:inline">For </span>Professionals (B2B)
-        </button>
-      </div>
     </div>
 
     <!-- Experiences Grid -->
@@ -41,7 +18,7 @@
           :key="exp.id"
           class="grid-item-animate"
         >
-          <ExperienceCard :experience="exp" :is-b2b="activeTab === 'b2b'" />
+          <ExperienceCard :experience="exp" :is-b2b="true" />
         </div>
       </div>
     </div>
@@ -147,9 +124,8 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted, nextTick } from "vue";
+import { computed, onMounted } from "vue";
 import {
-  experiencesB2C,
   experiencesB2B,
   bookingPolicy,
 } from "~/data/experiences";
@@ -160,25 +136,9 @@ if (process.client) {
   gsap.registerPlugin(ScrollTrigger);
 }
 
-const activeTab = ref("b2c");
-
 const activeExperiences = computed(() => {
-  return activeTab.value === "b2c" ? experiencesB2C : experiencesB2B;
+  return experiencesB2B;
 });
-
-const setTab = (tab) => {
-  if (activeTab.value === tab) return;
-  activeTab.value = tab;
-
-  // Animate grid switch
-  nextTick(() => {
-    gsap.fromTo(
-      "#experiences .grid-item-animate",
-      { y: 30, opacity: 0 },
-      { duration: 0.5, y: 0, opacity: 1, stagger: 0.1, ease: "power3.out" },
-    );
-  });
-};
 
 onMounted(() => {
   // Page header entry animation

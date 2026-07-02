@@ -5,7 +5,7 @@
   >
     <div class="max-w-[1200px] mx-auto px-6 w-full page-header">
       <h1 class="font-heading text-5xl mb-6 font-semibold text-primary">
-        Insights & Media
+        Testimonials
       </h1>
       <p class="text-foreground/80 max-w-[600px] leading-[1.8] mb-8">
         Deep dives into tea ceremonies, photographic journals of mountain

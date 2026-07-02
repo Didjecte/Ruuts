@@ -17,14 +17,14 @@
         to="/"
         @click="(e) => handleNavLinkClick(e, '/')"
         :class="[
-          'flex items-center gap-1 group transition-colors duration-500',
+          'flex flex-col items-center gap-0.5 group transition-colors duration-500',
           isTransparentNavbar
             ? 'text-foreground-inverse hover:text-secondary'
             : 'text-primary',
         ]"
       >
         <div
-          class="h-10 w-8 bg-current -translate-y-1.5 transition-colors duration-500"
+          class="h-8 w-[25.6px] bg-current transition-colors duration-500"
           style="
             mask-image: url(&quot;/logo.svg&quot;);
             mask-size: contain;
@@ -36,7 +36,7 @@
             -webkit-mask-position: center;
           "
         ></div>
-        <span class="font-logo text-3xl font-medium"> RUUTS </span>
+        <span class="font-logo text-xl font-medium tracking-[0.05em]"> RUUTS </span>
       </NuxtLink>
 
       <!-- Desktop Menu -->
@@ -51,7 +51,7 @@
               : 'text-foreground hover:text-primary',
           ]"
         >
-          About
+          About us
           <span
             :class="[
               'absolute bottom-0 left-0 w-0 h-[1px] transition-all duration-200 group-hover:w-full',
@@ -69,7 +69,7 @@
               : 'text-foreground hover:text-primary',
           ]"
         >
-          Experiences
+          Private Experiences
           <span
             :class="[
               'absolute bottom-0 left-0 w-0 h-[1px] transition-all duration-200 group-hover:w-full',
@@ -78,8 +78,8 @@
           ></span>
         </NuxtLink>
         <NuxtLink
-          to="/insights"
-          @click="(e) => handleNavLinkClick(e, '/insights')"
+          to="/testimonials"
+          @click="(e) => handleNavLinkClick(e, '/testimonials')"
           :class="[
             'font-body text-sm font-medium uppercase tracking-[0.1em] relative py-[0.2rem] group transition-colors duration-500',
             isTransparentNavbar
@@ -87,7 +87,7 @@
               : 'text-foreground hover:text-primary',
           ]"
         >
-          Insights
+          Testimonials
           <span
             :class="[
               'absolute bottom-0 left-0 w-0 h-[1px] transition-all duration-200 group-hover:w-full',
@@ -100,12 +100,10 @@
           @click="(e) => handleNavLinkClick(e, '/contact')"
           :class="[
             'inline-block font-body text-sm font-medium uppercase tracking-[0.1em] px-[1.2rem] py-[0.5rem] rounded-[50px] transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)]',
-            isTransparentNavbar
-              ? 'style-gold'
-              : 'text-foreground border border-primary hover:bg-secondary hover:text-secondary-foreground hover:border-secondary',
+            'style-gold',
           ]"
         >
-          Contact
+          Talk to us
         </NuxtLink>
       </nav>
 
@@ -154,19 +152,19 @@
             to="/about"
             class="mobile-nav-link font-heading text-4xl text-foreground tracking-[0.05em] opacity-0 hover:text-primary transition-colors duration-200"
             @click="(e) => handleNavLinkClick(e, '/about')"
-            >About & Story</NuxtLink
+            >About us</NuxtLink
           >
           <NuxtLink
             to="/experiences"
             class="mobile-nav-link font-heading text-4xl text-foreground tracking-[0.05em] opacity-0 hover:text-primary transition-colors duration-200"
             @click="(e) => handleNavLinkClick(e, '/experiences')"
-            >Experiences</NuxtLink
+            >Private Experiences</NuxtLink
           >
           <NuxtLink
-            to="/insights"
+            to="/testimonials"
             class="mobile-nav-link font-heading text-4xl text-foreground tracking-[0.05em] opacity-0 hover:text-primary transition-colors duration-200"
-            @click="(e) => handleNavLinkClick(e, '/insights')"
-            >Insights</NuxtLink
+            @click="(e) => handleNavLinkClick(e, '/testimonials')"
+            >Testimonials</NuxtLink
           >
           <NuxtLink
             to="/contact"

@@ -7,7 +7,7 @@
       >
         <!-- Image block first in HTML so it is on top on mobile, but ordered to be on the right on desktop -->
         <div
-          class="relative w-full order-1 lg:order-2 reveal-item rounded-2xl overflow-hidden shadow-[0_20px_40px_rgba(0,0,0,0.15)] parallax-container"
+          class="relative w-full order-1 lg:order-2 reveal-item rounded-2xl overflow-hidden shadow-[0_20px_40px_rgba(0,0,0,0.15)] parallax-container mt-6 lg:mt-0"
         >
           <img
             src="~/assets/images/origin.jpg"
@@ -165,7 +165,7 @@
                 :key="index"
                 class="border-b border-foreground/10 group cursor-pointer"
                 @click="activeMission = activeMission === index ? null : index"
-                @mouseenter="activeMission = index"
+                @mouseenter="handleMouseEnter(index)"
               >
                 <!-- Accordion Header -->
                 <div
@@ -226,6 +226,12 @@ import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 
 const activeMission = ref(0);
+
+const handleMouseEnter = (index) => {
+  if (typeof window !== "undefined" && window.matchMedia("(hover: hover)").matches) {
+    activeMission.value = index;
+  }
+};
 
 let ctx;
 

@@ -15,7 +15,7 @@
             <h1
               class="hero-title font-heading text-5xl md:text-6xl font-semibold text-primary dark:text-secondary tracking-[0.03em] leading-[1.15] mb-6"
             >
-              Tea anywhere
+              Bespoke Tea experiences for your venue
             </h1>
             <p
               class="hero-description text-xl text-foreground font-medium mb-10"
@@ -23,7 +23,7 @@
               An experience crafted only for you.
             </p>
           </div>
-          <div class="hero-actions flex flex-col sm:flex-row gap-4 sm:gap-6">
+          <!-- <div class="hero-actions flex flex-col sm:flex-row gap-4 sm:gap-6">
             <NuxtLink to="/experiences" class="btn-gold"
               >Explore Sessions</NuxtLink
             >
@@ -32,7 +32,7 @@
               class="btn-secondary !border-foreground/50 !text-foreground hover:!bg-foreground hover:!text-primary hover:!border-foreground"
               >Our Story</NuxtLink
             >
-          </div>
+          </div> -->
         </div>
       </div>
 
