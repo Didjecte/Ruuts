@@ -1,5 +1,5 @@
 <template>
-  <ExperienceSection />
+  <ExperienceSection title="Private Experiences" catalog-type="b2c" />
 </template>
 
 <script setup>

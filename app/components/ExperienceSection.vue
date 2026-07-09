@@ -1,30 +1,47 @@
 <template>
-  <section id="experiences" class="bg-background pt-[90px] md:pt-[100px] pb-0">
-    <div class="max-w-[1200px] mx-auto px-6 w-full page-header">
+  <section :id="sectionId" ref="sectionRef" class="bg-background pt-[90px] md:pt-[100px] pb-0">
+    <div
+      :class="[
+        'max-w-[1200px] mx-auto px-6 w-full page-header',
+        { 'text-center flex flex-col items-center': catalogType === 'b2b' || activeExperiences.length === 2 }
+      ]"
+    >
       <h1 class="text-5xl mb-6 font-heading font-semibold text-primary">
-        Private Experiences
+        {{ title }}
       </h1>
-      <p class="text-foreground/80 max-w-[600px] leading-[1.8] mb-8">
-        Carefully composed private encounters where Chinese tea culture, sound,
-        breath, and presence meet. Find the perfect session for your group.
+      <p
+        :class="[
+          'text-foreground/80 max-w-[600px] leading-[1.8] mb-8',
+          { 'mx-auto': catalogType === 'b2b' || activeExperiences.length === 2 }
+        ]"
+      >
+        {{ description || (catalogType === 'b2b' ? 'Bespoke tea experiences for hotels, corporate events, and wellness venues. Bring the art of Chinese tea culture to your space.' : 'Carefully composed private encounters where Chinese tea culture, sound, breath, and presence meet. Find the perfect session for your group.') }}
       </p>
     </div>
 
     <!-- Experiences Grid -->
     <div class="max-w-[1200px] mx-auto px-6 w-full mt-6 mb-24">
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
+      <div
+        :class="[
+          'grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8',
+          activeExperiences.length === 2 || catalogType === 'b2b'
+            ? 'lg:grid-cols-2 max-w-[900px] mx-auto'
+            : 'lg:grid-cols-3'
+        ]"
+      >
         <div
           v-for="exp in activeExperiences"
           :key="exp.id"
-          class="grid-item-animate"
+          class="grid-item-animate h-full"
         >
-          <ExperienceCard :experience="exp" :is-b2b="true" />
+          <ExperienceCard :experience="exp" :is-b2b="catalogType === 'b2b'" />
         </div>
       </div>
     </div>
 
     <!-- Booking Policy Details (from Ruuts.pdf) -->
     <div
+      v-if="showPolicies !== null ? showPolicies : catalogType === 'b2c'"
       class="bg-primary/[0.03] border-t border-secondary/20 py-24 text-foreground"
     >
       <div class="max-w-[1200px] mx-auto px-6 w-full">
@@ -124,52 +141,88 @@
 </template>
 
 <script setup>
-import { computed, onMounted } from "vue";
+import { ref, computed, onMounted } from "vue";
 import {
+  experiencesB2C,
   experiencesB2B,
   bookingPolicy,
 } from "~/data/experiences";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
+const props = defineProps({
+  sectionId: {
+    type: String,
+    default: "experiences"
+  },
+  title: {
+    type: String,
+    default: "Private Experiences"
+  },
+  description: {
+    type: String,
+    default: ""
+  },
+  catalogType: {
+    type: String,
+    default: "b2c"
+  },
+  showPolicies: {
+    type: Boolean,
+    default: null
+  }
+});
+
+const sectionRef = ref(null);
+
 if (process.client) {
   gsap.registerPlugin(ScrollTrigger);
 }
 
+const { data: sanityExperiences } = await useSanityExperiences(props.catalogType);
+
 const activeExperiences = computed(() => {
-  return experiencesB2B;
+  if (sanityExperiences.value && sanityExperiences.value.length > 0) {
+    return sanityExperiences.value;
+  }
+  return props.catalogType === "b2b" ? experiencesB2B : experiencesB2C;
 });
 
 onMounted(() => {
-  // Page header entry animation
-  gsap.from("#experiences .page-header > *", {
-    scrollTrigger: {
-      trigger: "#experiences .page-header",
-      start: "top 85%",
-    },
-    duration: 0.8,
-    y: 20,
-    opacity: 0,
-    stagger: 0.1,
-    ease: "power3.out",
-  });
+  if (!sectionRef.value) return;
 
-  // Grid entry animation
-  gsap.from("#experiences .grid-item-animate", {
-    scrollTrigger: {
-      trigger: "#experiences .page-header",
-      start: "top 75%",
-    },
-    duration: 0.8,
-    y: 30,
-    opacity: 0,
-    stagger: 0.1,
-    ease: "power3.out",
-    delay: 0.2,
-  });
+  const pageHeader = sectionRef.value.querySelector(".page-header");
+  if (pageHeader) {
+    gsap.from(pageHeader.children, {
+      scrollTrigger: {
+        trigger: pageHeader,
+        start: "top 85%",
+      },
+      duration: 0.8,
+      y: 20,
+      opacity: 0,
+      stagger: 0.1,
+      ease: "power3.out",
+    });
+  }
 
-  // Reveal policy cards
-  const policyItems = document.querySelectorAll("#experiences .reveal-item");
+  const gridItems = sectionRef.value.querySelectorAll(".grid-item-animate");
+  if (gridItems.length > 0) {
+    gsap.from(gridItems, {
+      scrollTrigger: {
+        trigger: pageHeader || sectionRef.value,
+        start: "top 75%",
+      },
+      duration: 0.8,
+      y: 30,
+      opacity: 0,
+      stagger: 0.1,
+      ease: "power3.out",
+      delay: 0.2,
+    });
+  }
+
+  const policyItems = sectionRef.value.querySelectorAll(".reveal-item");
   policyItems.forEach((item) => {
     gsap.fromTo(
       item,

@@ -48,14 +48,28 @@
       </div>
     </section>
 
+    <!-- Intro Section -->
+    <IntroSection />
+
+    <!-- Tea Anywhere Section -->
+    <ExperienceSection
+      section-id="tea-anywhere"
+      title="Tea Anywhere"
+      catalog-type="b2b"
+    />
+
+    <!-- Testimonials Section -->
+    <TestimonialSection />
+
+    <!-- Private Experiences Section -->
+    <ExperienceSection
+      section-id="experiences"
+      title="Private Experiences"
+      catalog-type="b2c"
+    />
+
     <!-- About Section (Our Story, Founder, Mission) -->
     <AboutSection />
-
-    <!-- Experience Section -->
-    <ExperienceSection />
-
-    <!-- Insight Section -->
-    <InsightSection />
 
     <!-- Contact Section (Details, QRs, Form) -->
     <ContactSection />

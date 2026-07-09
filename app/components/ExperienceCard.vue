@@ -5,76 +5,52 @@
       { 'is-b2b': isB2b },
     ]"
   >
-    <div class="relative w-full h-[280px] overflow-hidden">
+    <div class="relative w-full h-[180px] sm:h-[200px] shrink-0 overflow-hidden">
       <img
         :src="experience.image"
         :alt="experience.title"
         class="w-full h-full object-cover transition-transform duration-[800ms] ease-[cubic-bezier(0.25,1,0.5,1)] group-hover:scale-105"
         loading="lazy"
       />
-      <span
-        class="absolute top-4 left-4 bg-primary text-primary-foreground font-body text-xs font-medium uppercase px-3 py-1.5 rounded-full border border-secondary/30"
-        >{{ tag }}</span
+      <!-- Floating Badges for Duration & Capacity -->
+      <div
+        v-if="!isB2b"
+        class="absolute bottom-3 left-3 right-3 flex items-center justify-between gap-2 pointer-events-none"
       >
+        <span
+          class="pointer-events-auto bg-background/90 backdrop-blur-md px-3 py-1 rounded-full text-xs font-medium text-foreground border border-secondary/30 shadow-sm"
+        >
+          ⏱️ {{ experience.duration }}
+        </span>
+        <span
+          class="pointer-events-auto bg-background/90 backdrop-blur-md px-3 py-1 rounded-full text-xs font-medium text-foreground border border-secondary/30 shadow-sm"
+        >
+          👥 Up to {{ experience.maxGuests }} guests
+        </span>
+      </div>
     </div>
 
-    <div class="p-[2.2rem_2rem] flex flex-col grow">
-      <div class="mb-5">
-        <h3 class="text-2xl text-primary font-heading font-semibold">
+    <div class="p-5 sm:p-6 flex flex-col grow">
+      <div class="mb-2.5">
+        <h3 class="text-xl sm:text-2xl text-primary font-heading font-semibold leading-tight">
           {{ experience.title }}
         </h3>
       </div>
 
-      <p class="text-sm leading-[1.65] text-foreground/80 mb-[1.8rem] grow">
+      <p class="text-xs sm:text-sm leading-[1.65] text-foreground/80 mb-5 grow whitespace-pre-line">
         {{ experience.description }}
       </p>
 
-      <!-- Specific B2C Details -->
-      <div
-        v-if="!isB2b"
-        class="grid grid-cols-2 gap-[1.2rem] mb-6 bg-primary/[0.02] p-4 rounded-lg border border-secondary/20"
-      >
-        <div class="flex flex-col gap-[0.2rem]">
-          <span class="font-body text-xs uppercase text-foreground/50">Duration</span>
-          <span class="font-body text-sm font-semibold text-foreground">{{
-            experience.duration
-          }}</span>
-        </div>
-        <div class="flex flex-col gap-[0.2rem]">
-          <span class="font-body text-xs uppercase text-foreground/50">Capacity</span>
-          <span class="font-body text-sm font-semibold text-foreground"
-            >Up to {{ experience.maxGuests }} guests</span
-          >
-        </div>
-      </div>
-
-      <!-- Specific B2B Details -->
-      <div
-        v-else
-        class="flex flex-col gap-[0.2rem] mb-6 bg-primary/[0.05] p-4 rounded-lg border-l-[3px] border-primary"
-      >
-        <span
-          class="font-body text-xs uppercase tracking-[0.05em] text-secondary"
-          >Strategic Focus</span
-        >
-        <span class="font-heading text-lg font-medium text-primary">{{
-          experience.focus
-        }}</span>
-      </div>
-
-      <div class="h-[1px] bg-secondary/20 mb-6"></div>
-
-      <div class="mb-8">
-        <h4 class="font-body text-xs uppercase text-foreground mb-3">Highlights</h4>
-        <ul class="flex flex-col gap-2">
+      <div v-if="!isB2b && bullets && bullets.length > 0" class="mb-6">
+        <ul class="grid grid-cols-1 sm:grid-cols-2 gap-x-3 gap-y-2">
           <li
             v-for="(bullet, index) in bullets"
             :key="index"
-            class="flex items-start gap-[0.6rem] text-sm text-foreground/85 leading-[1.4]"
+            class="flex items-start gap-1.5 text-xs text-foreground/85 leading-[1.4]"
           >
             <template v-if="isLanguageBullet(bullet)">
               <svg
-                class="w-[14px] h-[14px] text-primary mt-[2px] shrink-0"
+                class="w-[13px] h-[13px] text-primary mt-[2px] shrink-0"
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
@@ -83,15 +59,15 @@
                 <polyline points="20 6 9 17 4 12"></polyline>
               </svg>
               <div class="flex items-center gap-2 flex-wrap">
-                <span class="inline-flex items-center gap-1.5">
+                <span class="inline-flex items-center gap-1 font-medium">
                   <span class="fi fi-gb rounded-sm shadow-sm"></span>
                   <span>EN</span>
                 </span>
-                <span class="inline-flex items-center gap-1.5">
+                <span class="inline-flex items-center gap-1 font-medium">
                   <span class="fi fi-fr rounded-sm shadow-sm"></span>
                   <span>FR</span>
                 </span>
-                <span class="inline-flex items-center gap-1.5">
+                <span class="inline-flex items-center gap-1 font-medium">
                   <span class="fi fi-cn rounded-sm shadow-sm"></span>
                   <span>CN</span>
                 </span>
@@ -99,7 +75,7 @@
             </template>
             <template v-else>
               <svg
-                class="w-[14px] h-[14px] text-primary mt-[2px] shrink-0"
+                class="w-[13px] h-[13px] text-primary mt-[2px] shrink-0"
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
@@ -113,10 +89,10 @@
         </ul>
       </div>
 
-      <div>
+      <div class="mt-auto">
         <NuxtLink
-          to="/#contact"
-          class="flex items-center justify-center w-full p-[0.8rem] border border-primary rounded-[50px] font-body text-xs uppercase font-medium transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] group-hover:bg-primary group-hover:text-primary-foreground hover:!bg-secondary hover:!border-secondary hover:!text-secondary-foreground"
+          :to="contactLink"
+          class="flex items-center justify-center w-full py-2.5 px-4 border border-primary rounded-[50px] font-body text-xs uppercase font-medium transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] group-hover:bg-primary group-hover:text-primary-foreground hover:!bg-secondary hover:!border-secondary hover:!text-secondary-foreground"
           >Book Session</NuxtLink
         >
       </div>
@@ -127,6 +103,12 @@
 <script setup>
 import { computed } from "vue";
 
+const route = useRoute();
+
+const contactLink = computed(() => {
+  return (route.path === "/" || route.path === "/index") ? "/#contact" : "/contact";
+});
+
 const props = defineProps({
   experience: {
     type: Object,
@@ -136,10 +118,6 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
-});
-
-const tag = computed(() => {
-  return props.isB2b ? "Corporate B2B" : props.experience.category;
 });
 
 const bullets = computed(() => {

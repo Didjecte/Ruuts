@@ -1,8 +1,9 @@
 <template>
   <article
     class="group block cursor-pointer bg-surface rounded-lg sm:rounded-2xl overflow-hidden transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] hover:-translate-y-1 hover:shadow-[0_15px_35px_rgba(136,169,91,0.15)]"
+    @click="$emit('select', post)"
   >
-    <NuxtLink :to="`/testimonials/${post.slug}`" class="block text-inherit">
+    <div class="block text-inherit">
       <div class="relative w-full overflow-hidden">
         <img
           :src="post.mediaUrl"
@@ -16,7 +17,7 @@
           class="absolute inset-0 bg-primary/20 flex items-center justify-center opacity-0 transition-opacity duration-200 group-hover:opacity-100"
         >
           <div
-            class="w-[45px] h-[45px] rounded-full bg-background/95 text-primary flex items-center justify-center transform scale-90 transition-transform duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] group-hover:scale-100 backdrop-blur-sm shadow-sm"
+            class="w-[45px] h-[45px] rounded-full bg-background/95 text-primary dark:text-secondary flex items-center justify-center transform scale-90 transition-transform duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] group-hover:scale-100 backdrop-blur-sm shadow-sm"
           >
             <svg
               v-if="post.type === 'video'"
@@ -59,21 +60,8 @@
             </svg>
           </div>
         </div>
-
-        <span
-          class="absolute top-3 left-3 bg-background/95 text-primary font-body text-xs font-semibold uppercase px-[0.6rem] py-[0.3rem] rounded-[50px] backdrop-blur-sm shadow-sm"
-          >{{ post.type }}</span
-        >
       </div>
-
-      <div class="p-2 sm:p-[1.1rem]">
-        <h3
-          class="font-body text-xs sm:text-sm font-medium leading-none sm:leading-[1.5] text-foreground group-hover:text-primary transition-colors duration-200 line-clamp-2"
-        >
-          {{ post.title }}
-        </h3>
-      </div>
-    </NuxtLink>
+    </div>
   </article>
 </template>
 
@@ -84,4 +72,6 @@ const props = defineProps({
     required: true,
   },
 });
+
+defineEmits(['select']);
 </script>

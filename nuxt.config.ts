@@ -8,7 +8,14 @@ export default defineNuxtConfig({
   },
 
   css: ['~/assets/css/main.css'],
-  modules: ['@nuxtjs/tailwindcss'],
+  modules: ['@nuxtjs/tailwindcss', '@nuxtjs/sanity'],
+
+  sanity: {
+    projectId: 'vyyl6ql8',
+    dataset: 'production',
+    apiVersion: '2026-07-08',
+    useCdn: true,
+  },
 
   app: {
     head: {

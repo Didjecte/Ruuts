@@ -6,6 +6,12 @@ export const experience = defineType({
   type: 'document',
   fields: [
     defineField({
+      name: 'order',
+      title: 'Order',
+      type: 'number',
+      description: 'Used to sort experiences (e.g. 1, 2, 3...)',
+    }),
+    defineField({
       name: 'title',
       title: 'Title',
       type: 'string',
@@ -20,6 +26,11 @@ export const experience = defineType({
         maxLength: 96,
       },
       validation: Rule => Rule.required(),
+    }),
+    defineField({
+      name: 'subtitle',
+      title: 'Subtitle',
+      type: 'string',
     }),
     defineField({
       name: 'type',
@@ -60,18 +71,39 @@ export const experience = defineType({
       type: 'text',
     }),
     defineField({
-      name: 'details',
-      title: 'Session Details / Bullet points',
+      name: 'bullets',
+      title: 'Bullets (B2C)',
       type: 'array',
       of: [{type: 'string'}],
+      description: 'Bullet points to display on the B2C card',
+    }),
+    defineField({
+      name: 'highlights',
+      title: 'Highlights (B2B)',
+      type: 'array',
+      of: [{type: 'string'}],
+      description: 'Highlight points to display on the B2B card',
     }),
     defineField({
       name: 'image',
-      title: 'Image URL or Asset',
+      title: 'Image File',
       type: 'image',
       options: {
         hotspot: true,
       },
     }),
+    defineField({
+      name: 'imageUrl',
+      title: 'Or Image External URL',
+      type: 'string',
+      description: 'If you want to use an external image link instead of uploading a file',
+    }),
+    defineField({
+      name: 'details',
+      title: 'Session Details / Extra Bullet points',
+      type: 'array',
+      of: [{type: 'string'}],
+    }),
   ],
 })
+

@@ -1,6 +1,6 @@
 <template>
   <div v-if="post" class="bg-light pt-[150px] section-padding">
-    <div class="max-w-[900px] mx-auto">
+    <div class="max-w-[900px] mx-auto px-6 sm:px-8 md:px-0">
       
       <!-- Back Link -->
       <div class="mb-10 reveal-item-detail">
@@ -52,14 +52,21 @@
           
           <h3 class="font-heading text-2xl text-primary mb-6">Visual Journal Gallery</h3>
           <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
-            <div class="rounded-lg border border-secondary/20 overflow-hidden h-[180px]">
-              <img src="https://images.unsplash.com/photo-1576092768241-dec231879fc3?q=80&w=500&auto=format&fit=crop" alt="Pouring tea" class="w-full h-full object-cover" loading="lazy" />
-            </div>
-            <div class="rounded-lg border border-secondary/20 overflow-hidden h-[180px]">
-              <img src="https://images.unsplash.com/photo-1563822249548-9a72b6353cd1?q=80&w=500&auto=format&fit=crop" alt="Tea tray detail" class="w-full h-full object-cover" loading="lazy" />
-            </div>
-            <div class="rounded-lg border border-secondary/20 overflow-hidden h-[180px]">
-              <img src="https://images.unsplash.com/photo-1544787219-7f47ccb76574?q=80&w=500&auto=format&fit=crop" alt="Guzheng wood details" class="w-full h-full object-cover" loading="lazy" />
+            <div
+              v-for="(img, idx) in post.gallery || [post.mediaUrl]"
+              :key="idx"
+              class="rounded-lg border border-secondary/20 overflow-hidden h-[180px] cursor-pointer group relative"
+              @click="openLightbox(idx)"
+            >
+              <img :src="img" :alt="`${post.title} gallery ${idx + 1}`" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" loading="lazy" />
+              <div class="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-center justify-center">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-white">
+                  <circle cx="11" cy="11" r="8"></circle>
+                  <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                  <line x1="11" y1="8" x2="11" y2="14"></line>
+                  <line x1="8" y1="11" x2="14" y2="11"></line>
+                </svg>
+              </div>
             </div>
           </div>
         </div>
@@ -75,26 +82,125 @@
           </div>
         </header>
 
-        <!-- Video Player Mock -->
+        <!-- Video Player -->
         <div class="w-full mb-12 reveal-item-detail">
-          <div class="w-full h-[300px] md:h-[480px] relative rounded-2xl border border-secondary/20 overflow-hidden bg-dark">
-            <img :src="post.mediaUrl" :alt="post.title" class="w-full h-full object-cover opacity-75" loading="lazy" />
-            <div class="absolute inset-0 flex items-center justify-center">
-              <button class="w-[70px] h-[70px] rounded-full border border-primary bg-primary/85 text-light flex items-center justify-center cursor-pointer transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] hover:scale-110 hover:bg-secondary hover:text-dark hover:border-secondary" aria-label="Play video">
-                <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor" stroke="none" class="ml-1">
+          <div class="w-full h-[300px] md:h-[480px] relative rounded-2xl border border-secondary/20 overflow-hidden bg-black group shadow-lg">
+            
+            <video
+              ref="videoRef"
+              :src="post.videoUrl"
+              class="w-full h-full object-cover"
+              :playsinline="true"
+              @timeupdate="onVideoTimeUpdate"
+              @loadedmetadata="onVideoLoadedMetadata"
+              @ended="onVideoEnded"
+              @click="toggleVideoPlay"
+            ></video>
+
+            <!-- Poster overlay when not playing and hasn't started -->
+            <div
+              v-if="!videoHasStarted"
+              class="absolute inset-0 cursor-pointer"
+              @click="toggleVideoPlay"
+            >
+              <img :src="post.mediaUrl" :alt="post.title" class="w-full h-full object-cover opacity-80" loading="lazy" />
+              <div class="absolute inset-0 flex items-center justify-center bg-black/15">
+                <button
+                  class="w-[70px] h-[70px] rounded-full border border-[#88A95B] bg-[#88A95B]/85 text-light flex items-center justify-center cursor-pointer transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] hover:scale-110 hover:bg-secondary hover:text-dark hover:border-secondary shadow-2xl"
+                  aria-label="Play video"
+                >
+                  <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor" stroke="none" class="ml-1">
+                    <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                  </svg>
+                </button>
+              </div>
+            </div>
+
+            <!-- Big hover pause/play state button overlay -->
+            <div
+              v-else-if="!isVideoPlaying"
+              class="absolute inset-0 flex items-center justify-center bg-black/25 cursor-pointer transition-opacity duration-300"
+              @click="toggleVideoPlay"
+            >
+              <button
+                class="w-[70px] h-[70px] rounded-full bg-white/20 text-white flex items-center justify-center backdrop-blur-sm transition-transform duration-300 hover:scale-105"
+                aria-label="Play video"
+              >
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor" class="ml-1">
                   <polygon points="5 3 19 12 5 21 5 3"></polygon>
                 </svg>
               </button>
             </div>
+
             <!-- Glassmorphism player controls -->
-            <div class="absolute bottom-4 left-[5%] w-[90%] px-[1.2rem] py-[0.8rem] flex items-center gap-[1.2rem] z-[2] rounded-[50px] glass-panel">
-              <button class="bg-transparent border-none text-primary cursor-pointer flex items-center" aria-label="Play">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+            <div
+              class="absolute bottom-4 inset-x-4 px-4 py-3 bg-black/50 backdrop-blur-md rounded-full flex items-center gap-4 transition-opacity duration-300 border border-white/10 z-10"
+              :class="isVideoPlaying ? 'opacity-0 hover:opacity-100 focus-within:opacity-100' : 'opacity-100'"
+            >
+              <!-- Play/Pause -->
+              <button
+                class="bg-transparent border-none text-[#88A95B] hover:text-secondary cursor-pointer flex items-center"
+                @click="toggleVideoPlay"
+                :aria-label="isVideoPlaying ? 'Pause' : 'Play'"
+              >
+                <svg v-if="isVideoPlaying" width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                  <rect x="6" y="4" width="4" height="16"></rect>
+                  <rect x="14" y="4" width="4" height="16"></rect>
+                </svg>
+                <svg v-else width="14" height="14" viewBox="0 0 24 24" fill="currentColor" class="ml-0.5">
+                  <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                </svg>
               </button>
-              <div class="flex-grow h-[3px] bg-dark/15 relative">
-                <div class="absolute top-0 left-0 w-[30%] h-full bg-primary"></div>
+
+              <!-- Progress bar scrubber -->
+              <div class="flex-grow flex items-center relative">
+                <input
+                  type="range"
+                  min="0"
+                  :max="videoDuration"
+                  step="0.1"
+                  :value="videoCurrentTime"
+                  @input="onVideoSeek"
+                  class="w-full h-1 bg-white/25 rounded-lg appearance-none cursor-pointer accent-[#88A95B] outline-none"
+                />
+                <div
+                  class="absolute left-0 top-[calc(50%-2px)] h-1 bg-[#88A95B] rounded-l-lg pointer-events-none"
+                  :style="{ width: `${videoProgressPercentage}%` }"
+                ></div>
               </div>
-              <span class="font-body text-xs text-dark">0:00 / 2:45</span>
+
+              <!-- Time display -->
+              <span class="font-body text-xs text-white/95 whitespace-nowrap min-w-[70px] text-center">
+                {{ formatVideoTime(videoCurrentTime) }} / {{ formatVideoTime(videoDuration) }}
+              </span>
+
+              <!-- Mute / Unmute -->
+              <button
+                class="bg-transparent border-none text-white hover:text-[#88A95B] cursor-pointer flex items-center"
+                @click="toggleVideoMute"
+                :aria-label="isVideoMuted ? 'Unmute' : 'Mute'"
+              >
+                <svg v-if="isVideoMuted" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                  <line x1="23" y1="9" x2="17" y2="15"></line>
+                  <line x1="17" y1="9" x2="23" y2="15"></line>
+                </svg>
+                <svg v-else width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                  <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                </svg>
+              </button>
+
+              <!-- Fullscreen -->
+              <button
+                class="bg-transparent border-none text-white hover:text-[#88A95B] cursor-pointer flex items-center"
+                @click="toggleVideoFullscreen"
+                aria-label="Toggle Fullscreen"
+              >
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"></path>
+                </svg>
+              </button>
             </div>
           </div>
         </div>
@@ -108,6 +214,53 @@
         </div>
       </article>
 
+      <!-- Continue Exploring Navigation Footer -->
+      <div v-if="prevPost || nextPost" class="mt-20 border-t border-secondary/20 pt-12 reveal-item-detail">
+        <h3 class="font-heading text-2xl text-primary mb-8 text-center">Continue Exploring</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          <!-- Previous Card -->
+          <div v-if="prevPost">
+            <NuxtLink
+              :to="`/testimonials/${prevPost.slug}`"
+              class="group flex flex-col justify-between h-full p-6 rounded-2xl border border-secondary/15 hover:border-[#88A95B] bg-white/5 hover:bg-[#88A95B]/5 transition-all duration-300 shadow-sm"
+            >
+              <div class="flex flex-col gap-2">
+                <span class="font-body text-xs font-semibold uppercase tracking-[0.25em] text-[#88A95B]">Previous</span>
+                <h4 class="font-heading text-lg text-primary leading-snug group-hover:text-[#88A95B] transition-colors">{{ prevPost.title }}</h4>
+              </div>
+              <span class="font-body text-xs text-dark/50 mt-4 flex items-center gap-1.5 group-hover:text-[#88A95B] transition-colors">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <line x1="19" y1="12" x2="5" y2="12"></line>
+                  <polyline points="12 19 5 12 12 5"></polyline>
+                </svg>
+                Read story
+              </span>
+            </NuxtLink>
+          </div>
+          <div v-else></div>
+
+          <!-- Next Card -->
+          <div v-if="nextPost">
+            <NuxtLink
+              :to="`/testimonials/${nextPost.slug}`"
+              class="group flex flex-col justify-between h-full p-6 rounded-2xl border border-secondary/15 hover:border-[#88A95B] bg-white/5 hover:bg-[#88A95B]/5 transition-all duration-300 shadow-sm"
+            >
+              <div class="flex flex-col gap-2">
+                <span class="font-body text-xs font-semibold uppercase tracking-[0.25em] text-[#88A95B] text-right">Next</span>
+                <h4 class="font-heading text-lg text-primary leading-snug text-right group-hover:text-[#88A95B] transition-colors">{{ nextPost.title }}</h4>
+              </div>
+              <span class="font-body text-xs text-dark/50 mt-4 flex items-center gap-1.5 self-end group-hover:text-[#88A95B] transition-colors">
+                Read story
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+              </span>
+            </NuxtLink>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
   
@@ -116,19 +269,119 @@
     <p class="text-base text-dark mb-6">The requested testimonial entry could not be located.</p>
     <NuxtLink to="/testimonials" class="btn-primary mt-4 inline-block">Return to Testimonials</NuxtLink>
   </div>
+
+  <!-- Interactive Lightbox Modal (Photo layout only) -->
+  <Teleport to="body">
+    <Transition name="lightbox-fade">
+      <div
+        v-if="activeLightboxIndex !== null && post && post.gallery"
+        class="fixed inset-0 z-[300] bg-black/95 backdrop-blur-md flex flex-col justify-between select-none"
+        role="dialog"
+        aria-modal="true"
+        @click.self="closeLightbox"
+      >
+        <!-- Top Bar -->
+        <div class="w-full flex items-center justify-between px-6 py-4 z-10" @click.self="closeLightbox">
+          <span class="font-body text-xs md:text-sm font-medium text-light/70 tracking-wider pointer-events-none">
+            {{ activeLightboxIndex + 1 }} / {{ post.gallery.length }}
+          </span>
+
+          <button
+            class="w-10 h-10 rounded-full bg-white/5 hover:bg-white/15 active:bg-white/25 text-white flex items-center justify-center cursor-pointer transition-all duration-300 backdrop-blur-sm border border-white/10"
+            @click="closeLightbox"
+            aria-label="Close lightbox"
+          >
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+
+        <!-- Main Photo -->
+        <div
+          class="flex-grow flex items-center justify-center relative px-4 md:px-16 overflow-hidden"
+          @click.self="closeLightbox"
+        >
+          <!-- Left Arrow -->
+          <button
+            v-if="post.gallery.length > 1"
+            class="absolute left-6 w-12 h-12 rounded-full bg-white/5 hover:bg-white/15 active:bg-white/20 text-white flex items-center justify-center cursor-pointer transition-all duration-300 backdrop-blur-sm border border-white/10 z-10"
+            @click="prevLightboxImage"
+            aria-label="Previous image"
+          >
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="15 18 9 12 15 6"></polyline>
+            </svg>
+          </button>
+
+          <div class="max-w-full max-h-[75vh] flex items-center justify-center" @click.self="closeLightbox">
+            <Transition name="fade-scale" mode="out-in">
+              <img
+                :key="activeLightboxIndex"
+                :src="post.gallery[activeLightboxIndex]"
+                alt="Testimonial Gallery Detail"
+                class="max-w-full max-h-[75vh] object-contain rounded-lg shadow-2xl"
+              />
+            </Transition>
+          </div>
+
+          <!-- Right Arrow -->
+          <button
+            v-if="post.gallery.length > 1"
+            class="absolute right-6 w-12 h-12 rounded-full bg-white/5 hover:bg-white/15 active:bg-white/20 text-white flex items-center justify-center cursor-pointer transition-all duration-300 backdrop-blur-sm border border-white/10 z-10"
+            @click="nextLightboxImage"
+            aria-label="Next image"
+          >
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+          </button>
+        </div>
+
+        <!-- Thumbnails bottom bar -->
+        <div class="w-full flex items-center justify-center py-6 px-6 z-10" @click.self="closeLightbox">
+          <div class="flex items-center gap-3 overflow-x-auto max-w-[90vw] pb-2">
+            <button
+              v-for="(img, idx) in post.gallery"
+              :key="idx"
+              class="w-16 h-12 rounded-md overflow-hidden border-2 cursor-pointer transition-all duration-300 flex-shrink-0"
+              :class="idx === activeLightboxIndex ? 'border-[#88A95B] scale-105' : 'border-transparent opacity-50 hover:opacity-100'"
+              @click="openLightbox(idx)"
+            >
+              <img :src="img" class="w-full h-full object-cover pointer-events-none" />
+            </button>
+          </div>
+        </div>
+      </div>
+    </Transition>
+  </Teleport>
 </template>
 
 <script setup>
-import { computed, onMounted } from 'vue'
+import { ref, computed, watch, onMounted, onUnmounted } from 'vue'
 import { useRoute } from 'vue-router'
-import { insightsMockData } from '~/data/insights'
+import { testimonialsMockData } from '~/data/testimonials'
 import { gsap } from 'gsap'
+
+definePageMeta({
+  headerTheme: 'light'
+})
 
 const route = useRoute()
 
+const { data: sanityTestimonials } = await useSanityTestimonials();
+
+const activePostsList = computed(() => {
+  if (sanityTestimonials.value && sanityTestimonials.value.length > 0) {
+    return sanityTestimonials.value;
+  }
+  return testimonialsMockData;
+});
+
 const post = computed(() => {
-  return insightsMockData.find(p => p.slug === route.params.slug)
-})
+  return activePostsList.value.find(p => p.slug === route.params.slug)
+});
 
 const formattedDate = computed(() => {
   if (!post.value) return ''
@@ -140,12 +393,147 @@ const formattedDate = computed(() => {
   })
 })
 
+// Previous / Next story navigation
+const currentIndex = computed(() => {
+  if (!post.value) return -1
+  return activePostsList.value.findIndex(p => p.slug === post.value.slug)
+})
+
+const prevPost = computed(() => {
+  if (currentIndex.value <= 0) return null
+  return activePostsList.value[currentIndex.value - 1]
+})
+
+const nextPost = computed(() => {
+  if (currentIndex.value === -1 || currentIndex.value >= activePostsList.value.length - 1) return null
+  return activePostsList.value[currentIndex.value + 1]
+})
+
+// Video Player State & Logic
+const videoRef = ref(null)
+const isVideoPlaying = ref(false)
+const isVideoMuted = ref(false)
+const videoCurrentTime = ref(0)
+const videoDuration = ref(0)
+const videoHasStarted = ref(false)
+
+const videoProgressPercentage = computed(() => {
+  if (videoDuration.value === 0) return 0
+  return (videoCurrentTime.value / videoDuration.value) * 100
+})
+
+const toggleVideoPlay = () => {
+  if (!videoRef.value) return
+  if (!videoHasStarted.value) {
+    videoHasStarted.value = true
+  }
+  if (videoRef.value.paused) {
+    videoRef.value.play().then(() => {
+      isVideoPlaying.value = true
+    }).catch(err => console.error("Error playing video:", err))
+  } else {
+    videoRef.value.pause()
+    isVideoPlaying.value = false
+  }
+}
+
+const toggleVideoMute = () => {
+  if (!videoRef.value) return
+  videoRef.value.muted = !videoRef.value.muted
+  isVideoMuted.value = videoRef.value.muted
+}
+
+const onVideoTimeUpdate = () => {
+  if (videoRef.value) {
+    videoCurrentTime.value = videoRef.value.currentTime
+  }
+}
+
+const onVideoLoadedMetadata = () => {
+  if (videoRef.value) {
+    videoDuration.value = videoRef.value.duration
+  }
+}
+
+const onVideoEnded = () => {
+  isVideoPlaying.value = false
+  videoCurrentTime.value = 0
+}
+
+const onVideoSeek = (e) => {
+  if (videoRef.value) {
+    const time = parseFloat(e.target.value)
+    videoRef.value.currentTime = time
+    videoCurrentTime.value = time
+  }
+}
+
+const toggleVideoFullscreen = () => {
+  if (!videoRef.value) return
+  if (videoRef.value.requestFullscreen) {
+    videoRef.value.requestFullscreen()
+  } else if (videoRef.value.webkitRequestFullscreen) {
+    videoRef.value.webkitRequestFullscreen()
+  }
+}
+
+const formatVideoTime = (time) => {
+  if (isNaN(time)) return "0:00"
+  const mins = Math.floor(time / 60)
+  const secs = Math.floor(time % 60)
+  return `${mins}:${secs < 10 ? "0" : ""}${secs}`
+}
+
+// Lightbox Logic for Photo Testimonials
+const activeLightboxIndex = ref(null)
+
+const openLightbox = (idx) => {
+  activeLightboxIndex.value = idx
+}
+
+const closeLightbox = () => {
+  activeLightboxIndex.value = null
+}
+
+const prevLightboxImage = () => {
+  if (activeLightboxIndex.value === null || !post.value?.gallery) return
+  const galleryLen = post.value.gallery.length
+  activeLightboxIndex.value = (activeLightboxIndex.value - 1 + galleryLen) % galleryLen
+}
+
+const nextLightboxImage = () => {
+  if (activeLightboxIndex.value === null || !post.value?.gallery) return
+  const galleryLen = post.value.gallery.length
+  activeLightboxIndex.value = (activeLightboxIndex.value + 1) % galleryLen
+}
+
+const handleLightboxKeyDown = (e) => {
+  if (activeLightboxIndex.value === null) return
+  if (e.key === "Escape") closeLightbox()
+  if (e.key === "ArrowLeft") prevLightboxImage()
+  if (e.key === "ArrowRight") nextLightboxImage()
+}
+
+// Watch lightbox to lock background scroll
+watch(activeLightboxIndex, (newVal) => {
+  if (typeof window === 'undefined') return
+  if (newVal !== null) {
+    document.documentElement.style.overflow = 'hidden'
+    document.body.style.overflow = 'hidden'
+  } else {
+    document.documentElement.style.overflow = ''
+    document.body.style.overflow = ''
+  }
+})
+
 useSeoMeta({
   title: computed(() => post.value ? `${post.value.title} - Ruuts Testimonials` : 'Testimonial Detail'),
   description: computed(() => post.value ? post.value.description : 'Testimonial entry')
 })
 
 onMounted(() => {
+  window.addEventListener("keydown", handleLightboxKeyDown)
+
   if (post.value) {
     // Details entry animation
     gsap.from('.reveal-item-detail', {
@@ -157,4 +545,53 @@ onMounted(() => {
     })
   }
 })
+
+onUnmounted(() => {
+  window.removeEventListener("keydown", handleLightboxKeyDown)
+  // Ensure we unlock the scroll if unmounting
+  if (typeof window !== 'undefined') {
+    document.documentElement.style.overflow = ''
+    document.body.style.overflow = ''
+  }
+})
 </script>
+
+<style scoped>
+/* Lightbox Fade Transition */
+.lightbox-fade-enter-active,
+.lightbox-fade-leave-active {
+  transition: opacity 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+.lightbox-fade-enter-from,
+.lightbox-fade-leave-to {
+  opacity: 0;
+}
+
+/* Inner Fade Scale Transition */
+.fade-scale-enter-active,
+.fade-scale-leave-active {
+  transition: all 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+}
+.fade-scale-enter-from {
+  opacity: 0;
+  transform: scale(0.97);
+}
+.fade-scale-leave-to {
+  opacity: 0;
+  transform: scale(1.03);
+}
+
+/* Range input slider styling for video controls */
+input[type="range"]::-webkit-slider-thumb {
+  appearance: none;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #88A95B;
+  cursor: pointer;
+  transition: transform 0.1s;
+}
+input[type="range"]::-webkit-slider-thumb:hover {
+  transform: scale(1.3);
+}
+</style>

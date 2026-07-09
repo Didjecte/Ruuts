@@ -71,9 +71,16 @@
           <ul class="list-none flex flex-col gap-[0.6rem]">
             <li>
               <NuxtLink
-                to="/about"
+                to="/custom-experiences"
                 class="text-sm text-foreground/75 transition-all duration-200 hover:text-secondary hover:pl-1 block w-fit"
-                >About us</NuxtLink
+                >Tea Anywhere</NuxtLink
+              >
+            </li>
+            <li>
+              <NuxtLink
+                to="/testimonials"
+                class="text-sm text-foreground/75 transition-all duration-200 hover:text-secondary hover:pl-1 block w-fit"
+                >Testimonials</NuxtLink
               >
             </li>
             <li>
@@ -85,9 +92,9 @@
             </li>
             <li>
               <NuxtLink
-                to="/testimonials"
+                to="/about"
                 class="text-sm text-foreground/75 transition-all duration-200 hover:text-secondary hover:pl-1 block w-fit"
-                >Testimonials</NuxtLink
+                >About us</NuxtLink
               >
             </li>
             <li>

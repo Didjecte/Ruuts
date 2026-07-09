@@ -1,4 +1,4 @@
 import {experience} from './experience'
-import {insight} from './insight'
+import {testimonial} from './testimonial'
 
-export const schemaTypes = [experience, insight]
+export const schemaTypes = [experience, testimonial]

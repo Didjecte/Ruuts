@@ -1,6 +1,7 @@
 # Ruuts - Project Requirements
 
 ## Overview
+
 - **Type:** Website, Mobile First
 - **Frontend:** Vue (Nuxt 4)
 - **Backend/CMS:** Sanity.io
@@ -27,25 +28,30 @@ The website will consist of 4 main sections, structured as follows:
      - Customers (B2C)
      - Professionals (B2B)
 
-3. **Insights** (Route `/insights`)
+3. **Testimonials** (Route `/testimonials`)
    - A blog/media section featuring different types of posts (Photo, Video, Article).
    - **Filtering:** Top navbar to filter by "All", "Photo", "Video", or "Articles".
-   - **Detail Pages:** Route `/insights/[slug]` for each post.
+   - **Detail Pages:** Route `/testimonials/[slug]` for each post.
+   - **Ordering & Date:** Testimonials include a published date and are ordered by date published (newest first).
 
 ## Navigation & UI Behavior
+
 - **Mobile Screens:** Burger menu button in the top right corner that opens a premium-feel fullscreen overlay.
 - **Desktop/Bigger Screens:** Elegant sticky/glassmorphic top navigation bar.
 
 ## Tech Stack & Data Constraints
-- **Sanity.io:** Initialize and setup Sanity, but do not connect it to the Nuxt frontend for dynamic data rendering yet (use static/mock data for now).
+
+- **Sanity.io:** Connect Sanity.io (`@nuxtjs/sanity`) to the Nuxt frontend for dynamic data rendering (`experiences`, `testimonials`, etc.). Fetch live data from the Sanity dataset (`projectId: 'vyyl6ql8'`, `dataset: 'production'`) instead of using static placeholders or mock data.
 
 ## Design System (Branding & Colors)
 
 ### Typography
+
 - **Heading Font:** Playfair Display (Google Fonts)
 - **Body Font:** Montserrat (Google Fonts)
 
 ### Color Palette
+
 - **Primary Background:** `Xuan Paper Cream` (A slightly warmer, textured off-white. Evokes traditional Chinese calligraphy paper, softening the background to make reading comfortable and luxurious. E.g., `#FAF6F0` or `#F7F4EB`)
 - **Primary Brand Color:** `Deep Jade Green` (Deep rich dark jade. References lush, terraced tea fields of Zhejiang and Yunnan and the historical prestige of Chinese jade. E.g., `#0B3C33` or `#08332A`)
 - **Primary Accent:** `Antique Brass / Matte Gold` (Replaces standard black borders/accents. Reflects historical 1930 Cité Bourgogne architecture and Guzheng/Pipa wood tones. E.g., `#C5A059` or `#D4AF37`)

@@ -42,8 +42,8 @@
       <!-- Desktop Menu -->
       <nav class="hidden md:flex items-center gap-10">
         <NuxtLink
-          to="/about"
-          @click="(e) => handleNavLinkClick(e, '/about')"
+          to="/custom-experiences"
+          @click="(e) => handleNavLinkClick(e, '/custom-experiences')"
           :class="[
             'font-body text-sm font-medium uppercase tracking-[0.1em] relative py-[0.2rem] group transition-colors duration-500',
             isTransparentNavbar
@@ -51,7 +51,25 @@
               : 'text-foreground hover:text-primary',
           ]"
         >
-          About us
+          Tea Anywhere
+          <span
+            :class="[
+              'absolute bottom-0 left-0 w-0 h-[1px] transition-all duration-200 group-hover:w-full',
+              isTransparentNavbar ? 'bg-secondary' : 'bg-primary',
+            ]"
+          ></span>
+        </NuxtLink>
+        <NuxtLink
+          to="/testimonials"
+          @click="(e) => handleNavLinkClick(e, '/testimonials')"
+          :class="[
+            'font-body text-sm font-medium uppercase tracking-[0.1em] relative py-[0.2rem] group transition-colors duration-500',
+            isTransparentNavbar
+              ? 'text-foreground-inverse hover:text-secondary'
+              : 'text-foreground hover:text-primary',
+          ]"
+        >
+          Testimonials
           <span
             :class="[
               'absolute bottom-0 left-0 w-0 h-[1px] transition-all duration-200 group-hover:w-full',
@@ -78,8 +96,8 @@
           ></span>
         </NuxtLink>
         <NuxtLink
-          to="/testimonials"
-          @click="(e) => handleNavLinkClick(e, '/testimonials')"
+          to="/about"
+          @click="(e) => handleNavLinkClick(e, '/about')"
           :class="[
             'font-body text-sm font-medium uppercase tracking-[0.1em] relative py-[0.2rem] group transition-colors duration-500',
             isTransparentNavbar
@@ -87,7 +105,7 @@
               : 'text-foreground hover:text-primary',
           ]"
         >
-          Testimonials
+          About us
           <span
             :class="[
               'absolute bottom-0 left-0 w-0 h-[1px] transition-all duration-200 group-hover:w-full',
@@ -149,16 +167,10 @@
       <div class="flex flex-col items-center justify-between h-[60%] w-full">
         <nav class="flex flex-col items-center gap-8">
           <NuxtLink
-            to="/about"
+            to="/custom-experiences"
             class="mobile-nav-link font-heading text-4xl text-foreground tracking-[0.05em] opacity-0 hover:text-primary transition-colors duration-200"
-            @click="(e) => handleNavLinkClick(e, '/about')"
-            >About us</NuxtLink
-          >
-          <NuxtLink
-            to="/experiences"
-            class="mobile-nav-link font-heading text-4xl text-foreground tracking-[0.05em] opacity-0 hover:text-primary transition-colors duration-200"
-            @click="(e) => handleNavLinkClick(e, '/experiences')"
-            >Private Experiences</NuxtLink
+            @click="(e) => handleNavLinkClick(e, '/custom-experiences')"
+            >Tea anywhere</NuxtLink
           >
           <NuxtLink
             to="/testimonials"
@@ -167,10 +179,22 @@
             >Testimonials</NuxtLink
           >
           <NuxtLink
+            to="/experiences"
+            class="mobile-nav-link font-heading text-4xl text-foreground tracking-[0.05em] opacity-0 hover:text-primary transition-colors duration-200"
+            @click="(e) => handleNavLinkClick(e, '/experiences')"
+            >Private Experiences</NuxtLink
+          >
+          <NuxtLink
+            to="/about"
+            class="mobile-nav-link font-heading text-4xl text-foreground tracking-[0.05em] opacity-0 hover:text-primary transition-colors duration-200"
+            @click="(e) => handleNavLinkClick(e, '/about')"
+            >About us</NuxtLink
+          >
+          <NuxtLink
             to="/contact"
             class="mobile-nav-link font-heading text-4xl text-foreground tracking-[0.05em] opacity-0 hover:text-primary transition-colors duration-200"
             @click="(e) => handleNavLinkClick(e, '/contact')"
-            >Contact</NuxtLink
+            >Talk to us</NuxtLink
           >
         </nav>
 
@@ -201,7 +225,10 @@ let lastScrollY = 0;
 let ticking = false;
 
 const isTransparentNavbar = computed(() => {
-  return route.meta.transparentHeader && !isScrolled.value;
+  return (
+    (route.meta.transparentHeader || route.meta.headerTheme === "dark") &&
+    !isScrolled.value
+  );
 });
 
 const handleNavLinkClick = (e, path) => {
@@ -218,6 +245,13 @@ const handleNavLinkClick = (e, path) => {
 let menuTimeline = null;
 
 const updateNav = () => {
+  // If the page is scroll-locked (e.g. modal is open), ignore scroll events
+  // to prevent the navbar from flickering or changing state.
+  if (typeof document !== "undefined" && document.body && document.body.style.position === "fixed") {
+    ticking = false;
+    return;
+  }
+
   const currentScrollY = window.scrollY;
 
   const pastThreshold = currentScrollY > 80;

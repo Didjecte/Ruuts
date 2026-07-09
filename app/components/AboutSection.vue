@@ -239,7 +239,7 @@ onMounted(() => {
   gsap.registerPlugin(ScrollTrigger);
 
   ctx = gsap.context(() => {
-    const parallaxContainers = gsap.utils.toArray(".parallax-container");
+    const parallaxContainers = gsap.utils.toArray("#about .parallax-container");
 
     parallaxContainers.forEach((container) => {
       const img = container.querySelector(".parallax-img");
@@ -247,11 +247,11 @@ onMounted(() => {
 
       gsap.fromTo(
         img,
-        { yPercent: 8, xPercent: -14, scale: 1.2 },
+        { yPercent: 4, xPercent: -7, scale: 1.1 },
         {
-          yPercent: -8,
-          xPercent: 6,
-          scale: 1.2,
+          yPercent: -4,
+          xPercent: 3,
+          scale: 1.1,
           ease: "none",
           scrollTrigger: {
             trigger: container,
