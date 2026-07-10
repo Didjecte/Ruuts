@@ -19,12 +19,13 @@ export const experience = defineType({
     }),
     defineField({
       name: 'slug',
-      title: 'Slug',
+      title: 'Slug (Address of the URL)',
       type: 'slug',
       options: {
         source: 'title',
         maxLength: 96,
       },
+      description: "The unique identifier used in the URL address (e.g., 'seasonal-tea-ritual'). Click the 'Generate' button to build it automatically from the title.",
       validation: Rule => Rule.required(),
     }),
     defineField({

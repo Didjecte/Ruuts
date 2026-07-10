@@ -51,6 +51,9 @@
     <!-- Intro Section -->
     <IntroSection />
 
+    <!-- Testimonials Section -->
+    <TestimonialSection />
+
     <!-- Tea Anywhere Section -->
     <ExperienceSection
       section-id="tea-anywhere"
@@ -58,18 +61,16 @@
       catalog-type="b2b"
     />
 
-    <!-- Testimonials Section -->
-    <TestimonialSection />
-
     <!-- Private Experiences Section -->
     <ExperienceSection
       section-id="experiences"
       title="Private Experiences"
       catalog-type="b2c"
+      :show-policies="false"
     />
 
-    <!-- About Section (Our Story, Founder, Mission) -->
-    <AboutSection />
+    <!-- About Section (Our Mission only) -->
+    <AboutSection :show-story-and-founder="false" />
 
     <!-- Contact Section (Details, QRs, Form) -->
     <ContactSection />

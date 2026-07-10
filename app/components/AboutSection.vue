@@ -1,7 +1,10 @@
 <template>
   <section id="about" class="bg-background overflow-hidden">
     <!-- Our Story -->
-    <div class="max-w-[1200px] mx-auto px-6 w-full section-padding">
+    <div
+      v-if="showStoryAndFounder"
+      class="max-w-[1200px] mx-auto px-6 w-full section-padding"
+    >
       <div
         class="grid grid-cols-1 lg:grid-cols-[1.2fr_1fr] gap-12 lg:gap-16 items-center"
       >
@@ -56,7 +59,10 @@
     </div>
 
     <!-- Founder -->
-    <div class="bg-surface border-y border-border/10">
+    <div
+      v-if="showStoryAndFounder"
+      class="bg-surface border-y border-border/10"
+    >
       <div class="max-w-[1200px] mx-auto px-6 w-full section-padding">
         <div
           class="grid grid-cols-1 lg:grid-cols-[1fr_1.2fr] gap-12 lg:gap-16 items-center"
@@ -224,6 +230,13 @@
 import { ref, onMounted, onUnmounted } from "vue";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
+
+const props = defineProps({
+  showStoryAndFounder: {
+    type: Boolean,
+    default: true,
+  },
+});
 
 const activeMission = ref(0);
 

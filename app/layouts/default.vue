@@ -78,16 +78,16 @@
             </li>
             <li>
               <NuxtLink
-                to="/testimonials"
+                to="/experiences"
                 class="text-sm text-foreground/75 transition-all duration-200 hover:text-secondary hover:pl-1 block w-fit"
-                >Testimonials</NuxtLink
+                >Private Experiences</NuxtLink
               >
             </li>
             <li>
               <NuxtLink
-                to="/experiences"
+                to="/testimonials"
                 class="text-sm text-foreground/75 transition-all duration-200 hover:text-secondary hover:pl-1 block w-fit"
-                >Private Experiences</NuxtLink
+                >Testimonials</NuxtLink
               >
             </li>
             <li>

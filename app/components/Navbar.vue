@@ -60,24 +60,6 @@
           ></span>
         </NuxtLink>
         <NuxtLink
-          to="/testimonials"
-          @click="(e) => handleNavLinkClick(e, '/testimonials')"
-          :class="[
-            'font-body text-sm font-medium uppercase tracking-[0.1em] relative py-[0.2rem] group transition-colors duration-500',
-            isTransparentNavbar
-              ? 'text-foreground-inverse hover:text-secondary'
-              : 'text-foreground hover:text-primary',
-          ]"
-        >
-          Testimonials
-          <span
-            :class="[
-              'absolute bottom-0 left-0 w-0 h-[1px] transition-all duration-200 group-hover:w-full',
-              isTransparentNavbar ? 'bg-secondary' : 'bg-primary',
-            ]"
-          ></span>
-        </NuxtLink>
-        <NuxtLink
           to="/experiences"
           @click="(e) => handleNavLinkClick(e, '/experiences')"
           :class="[
@@ -88,6 +70,24 @@
           ]"
         >
           Private Experiences
+          <span
+            :class="[
+              'absolute bottom-0 left-0 w-0 h-[1px] transition-all duration-200 group-hover:w-full',
+              isTransparentNavbar ? 'bg-secondary' : 'bg-primary',
+            ]"
+          ></span>
+        </NuxtLink>
+        <NuxtLink
+          to="/testimonials"
+          @click="(e) => handleNavLinkClick(e, '/testimonials')"
+          :class="[
+            'font-body text-sm font-medium uppercase tracking-[0.1em] relative py-[0.2rem] group transition-colors duration-500',
+            isTransparentNavbar
+              ? 'text-foreground-inverse hover:text-secondary'
+              : 'text-foreground hover:text-primary',
+          ]"
+        >
+          Testimonials
           <span
             :class="[
               'absolute bottom-0 left-0 w-0 h-[1px] transition-all duration-200 group-hover:w-full',
@@ -173,16 +173,16 @@
             >Tea anywhere</NuxtLink
           >
           <NuxtLink
-            to="/testimonials"
-            class="mobile-nav-link font-heading text-4xl text-foreground tracking-[0.05em] opacity-0 hover:text-primary transition-colors duration-200"
-            @click="(e) => handleNavLinkClick(e, '/testimonials')"
-            >Testimonials</NuxtLink
-          >
-          <NuxtLink
             to="/experiences"
             class="mobile-nav-link font-heading text-4xl text-foreground tracking-[0.05em] opacity-0 hover:text-primary transition-colors duration-200"
             @click="(e) => handleNavLinkClick(e, '/experiences')"
             >Private Experiences</NuxtLink
+          >
+          <NuxtLink
+            to="/testimonials"
+            class="mobile-nav-link font-heading text-4xl text-foreground tracking-[0.05em] opacity-0 hover:text-primary transition-colors duration-200"
+            @click="(e) => handleNavLinkClick(e, '/testimonials')"
+            >Testimonials</NuxtLink
           >
           <NuxtLink
             to="/about"

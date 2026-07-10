@@ -141,7 +141,7 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted } from "vue";
+import { ref, computed, watch, nextTick, onMounted } from "vue";
 import {
   experiencesB2C,
   experiencesB2B,
@@ -179,7 +179,7 @@ if (process.client) {
   gsap.registerPlugin(ScrollTrigger);
 }
 
-const { data: sanityExperiences } = await useSanityExperiences(props.catalogType);
+const { data: sanityExperiences } = useSanityExperiences(props.catalogType);
 
 const activeExperiences = computed(() => {
   if (sanityExperiences.value && sanityExperiences.value.length > 0) {
@@ -239,6 +239,12 @@ onMounted(() => {
         ease: "power3.out",
       },
     );
+  });
+});
+
+watch(activeExperiences, () => {
+  nextTick(() => {
+    ScrollTrigger.refresh();
   });
 });
 </script>

@@ -28,6 +28,7 @@
           <img :src="post.mediaUrl" :alt="post.title" class="w-full h-full object-cover" loading="lazy" />
         </div>
 
+        <div v-if="post.description" class="reveal-item-detail text-lg leading-[1.8] text-dark/90 font-medium mb-10 [&>p]:mb-4 [&>ul]:ml-6 [&>ul>li]:mb-2 [&>ol]:ml-6 [&>ol>li]:mb-2" v-html="post.description"></div>
         <div class="reveal-item-detail [&>p]:text-base [&>p]:leading-[1.85] [&>p]:text-dark [&>p]:mb-[1.8rem] [&>h3]:text-2xl [&>h3]:mt-10 [&>h3]:mb-4 [&>h3]:text-dark [&>h3]:font-heading [&>ul]:ml-6 [&>ul]:mb-[1.8rem] [&>ol]:ml-6 [&>ol]:mb-[1.8rem] [&>ul>li]:text-base [&>ul>li]:leading-[1.7] [&>ul>li]:text-dark [&>ul>li]:mb-2 [&>blockquote]:font-heading [&>blockquote]:text-xl [&>blockquote]:italic [&>blockquote]:text-dark [&>blockquote]:border-l-[3px] [&>blockquote]:border-secondary [&>blockquote]:pl-6 [&>blockquote]:my-10" v-html="post.body"></div>
       </article>
 
@@ -46,7 +47,8 @@
         </div>
 
         <div class="reveal-item-detail">
-          <p class="text-lg leading-[1.8] text-dark mb-12">{{ post.description }}</p>
+          <div class="text-lg leading-[1.8] text-dark mb-12 [&>p]:mb-4 [&>ul]:ml-6 [&>ul>li]:mb-2 [&>ol]:ml-6 [&>ol>li]:mb-2" v-html="post.description"></div>
+
           
           <div class="h-[1px] bg-gradient-to-r from-transparent via-secondary/30 to-transparent mb-12"></div>
           
@@ -206,8 +208,9 @@
         </div>
 
         <div class="reveal-item-detail">
-          <p class="text-base leading-[1.75] text-dark mb-8">{{ post.description }}</p>
+          <div class="text-base leading-[1.75] text-dark mb-8 [&>p]:mb-4 [&>ul]:ml-6 [&>ul>li]:mb-2 [&>ol]:ml-6 [&>ol>li]:mb-2" v-html="post.description"></div>
           <div class="bg-primary/[0.03] border border-secondary/20 rounded-2xl p-6 font-body text-sm flex flex-col gap-2">
+
             <p><strong>Producer:</strong> Ruuts Production</p>
             <p><strong>Acoustics:</strong> Guzheng & Pipa recorded live</p>
           </div>
@@ -370,7 +373,7 @@ definePageMeta({
 
 const route = useRoute()
 
-const { data: sanityTestimonials } = await useSanityTestimonials();
+const { data: sanityTestimonials } = useSanityTestimonials();
 
 const activePostsList = computed(() => {
   if (sanityTestimonials.value && sanityTestimonials.value.length > 0) {

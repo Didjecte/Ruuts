@@ -48,7 +48,7 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted } from "vue";
+import { ref, computed, watch, nextTick, onMounted } from "vue";
 import { testimonialsMockData } from "~/data/testimonials";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -57,7 +57,7 @@ if (process.client) {
   gsap.registerPlugin(ScrollTrigger);
 }
 
-const { data: sanityTestimonials } = await useSanityTestimonials();
+const { data: sanityTestimonials } = useSanityTestimonials();
 
 const posts = computed(() => {
   if (sanityTestimonials.value && sanityTestimonials.value.length > 0) {
@@ -97,7 +97,12 @@ onMounted(() => {
     opacity: 0,
     stagger: 0.08,
     ease: "power3.out",
-    delay: 0.2,
+  });
+});
+
+watch(posts, () => {
+  nextTick(() => {
+    ScrollTrigger.refresh();
   });
 });
 </script>
