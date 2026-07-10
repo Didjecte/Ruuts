@@ -1,5 +1,6 @@
 packages:
   - "."
+  - "studio-ruuts"
 
 allowBuilds:
   "@parcel/watcher": true

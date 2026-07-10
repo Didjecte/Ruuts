@@ -1,162 +1,138 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Kalnia:wght@100..700&family=Long+Cang&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Zhi+Mang+Xing&display=swap");
 
-/* Reset & Base Variables */
-:root {
-  --bg-xuan-paper: #FAF6F0;
-  --brand-deep-jade: #0A3C32;
-  --accent-antique-gold: #C5A059;
-  --text-oolong: #241E1A;
-  --accent-cinnabar: #B33C26;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-  --font-heading: 'Playfair Display', Georgia, serif;
-  --font-body: 'Montserrat', system-ui, sans-serif;
-  
-  --transition-smooth: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
-  --transition-fast: all 0.2s ease-out;
-}
+@layer base {
+  :root {
+    --background: 249 246 240;
+    --surface: 239 235 229;
+    --foreground: 36 30 26;
+    --muted: 120 115 110;
+    --border: 215 210 200;
 
-*, *::before, *::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
+    --primary: 10 60 50;
+    --primary-hover: 5 45 38;
+    --primary-foreground: 255 255 255;
 
-html, body {
-  overflow-x: hidden;
-  max-width: 100vw;
-  width: 100%;
-}
+    --secondary: 197 160 89;
+    --secondary-hover: 170 135 70;
+    --secondary-foreground: 36 30 26;
 
-html {
-  font-family: var(--font-body);
-  color: var(--text-oolong);
-  background-color: var(--bg-xuan-paper);
-  scroll-behavior: smooth;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
+    --accent: 179 60 38;
+    --accent-hover: 150 45 25;
+    --accent-foreground: 255 255 255;
 
-body {
-  background-color: var(--bg-xuan-paper);
-}
+    --background-inverse: 10 60 50;
+    --surface-inverse: 15 75 62;
+    --foreground-inverse: 249 246 240;
+    --muted-inverse: 180 210 200;
+    --border-inverse: 25 100 85;
+  }
 
-/* Typography & Headings */
-h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-heading);
-  font-weight: 600;
-  line-height: 1.2;
-  color: var(--brand-deep-jade);
-}
+  /* Override color variables for dark containers */
+  .dark {
+    --background: var(--background-inverse);
+    --surface: var(--surface-inverse);
+    --foreground: var(--foreground-inverse);
+    --muted: var(--muted-inverse);
+    --border: var(--border-inverse);
+  }
 
-p {
-  line-height: 1.7;
-  font-size: 0.95rem;
-  font-weight: 400;
-}
+  html,
+  body {
+    overflow-x: hidden;
+    max-width: 100vw;
+    width: 100%;
+  }
 
-a {
-  color: inherit;
-  text-decoration: none;
-  transition: var(--transition-fast);
-}
+  html {
+    @apply font-body text-foreground bg-background;
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
 
-/* Layout Utilities */
-.container {
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 1.5rem;
-}
+  body {
+    @apply bg-background;
+  }
 
-.section-padding {
-  padding-top: 6rem;
-  padding-bottom: 6rem;
-}
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-heading font-semibold leading-tight text-primary dark:text-foreground;
+  }
 
-@media (max-width: 768px) {
-  .section-padding {
-    padding-top: 4rem;
-    padding-bottom: 4rem;
+  p {
+    @apply font-medium leading-relaxed;
+  }
+
+  a {
+    @apply text-inherit no-underline transition-all duration-200 ease-out;
   }
 }
 
-/* Premium Buttons & Interactive Elements */
-.btn-primary {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0.8rem 2rem;
-  background-color: var(--brand-deep-jade);
-  color: var(--bg-xuan-paper);
-  font-family: var(--font-body);
-  font-weight: 500;
-  font-size: 0.85rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  border: 1px solid var(--brand-deep-jade);
-  cursor: pointer;
-  transition: var(--transition-smooth);
-  position: relative;
-  overflow: hidden;
-  z-index: 1;
-}
+@layer components {
+  .section-padding {
+    @apply py-16 md:py-24;
+  }
 
-.btn-primary::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: var(--accent-antique-gold);
-  transform: translateY(100%);
-  transition: var(--transition-smooth);
-  z-index: -1;
-}
+  .btn-primary {
+    @apply inline-flex items-center justify-center px-8 py-3 bg-primary text-primary-foreground font-body font-medium text-xs tracking-widest uppercase border border-primary rounded-[50px] cursor-pointer transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] relative overflow-hidden z-10;
+  }
 
-.btn-primary:hover {
-  color: var(--brand-deep-jade);
-  border-color: var(--accent-antique-gold);
-}
+  .btn-primary::before {
+    content: "";
+    @apply absolute top-0 left-0 w-full h-full bg-secondary-hover translate-y-full transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] -z-10;
+  }
 
-.btn-primary:hover::before {
-  transform: translateY(0);
-}
+  .btn-primary:hover {
+    @apply text-secondary-foreground border-secondary-hover;
+  }
 
-.btn-secondary {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0.8rem 2rem;
-  background-color: transparent;
-  color: var(--brand-deep-jade);
-  font-family: var(--font-body);
-  font-weight: 500;
-  font-size: 0.85rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  border: 1px solid var(--brand-deep-jade);
-  cursor: pointer;
-  transition: var(--transition-smooth);
-}
+  .btn-primary:hover::before {
+    @apply translate-y-0;
+  }
 
-.btn-secondary:hover {
-  background-color: var(--brand-deep-jade);
-  color: var(--bg-xuan-paper);
-}
+  .btn-secondary {
+    @apply inline-flex items-center justify-center px-8 py-3 bg-transparent text-primary font-body font-medium text-xs tracking-widest uppercase border border-primary rounded-[50px] cursor-pointer transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)];
+  }
 
-/* Glassmorphism Classes */
-.glass-panel {
-  background: rgba(250, 246, 240, 0.75);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(197, 160, 89, 0.15);
-}
+  .btn-secondary:hover {
+    @apply bg-primary-hover text-primary-foreground border-primary-hover;
+  }
 
-/* Scroll Indicators / Premium Dividers */
-.gold-divider {
-  height: 1px;
-  background: linear-gradient(90deg, transparent, var(--accent-antique-gold), transparent);
-  width: 100%;
-  margin: 2rem 0;
+  .style-gold {
+    @apply bg-secondary text-secondary-foreground border border-secondary transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)];
+  }
+
+  .style-gold:hover {
+    @apply bg-secondary-hover border-secondary-hover;
+  }
+
+  .btn-gold {
+    @apply inline-flex items-center justify-center px-8 py-3 font-body font-medium text-xs tracking-widest uppercase rounded-[50px] cursor-pointer style-gold;
+  }
+
+  .glass-panel {
+    background: rgba(var(--background), 0.75);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(var(--secondary), 0.15);
+  }
+
+  .gold-divider {
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(var(--secondary), 0.3),
+      transparent
+    );
+    @apply w-full my-8;
+  }
 }

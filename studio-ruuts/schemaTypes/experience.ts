@@ -6,6 +6,12 @@ export const experience = defineType({
   type: 'document',
   fields: [
     defineField({
+      name: 'order',
+      title: 'Order',
+      type: 'number',
+      description: 'Used to sort experiences (e.g. 1, 2, 3...)',
+    }),
+    defineField({
       name: 'title',
       title: 'Title',
       type: 'string',
@@ -13,13 +19,19 @@ export const experience = defineType({
     }),
     defineField({
       name: 'slug',
-      title: 'Slug',
+      title: 'Slug (Address of the URL)',
       type: 'slug',
       options: {
         source: 'title',
         maxLength: 96,
       },
+      description: "The unique identifier used in the URL address (e.g., 'seasonal-tea-ritual'). Click the 'Generate' button to build it automatically from the title.",
       validation: Rule => Rule.required(),
+    }),
+    defineField({
+      name: 'subtitle',
+      title: 'Subtitle',
+      type: 'string',
     }),
     defineField({
       name: 'type',
@@ -39,16 +51,7 @@ export const experience = defineType({
       type: 'string',
       description: 'e.g., 1h, 1h30, 2h',
     }),
-    defineField({
-      name: 'price',
-      title: 'Price per guest (RMB)',
-      type: 'number',
-    }),
-    defineField({
-      name: 'minValue',
-      title: 'Minimum value to book (RMB)',
-      type: 'number',
-    }),
+
     defineField({
       name: 'maxGuests',
       title: 'Max guests per session',
@@ -60,18 +63,39 @@ export const experience = defineType({
       type: 'text',
     }),
     defineField({
-      name: 'details',
-      title: 'Session Details / Bullet points',
+      name: 'bullets',
+      title: 'Bullets (B2C)',
       type: 'array',
       of: [{type: 'string'}],
+      description: 'Bullet points to display on the B2C card',
+    }),
+    defineField({
+      name: 'highlights',
+      title: 'Highlights (B2B)',
+      type: 'array',
+      of: [{type: 'string'}],
+      description: 'Highlight points to display on the B2B card',
     }),
     defineField({
       name: 'image',
-      title: 'Image URL or Asset',
+      title: 'Image File',
       type: 'image',
       options: {
         hotspot: true,
       },
     }),
+    defineField({
+      name: 'imageUrl',
+      title: 'Or Image External URL',
+      type: 'string',
+      description: 'If you want to use an external image link instead of uploading a file',
+    }),
+    defineField({
+      name: 'details',
+      title: 'Session Details / Extra Bullet points',
+      type: 'array',
+      of: [{type: 'string'}],
+    }),
   ],
 })
+

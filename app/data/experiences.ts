@@ -5,8 +5,6 @@ export interface Experience {
   subtitle: string;
   duration: string;
   maxGuests: number;
-  pricePerGuest: number;
-  minBookingValue: number;
   description: string;
   bullets: string[];
   image: string;
@@ -20,8 +18,6 @@ export const experiencesB2C: Experience[] = [
     subtitle: 'A Private Cultural Introduction',
     duration: '1h',
     maxGuests: 8,
-    pricePerGuest: 700,
-    minBookingValue: 3500,
     description: 'Tea in its seasonal expression, experienced in the present moment. Each session follows the rhythm of the season. The tea selection is intentionally curated and prepared for you. Through successive infusions, we explore character, texture, and subtle variation as they unfold in the cup. No fixed menu — only what the season offers now.',
     bullets: [
       '2 premium seasonal Chinese teas',
@@ -38,8 +34,6 @@ export const experiencesB2C: Experience[] = [
     subtitle: 'A Private Cultural Journey',
     duration: '1h30',
     maxGuests: 7,
-    pricePerGuest: 780,
-    minBookingValue: 4000,
     description: 'Four eras of Chinese tea, approached through taste, aroma, and narrative. A gradual passage into tea culture, where history is experienced through infusion and story. Learn about the evolution of tea from medicinal herb to royal tribute and social ritual.',
     bullets: [
       '4 premium Chinese teas',
@@ -56,8 +50,6 @@ export const experiencesB2C: Experience[] = [
     subtitle: 'An Intimate Cultural Performance',
     duration: '1h30',
     maxGuests: 7,
-    pricePerGuest: 900,
-    minBookingValue: 4500,
     description: 'A suspended moment where tea and live pipa music intertwine. Journey through the great eras of Chinese tea as sound, story, and flavor unfold together in a refined and immersive setting. Feel the acoustic vibrations of the traditional string instrument alongside the olfactory development of the infusions.',
     bullets: [
       '4 premium Chinese teas',
@@ -74,8 +66,6 @@ export const experiencesB2C: Experience[] = [
     subtitle: 'A Deeper Exploration of Chinese Seasonality',
     duration: '2h',
     maxGuests: 8,
-    pricePerGuest: 780,
-    minBookingValue: 4500,
     description: 'An extended sensory exploration of seasonal Chinese teas, where each infusion reflects the season we are in. The tea selection is intentionally curated and prepared for you, offering a structured journey through seasonal expression and variation.',
     bullets: [
       '4 premium seasonal Chinese teas',
@@ -92,8 +82,6 @@ export const experiencesB2C: Experience[] = [
     subtitle: 'A Cross-Cultural Tasting',
     duration: '1h30',
     maxGuests: 7,
-    pricePerGuest: 700,
-    minBookingValue: 3500,
     description: 'Chinese tea and French cheese in direct dialogue. Textures, contrasts, and aromas meet without interpretation - revealing unexpected resonances between two ancient traditions. A bridge built by our Franco-Chinese origin.',
     bullets: [
       '3 tea and artisan French cheese pairings',
@@ -110,8 +98,6 @@ export const experiencesB2C: Experience[] = [
     subtitle: 'Taichi & Tea Meditation',
     duration: '2h',
     maxGuests: 12,
-    pricePerGuest: 900,
-    minBookingValue: 5000,
     description: 'Fully immersive, embodied experience where movement, breath, and tea merge into a single continuous practice. A practice of relaxation through body, breath, and attention, where Taichi and guided tea meditation flow as a sequence exploring the concept of Fangsong (release, letting go).',
     bullets: [
       '2 premium seasonal Chinese teas',
@@ -136,30 +122,20 @@ export interface B2BExperience {
 export const experiencesB2B: B2BExperience[] = [
   {
     id: 'corporate-team-alignment',
-    title: 'Corporate Tea Rituals',
-    subtitle: 'Cultural Team Integration',
-    focus: 'Team Bonding & Presence',
-    description: 'Transform your corporate events into genuine cultural journeys. Designed to slow down the pace of corporate life, our sessions build mindfulness and deep listening. Ideal for international executive teams, board meetings, or client hosting.',
-    highlights: [
-      'Hosted at our signature Shanghai location or off-site corporate venues',
-      'Curated pairings tailored to company goals',
-      'Bilingual execution (English/Chinese/French)',
-      'Custom corporate gifting options with heritage tea sets'
-    ],
+    title: 'Blind Tea Tasting Experiences',
+    subtitle: 'Interactive Tea Experiences',
+    focus: 'Curiosity & Connection',
+    description: 'Interactive tea experiences designed to spark curiosity, conversation and connection.\n\nOpen Format · Tea Bar Experience\nGuests join freely throughout the event and take part in short blind tasting rounds, sensory challenges and tea discovery moments.\n\nPrivate Format · Hosted Group Experience\nA guided experience for private groups where guests explore tea through storytelling, tasting and interactive activities together',
+    highlights: [],
     image: 'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=600&auto=format&fit=crop'
   },
   {
     id: 'heritage-keynotes',
-    title: 'Chinese Tea Heritage & Philosophy',
-    subtitle: 'Executive Masterclasses',
-    focus: 'Cross-Cultural Leadership',
-    description: 'Ophélie Hu shares insights into the philosophy of patience, dedication, and precision embedded in Chinese tea craft. Connect ancient principles of tea cultivation and mastery with modern project management, supply chain resilience, and thoughtful business expansion.',
-    highlights: [
-      'Keynote speech combined with high-end tea tasting',
-      'Exploration of traditional Chinese concepts (Gongfu, Fangsong, and seasonal rhythms)',
-      'Highly engaging, storytelling-driven structure',
-      'Ideal for international organizations operating in cross-cultural markets'
-    ],
+    title: 'Cultural Tea Experiences',
+    subtitle: 'Immersive Journeys',
+    focus: 'Traditional Arts & Mindful Practices',
+    description: 'Immersive tea journeys combining Chinese tea culture with traditional arts and mindful practices.\n\nFormats include curated tea rituals paired with live pipa performances, Taichi sessions, storytelling and sensory exploration — designed for hospitality, brand activations and private events.',
+    highlights: [],
     image: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=600&auto=format&fit=crop'
   }
 ];
