@@ -1,4 +1,4 @@
-export interface InsightPost {
+export interface TestimonialPost {
   id: string;
   slug: string;
   title: string;
@@ -8,9 +8,12 @@ export interface InsightPost {
   description: string;
   body?: string;
   readTime?: string;
+  gallery?: string[];
+  videoUrl?: string;
+  duration?: string;
 }
 
-export const insightsMockData: InsightPost[] = [
+export const testimonialsMockData: TestimonialPost[] = [
   {
     id: '1',
     slug: 'the-art-of-slowing-down-tea-philosophy',
@@ -49,7 +52,13 @@ export const insightsMockData: InsightPost[] = [
     type: 'photo',
     publishedAt: '2026-04-22T08:30:00Z',
     mediaUrl: 'https://images.unsplash.com/photo-1597481499750-3e6b22637e12?q=80&w=800&auto=format&fit=crop',
-    description: 'A visual journal capturing the early spring harvest of Longjing (Dragon Well) tea leaves in Hangzhou, prior to the Qingming festival.'
+    description: 'A visual journal capturing the early spring harvest of Longjing (Dragon Well) tea leaves in Hangzhou, prior to the Qingming festival.',
+    gallery: [
+      'https://images.unsplash.com/photo-1597481499750-3e6b22637e12?q=80&w=800&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1563822249548-9a72b6353cd1?q=80&w=800&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1576092768241-dec231879fc3?q=80&w=800&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1544787219-7f47ccb76574?q=80&w=800&auto=format&fit=crop'
+    ]
   },
   {
     id: '3',
@@ -58,7 +67,9 @@ export const insightsMockData: InsightPost[] = [
     type: 'video',
     publishedAt: '2026-04-05T14:15:00Z',
     mediaUrl: 'https://images.unsplash.com/photo-1544787219-7f47ccb76574?q=80&w=800&auto=format&fit=crop',
-    description: 'Listen to the delicate harmonics of the Pipa string instrument recorded live during our Signature Tea session in Cité Bourgogne.'
+    description: 'Listen to the delicate harmonics of the Pipa string instrument recorded live during our Signature Tea session in Cité Bourgogne.',
+    videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4',
+    duration: '0:15'
   },
   {
     id: '4',
@@ -74,7 +85,7 @@ export const insightsMockData: InsightPost[] = [
       
       <h3>The Chemistry of Contrast</h3>
       <p>When high-tannin roasted oolongs (like Da Hong Pao from the Wuyi mountains) meet the rich, nutty fats of an 18-month aged Comté cheese, something extraordinary happens. The heat of the tea melts the crystalline fats of the cheese, releasing sweet notes of dried apricot and hazelnut. Meanwhile, the astringency of the tea cleanses the palate, leaving a clean, lingering finish.</p>
-
+ 
       <h3>Three Rules of Tea & Cheese Pairing</h3>
       <p>When curating your own tasting, keep these principles in mind:</p>
       <ol>
@@ -92,7 +103,12 @@ export const insightsMockData: InsightPost[] = [
     type: 'photo',
     publishedAt: '2026-03-01T09:00:00Z',
     mediaUrl: 'https://images.unsplash.com/photo-1506126613408-eca07ce68773?q=80&w=800&auto=format&fit=crop',
-    description: 'A study of the carved paulownia wood and movable bridges of the Guzheng zither, photographed in morning sunlight.'
+    description: 'A study of the carved paulownia wood and movable bridges of the Guzheng zither, photographed in morning sunlight.',
+    gallery: [
+      'https://images.unsplash.com/photo-1506126613408-eca07ce68773?q=80&w=800&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1544787219-7f47ccb76574?q=80&w=800&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1576092768241-dec231879fc3?q=80&w=800&auto=format&fit=crop'
+    ]
   },
   {
     id: '6',
@@ -101,6 +117,8 @@ export const insightsMockData: InsightPost[] = [
     type: 'video',
     publishedAt: '2026-02-14T16:40:00Z',
     mediaUrl: 'https://images.unsplash.com/photo-1563822249548-9a72b6353cd1?q=80&w=800&auto=format&fit=crop',
-    description: 'Watch a short cinematic flow displaying the movements of the Gongfu tea ceremony, accompanied by meditation bowls.'
+    description: 'Watch a short cinematic flow displaying the movements of the Gongfu tea ceremony, accompanied by meditation bowls.',
+    videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4',
+    duration: '0:15'
   }
 ];

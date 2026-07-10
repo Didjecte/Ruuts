@@ -1,33 +1,76 @@
 <template>
-  <div class="home-page">
+  <div>
     <!-- Hero Section -->
-    <section class="hero-section">
-      <div class="hero-bg-overlay"></div>
-      <div class="hero-container container">
-        <div class="hero-content">
-          <span class="hero-tagline">Ruuts &bull; Tea & Presence</span>
-          <h1 class="hero-title">Reconnecting With Origin</h1>
-          <p class="hero-description">Premium group tea experiences and tea rituals designed to foster presence, connection, and intercultural discovery in an intimate setting.</p>
-          <div class="hero-actions">
-            <NuxtLink to="/experiences" class="btn-primary">Explore Sessions</NuxtLink>
-            <NuxtLink to="/#about" class="btn-secondary btn-hero-sec">Our Story</NuxtLink>
+    <section
+      class="dark h-screen min-h-[650px] relative flex items-center hero-bg text-foreground"
+    >
+      <div
+        class="absolute inset-0 bg-gradient-to-br from-primary/80 to-primary/80 z-[1]"
+      ></div>
+      <div
+        class="relative z-[2] mt-[40px] max-w-[1200px] mx-auto px-6 w-full hero-content-container"
+      >
+        <div class="max-w-[650px] hero-inner-container">
+          <div class="hero-text-group">
+            <h1
+              class="hero-title font-heading text-5xl md:text-6xl font-semibold text-primary dark:text-secondary tracking-[0.03em] leading-[1.15] mb-6"
+            >
+              Bespoke Tea experiences for your venue
+            </h1>
+            <p
+              class="hero-description text-xl text-foreground font-medium mb-10"
+            >
+              An experience crafted only for you.
+            </p>
           </div>
+          <!-- <div class="hero-actions flex flex-col sm:flex-row gap-4 sm:gap-6">
+            <NuxtLink to="/experiences" class="btn-gold"
+              >Explore Sessions</NuxtLink
+            >
+            <NuxtLink
+              to="/#about"
+              class="btn-secondary !border-foreground/50 !text-foreground hover:!bg-foreground hover:!text-primary hover:!border-foreground"
+              >Our Story</NuxtLink
+            >
+          </div> -->
         </div>
       </div>
-      
-      <div class="scroll-indicator">
-        <span class="scroll-dot"></span>
-        <span class="scroll-text">Scroll to explore</span>
+
+      <div
+        class="scroll-indicator absolute bottom-10 left-1/2 -translate-x-1/2 z-[2] flex flex-col items-center gap-2"
+      >
+        <span
+          class="scroll-dot w-[6px] h-[10px] bg-secondary rounded-[3px]"
+        ></span>
+        <span class="font-body text-xs uppercase text-foreground/60"
+          >Scroll to explore</span
+        >
       </div>
     </section>
 
-    <!-- About Section (Our Story, Founder, Mission) -->
-    <AboutSection />
+    <!-- Intro Section -->
+    <IntroSection />
 
-    <!-- Divider Decor -->
-    <div class="container">
-      <div class="gold-divider"></div>
-    </div>
+    <!-- Testimonials Section -->
+    <TestimonialSection />
+
+    <!-- Tea Anywhere Section -->
+    <ExperienceSection
+      section-id="tea-anywhere"
+      title="Tea Anywhere"
+      catalog-type="b2b"
+    />
+
+    <!-- Private Experiences Section -->
+    <ExperienceSection
+      section-id="experiences"
+      title="Private Experiences"
+      catalog-type="b2c"
+      :show-policies="false"
+    />
+
+    <!-- About Section (Our Mission only) -->
+    <AboutSection :show-story-and-founder="false" />
 
     <!-- Contact Section (Details, QRs, Form) -->
     <ContactSection />
@@ -35,199 +78,108 @@
 </template>
 
 <script setup>
-import { onMounted } from 'vue'
-import { gsap } from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { onMounted } from "vue";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+definePageMeta({
+  transparentHeader: true,
+});
 
 // Register ScrollTrigger plugin
 if (process.client) {
-  gsap.registerPlugin(ScrollTrigger)
+  gsap.registerPlugin(ScrollTrigger);
 }
 
 useSeoMeta({
-  title: 'Ruuts - Premium Group Experiences & Tea Rituals',
-  description: 'Reconnect with your roots through Chinese tea culture. We design signature tea ceremonies, body rituals, and premium group experiences.'
-})
+  title: "Ruuts - Premium Group Experiences & Tea Rituals",
+  description:
+    "Reconnect with your roots through Chinese tea culture. We design signature tea ceremonies, body rituals, and premium group experiences.",
+});
 
 onMounted(() => {
   // Page load animations
-  gsap.from('.hero-tagline', {
-    duration: 0.8,
-    y: 20,
-    opacity: 0,
-    ease: 'power3.out',
-    delay: 0.2
-  })
-  
-  gsap.from('.hero-title', {
+  gsap.from(".hero-title", {
     duration: 1,
     y: 30,
     opacity: 0,
-    ease: 'power4.out',
-    delay: 0.4
-  })
+    ease: "power4.out",
+    delay: 0.4,
+  });
 
-  gsap.from('.hero-description', {
+  gsap.from(".hero-description", {
     duration: 0.8,
     y: 20,
     opacity: 0,
-    ease: 'power3.out',
-    delay: 0.6
-  })
+    ease: "power3.out",
+    delay: 0.6,
+  });
 
-  gsap.from('.hero-actions', {
+  gsap.from(".hero-actions", {
     duration: 0.8,
     y: 20,
     opacity: 0,
-    ease: 'power3.out',
-    delay: 0.8
-  })
+    ease: "power3.out",
+    delay: 0.8,
+  });
 
-  gsap.from('.scroll-indicator', {
+  gsap.from(".scroll-indicator", {
     duration: 0.6,
     opacity: 0,
-    ease: 'power2.out',
-    delay: 1.2
-  })
-
-  // Scroll reveal animations for sections
-  const revealItems = document.querySelectorAll('.reveal-item')
-  
-  revealItems.forEach((item) => {
-    gsap.fromTo(item, 
-      { y: 50, opacity: 0 },
-      {
-        scrollTrigger: {
-          trigger: item,
-          start: 'top 85%',
-          toggleActions: 'play none none none'
-        },
-        duration: 0.8,
-        y: 0,
-        opacity: 1,
-        ease: 'power3.out'
-      }
-    )
-  })
-})
+    ease: "power2.out",
+    delay: 1.2,
+  });
+});
 </script>
 
 <style scoped>
-.hero-section {
-  height: 100vh;
-  min-height: 650px;
+.hero-bg {
   position: relative;
-  display: flex;
-  align-items: center;
-  background-image: url('https://images.unsplash.com/photo-1544787219-7f47ccb76574?q=80&w=1600&auto=format&fit=crop');
+  overflow: hidden;
+}
+
+.hero-bg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("~/assets/images/home.jpg");
   background-size: cover;
   background-position: center;
-  color: var(--bg-xuan-paper);
+  z-index: 0;
 }
 
-.hero-bg-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(135deg, rgba(10, 60, 50, 0.9) 0%, rgba(36, 30, 26, 0.8) 100%);
-  z-index: 1;
-}
-
-.hero-container {
-  position: relative;
-  z-index: 2;
-  margin-top: 40px;
-}
-
-.hero-content {
-  max-width: 650px;
-}
-
-.hero-tagline {
-  font-family: var(--font-body);
-  font-size: 0.8rem;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.3em;
-  color: var(--accent-antique-gold);
-  display: block;
-  margin-bottom: 1rem;
-}
-
-.hero-title {
-  font-size: 3.8rem;
-  font-weight: 600;
-  color: var(--bg-xuan-paper);
-  line-height: 1.15;
-  letter-spacing: -0.02em;
-  margin-bottom: 1.5rem;
-}
-
-@media (max-width: 768px) {
-  .hero-title {
-    font-size: 2.8rem;
+@media (min-width: 1024px) {
+  .hero-bg::before {
+    transform: scale(1.35);
+    transform-origin: 0% 40%;
   }
 }
 
-.hero-description {
-  font-size: 1.05rem;
-  line-height: 1.8;
-  color: rgba(250, 246, 240, 0.85);
-  margin-bottom: 2.5rem;
-}
+@media (max-width: 639px) {
+  .hero-content-container {
+    position: absolute;
+    inset: 0;
+    margin-top: 0 !important;
+    max-width: 100% !important;
+  }
 
-.hero-actions {
-  display: flex;
-  gap: 1.5rem;
-}
-
-@media (max-width: 480px) {
-  .hero-actions {
+  .hero-inner-container {
+    height: 100%;
+    width: 100%;
+    display: flex;
     flex-direction: column;
-    gap: 1rem;
+    padding: 24px;
+    padding-top: 20vh;
   }
-}
 
-.btn-hero-sec {
-  border-color: rgba(250, 246, 240, 0.5);
-  color: var(--bg-xuan-paper);
-}
-
-.btn-hero-sec:hover {
-  background-color: var(--bg-xuan-paper);
-  color: var(--brand-deep-jade);
-  border-color: var(--bg-xuan-paper);
-}
-
-/* Scroll indicator */
-.scroll-indicator {
-  position: absolute;
-  bottom: 2.5rem;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 2;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.5rem;
+  .hero-actions {
+    margin-top: auto;
+    margin-bottom: 40vh;
+  }
 }
 
 .scroll-dot {
-  width: 6px;
-  height: 10px;
-  background-color: var(--accent-antique-gold);
-  border-radius: 3px;
   animation: scrollPulse 2s infinite ease-in-out;
-}
-
-.scroll-text {
-  font-family: var(--font-body);
-  font-size: 0.65rem;
-  text-transform: uppercase;
-  letter-spacing: 0.15em;
-  color: rgba(250, 246, 240, 0.6);
 }
 
 @keyframes scrollPulse {

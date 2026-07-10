@@ -1,139 +1,122 @@
 <template>
-  <div class="site-wrapper">
+  <div class="flex flex-col min-h-screen">
     <Navbar />
-    
-    <main class="main-content">
+
+    <main class="flex-[1_0_auto]">
       <slot />
     </main>
 
-    <footer class="site-footer">
-      <div class="container footer-grid">
-        <div class="footer-brand">
-          <h2 class="footer-logo">RUUTS</h2>
-          <p class="footer-tagline">Reconnecting with origin through Chinese tea ceremonies and premium group experiences.</p>
+    <footer class="dark bg-background text-foreground pt-16 pb-8 border-t border-secondary">
+      <div
+        class="max-w-[1200px] mx-auto px-6 w-full grid grid-cols-1 md:grid-cols-[1.5fr_1fr_1fr] items-start gap-8 md:gap-12 mb-12"
+      >
+        <!-- Column 1: Brand & Contact -->
+        <div>
+          <h2 class="text-secondary text-3xl font-logo font-medium mb-[1.2rem]">
+            RUUTS
+          </h2>
+          <div class="flex flex-col gap-[0.6rem] text-sm text-foreground/75">
+            <a
+              href="mailto:contact@theruuts.com"
+              class="transition-all duration-200 hover:text-secondary hover:pl-1 block w-fit"
+              >contact@theruuts.com</a
+            >
+            <a
+              href="tel:+8618217180655"
+              class="transition-all duration-200 hover:text-secondary hover:pl-1 block w-fit"
+              >+86 18217180655</a
+            >
+            <a
+              href="https://wa.me/8618217180655"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="transition-all duration-200 hover:text-secondary hover:pl-1 block w-fit"
+              >Whatsapp</a
+            >
+          </div>
         </div>
-        <div class="footer-links">
-          <h3>Explore</h3>
-          <ul>
-            <li><NuxtLink to="/">About & Story</NuxtLink></li>
-            <li><NuxtLink to="/experiences">Experiences</NuxtLink></li>
-            <li><NuxtLink to="/insights">Insights</NuxtLink></li>
-            <li><NuxtLink to="/#contact">Contact</NuxtLink></li>
+
+        <!-- Column 2: Services Overview -->
+        <div>
+          <h3
+            class="font-body text-xs uppercase tracking-[0.1em] text-secondary mb-[1.2rem] md:pt-[5px]"
+          >
+            Services Overview
+          </h3>
+          <ul class="list-none flex flex-col gap-[0.6rem]">
+            <li>
+              <NuxtLink
+                to="/experiences"
+                class="text-sm text-foreground/75 transition-all duration-200 hover:text-secondary hover:pl-1 block w-fit"
+                >Blind tea tasting</NuxtLink
+              >
+            </li>
+            <li>
+              <NuxtLink
+                to="/experiences"
+                class="text-sm text-foreground/75 transition-all duration-200 hover:text-secondary hover:pl-1 block w-fit"
+                >Curated Cultural tea experiences</NuxtLink
+              >
+            </li>
           </ul>
         </div>
-        <div class="footer-contact-summary">
-          <h3>Inquiries</h3>
-          <p>contact@theruuts.com</p>
-          <p>+86 18217180655</p>
+
+        <!-- Column 3: Explorer -->
+        <div>
+          <h3
+            class="font-body text-xs uppercase tracking-[0.1em] text-secondary mb-[1.2rem] md:pt-[5px]"
+          >
+            EXPLORER
+          </h3>
+          <ul class="list-none flex flex-col gap-[0.6rem]">
+            <li>
+              <NuxtLink
+                to="/custom-experiences"
+                class="text-sm text-foreground/75 transition-all duration-200 hover:text-secondary hover:pl-1 block w-fit"
+                >Tea Anywhere</NuxtLink
+              >
+            </li>
+            <li>
+              <NuxtLink
+                to="/experiences"
+                class="text-sm text-foreground/75 transition-all duration-200 hover:text-secondary hover:pl-1 block w-fit"
+                >Private Experiences</NuxtLink
+              >
+            </li>
+            <li>
+              <NuxtLink
+                to="/testimonials"
+                class="text-sm text-foreground/75 transition-all duration-200 hover:text-secondary hover:pl-1 block w-fit"
+                >Testimonials</NuxtLink
+              >
+            </li>
+            <li>
+              <NuxtLink
+                to="/about"
+                class="text-sm text-foreground/75 transition-all duration-200 hover:text-secondary hover:pl-1 block w-fit"
+                >About us</NuxtLink
+              >
+            </li>
+            <li>
+              <NuxtLink
+                to="/contact"
+                class="text-sm text-foreground/75 transition-all duration-200 hover:text-secondary hover:pl-1 block w-fit"
+                >Contact</NuxtLink
+              >
+            </li>
+          </ul>
         </div>
       </div>
-      <div class="footer-bottom">
-        <div class="container footer-bottom-flex">
-          <p>&copy; {{ new Date().getFullYear() }} Ruuts. All rights reserved.</p>
-          <p class="footer-credit">Designed for Premium Experiences</p>
+      <div class="border-t border-foreground/10 pt-8">
+        <div
+          class="max-w-[1200px] mx-auto px-6 w-full flex flex-col md:flex-row justify-between items-center text-xs text-foreground/50 gap-4 md:gap-0 text-center md:text-left"
+        >
+          <p>
+            &copy; {{ new Date().getFullYear() }} Ruuts. All rights reserved.
+          </p>
+          <p>Designed for premium experiences</p>
         </div>
       </div>
     </footer>
   </div>
 </template>
-
-<style scoped>
-.site-wrapper {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
-
-.main-content {
-  flex: 1 0 auto;
-}
-
-.site-footer {
-  background-color: var(--brand-deep-jade);
-  color: var(--bg-xuan-paper);
-  padding: 4rem 0 2rem 0;
-  border-top: 1px solid var(--accent-antique-gold);
-}
-
-.footer-grid {
-  display: grid;
-  grid-template-columns: 2fr 1fr 1fr;
-  gap: 3rem;
-  margin-bottom: 3rem;
-}
-
-@media (max-width: 768px) {
-  .footer-grid {
-    grid-template-columns: 1fr;
-    gap: 2rem;
-  }
-}
-
-.footer-logo {
-  color: var(--accent-antique-gold);
-  font-size: 2rem;
-  letter-spacing: 0.15em;
-  margin-bottom: 1rem;
-}
-
-.footer-tagline {
-  font-size: 0.9rem;
-  color: rgba(250, 246, 240, 0.75);
-  max-width: 380px;
-}
-
-.footer-links h3,
-.footer-contact-summary h3 {
-  font-family: var(--font-body);
-  font-size: 0.8rem;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--accent-antique-gold);
-  margin-bottom: 1.2rem;
-}
-
-.footer-links ul {
-  list-style: none;
-}
-
-.footer-links li {
-  margin-bottom: 0.6rem;
-}
-
-.footer-links a {
-  font-size: 0.9rem;
-  color: rgba(250, 246, 240, 0.75);
-}
-
-.footer-links a:hover {
-  color: var(--accent-antique-gold);
-  padding-left: 4px;
-}
-
-.footer-contact-summary p {
-  font-size: 0.9rem;
-  color: rgba(250, 246, 240, 0.75);
-  margin-bottom: 0.5rem;
-}
-
-.footer-bottom {
-  border-top: 1px solid rgba(197, 160, 89, 0.15);
-  padding-top: 2rem;
-}
-
-.footer-bottom-flex {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 0.8rem;
-  color: rgba(250, 246, 240, 0.5);
-}
-
-@media (max-width: 480px) {
-  .footer-bottom-flex {
-    flex-direction: column;
-    gap: 1rem;
-    text-align: center;
-  }
-}
-</style>
