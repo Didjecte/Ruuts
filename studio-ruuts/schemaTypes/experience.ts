@@ -51,16 +51,7 @@ export const experience = defineType({
       type: 'string',
       description: 'e.g., 1h, 1h30, 2h',
     }),
-    defineField({
-      name: 'price',
-      title: 'Price per guest (RMB)',
-      type: 'number',
-    }),
-    defineField({
-      name: 'minValue',
-      title: 'Minimum value to book (RMB)',
-      type: 'number',
-    }),
+
     defineField({
       name: 'maxGuests',
       title: 'Max guests per session',

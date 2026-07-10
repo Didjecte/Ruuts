@@ -5,8 +5,6 @@ export interface Experience {
   subtitle: string;
   duration: string;
   maxGuests: number;
-  pricePerGuest: number;
-  minBookingValue: number;
   description: string;
   bullets: string[];
   image: string;
@@ -20,8 +18,6 @@ export const experiencesB2C: Experience[] = [
     subtitle: 'A Private Cultural Introduction',
     duration: '1h',
     maxGuests: 8,
-    pricePerGuest: 700,
-    minBookingValue: 3500,
     description: 'Tea in its seasonal expression, experienced in the present moment. Each session follows the rhythm of the season. The tea selection is intentionally curated and prepared for you. Through successive infusions, we explore character, texture, and subtle variation as they unfold in the cup. No fixed menu — only what the season offers now.',
     bullets: [
       '2 premium seasonal Chinese teas',
@@ -38,8 +34,6 @@ export const experiencesB2C: Experience[] = [
     subtitle: 'A Private Cultural Journey',
     duration: '1h30',
     maxGuests: 7,
-    pricePerGuest: 780,
-    minBookingValue: 4000,
     description: 'Four eras of Chinese tea, approached through taste, aroma, and narrative. A gradual passage into tea culture, where history is experienced through infusion and story. Learn about the evolution of tea from medicinal herb to royal tribute and social ritual.',
     bullets: [
       '4 premium Chinese teas',
@@ -56,8 +50,6 @@ export const experiencesB2C: Experience[] = [
     subtitle: 'An Intimate Cultural Performance',
     duration: '1h30',
     maxGuests: 7,
-    pricePerGuest: 900,
-    minBookingValue: 4500,
     description: 'A suspended moment where tea and live pipa music intertwine. Journey through the great eras of Chinese tea as sound, story, and flavor unfold together in a refined and immersive setting. Feel the acoustic vibrations of the traditional string instrument alongside the olfactory development of the infusions.',
     bullets: [
       '4 premium Chinese teas',
@@ -74,8 +66,6 @@ export const experiencesB2C: Experience[] = [
     subtitle: 'A Deeper Exploration of Chinese Seasonality',
     duration: '2h',
     maxGuests: 8,
-    pricePerGuest: 780,
-    minBookingValue: 4500,
     description: 'An extended sensory exploration of seasonal Chinese teas, where each infusion reflects the season we are in. The tea selection is intentionally curated and prepared for you, offering a structured journey through seasonal expression and variation.',
     bullets: [
       '4 premium seasonal Chinese teas',
@@ -92,8 +82,6 @@ export const experiencesB2C: Experience[] = [
     subtitle: 'A Cross-Cultural Tasting',
     duration: '1h30',
     maxGuests: 7,
-    pricePerGuest: 700,
-    minBookingValue: 3500,
     description: 'Chinese tea and French cheese in direct dialogue. Textures, contrasts, and aromas meet without interpretation - revealing unexpected resonances between two ancient traditions. A bridge built by our Franco-Chinese origin.',
     bullets: [
       '3 tea and artisan French cheese pairings',
@@ -110,8 +98,6 @@ export const experiencesB2C: Experience[] = [
     subtitle: 'Taichi & Tea Meditation',
     duration: '2h',
     maxGuests: 12,
-    pricePerGuest: 900,
-    minBookingValue: 5000,
     description: 'Fully immersive, embodied experience where movement, breath, and tea merge into a single continuous practice. A practice of relaxation through body, breath, and attention, where Taichi and guided tea meditation flow as a sequence exploring the concept of Fangsong (release, letting go).',
     bullets: [
       '2 premium seasonal Chinese teas',
