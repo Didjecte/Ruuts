@@ -5,11 +5,10 @@
   >
     <div class="max-w-[1200px] mx-auto px-6 w-full page-header">
       <h1 class="font-heading text-5xl mb-6 font-semibold">
-        Testimonials
+        {{ pageContent?.testimonialsTitle || 'Testimonials' }}
       </h1>
       <p class="text-foreground/80 max-w-[600px] leading-[1.8] mb-8">
-        Deep dives into tea ceremonies, photographic journals of mountain
-        harvests, and auditory experiences of traditional instruments.
+        {{ pageContent?.testimonialsSubtext || 'Deep dives into tea ceremonies, photographic journals of mountain harvests, and auditory experiences of traditional instruments.' }}
       </p>
     </div>
 
@@ -58,6 +57,7 @@ if (process.client) {
 }
 
 const { data: sanityTestimonials } = useSanityTestimonials();
+const { data: pageContent } = useSanityHomepageContent();
 
 const posts = computed(() => {
   if (sanityTestimonials.value && sanityTestimonials.value.length > 0) {

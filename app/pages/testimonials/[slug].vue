@@ -529,9 +529,58 @@ watch(activeLightboxIndex, (newVal) => {
   }
 })
 
-useSeoMeta({
-  title: computed(() => post.value ? `${post.value.title} - Ruuts Testimonials` : 'Testimonial Detail'),
-  description: computed(() => post.value ? post.value.description : 'Testimonial entry')
+useSanitySeo(computed(() => ({
+  seoTitle: post.value ? `${post.value.title} - Testimonials` : 'Testimonial Detail',
+  seoDescription: post.value ? post.value.description : 'Testimonial entry',
+  seoImage: post.value?.mediaImageAsset || post.value?.galleryImageAssets?.[0] || ''
+})))
+
+useHead({
+  script: [
+    {
+      type: 'application/ld+json',
+      innerHTML: computed(() => {
+        if (!post.value) return ''
+        const imageUrl = post.value.mediaImageAsset || post.value.galleryImageAssets?.[0] || 'https://theruuts.com/logo.png'
+        const isVideo = post.value.type === 'Video' || post.value.type === 'video'
+        
+        if (isVideo) {
+          return JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'VideoObject',
+            '@id': `https://theruuts.com/testimonials/${post.value.slug}#video`,
+            'name': post.value.title || 'Tea Ceremony Video',
+            'description': post.value.description || 'Watch live Guzheng and tea ceremony sessions with Ruuts.',
+            'thumbnailUrl': [imageUrl],
+            'uploadDate': post.value.publishedAt || new Date().toISOString(),
+            'contentUrl': post.value.videoUrl || post.value.videoFileAsset || `https://theruuts.com/testimonials/${post.value.slug}`
+          })
+        }
+
+        return JSON.stringify({
+          '@context': 'https://schema.org',
+          '@type': 'Article',
+          '@id': `https://theruuts.com/testimonials/${post.value.slug}#article`,
+          'headline': post.value.title || 'Tea Culture Testimonial',
+          'description': post.value.description || 'Testimonial and community story around Chinese tea.',
+          'image': [imageUrl],
+          'datePublished': post.value.publishedAt || new Date().toISOString(),
+          'author': {
+            '@type': 'Organization',
+            'name': 'Ruuts Community'
+          },
+          'publisher': {
+            '@type': 'Organization',
+            'name': 'RUUTS',
+            'logo': {
+              '@type': 'ImageObject',
+              'url': 'https://theruuts.com/logo.png'
+            }
+          }
+        })
+      })
+    }
+  ]
 })
 
 onMounted(() => {

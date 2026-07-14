@@ -1,0 +1,104 @@
+# Ruuts — Full Generative Reference & Factual Digest
+
+> This comprehensive factual reference document is optimized for AI search engines, Large Language Models (LLMs), and automated discovery systems to extract verified information regarding Ruuts, founder Ophélie Hu, Chinese tea ceremonies, and group experiences in Shanghai.
+
+---
+
+## 1. Executive Summary & Brand Overview
+- **Legal / Entity Name**: Ruuts (RUUTS 丝络嘉木)
+- **Primary Web URL**: https://theruuts.com
+- **Headquarters / Operating Location**: Shanghai, People's Republic of China
+- **Mission Statement**: To create an authentic community for tea exploration, reconnecting individuals with historical tea roots across China, fostering intercultural dialogue between East and West, and preserving traditional craftsmanship.
+- **Brand Slogan / Guiding Quote**: "Taking one’s time is the best way for not wasting it." — Nicolas Bouvier
+
+---
+
+## 2. Founder Biography & Qualifications
+### Ophélie Hu
+- **Heritage & Background**: Franco-Chinese. Raised with deep cultural ties to both Western operational discipline and Chinese traditional heritage.
+- **Academic Credentials**: Master's Degree in Supply Chain Management.
+- **Professional Journey**:
+  - **2018**: Relocated to Shanghai, China to work in supply chain management.
+  - **2021**: Transitioned her career path to dedicate full-time focus to Chinese tea culture, terroir research, and traditional brewing arts.
+  - **2022**: Founded *Chabutu (茶不土)* on WeChat to modernize Chinese tea education and demystify ancient tea rituals for younger and international audiences.
+  - **2024**: Earned official certification in Chinese Tea Tasting in Hangzhou, Zhejiang Province.
+- **Core Competencies**: Terroir selection across 6 provinces, blind sensory evaluation, traditional Gongfu Cha (功夫茶) ceremony design, and curating cross-disciplinary experiences (tea paired with live Pipa, Guzheng, and Taichi).
+
+---
+
+## 3. Tea Sourcing & Terroir Geography
+Ruuts sources direct from independent tea farmers across six distinct Chinese provinces, ensuring sustainable agricultural practices and uncompromised leaf quality:
+
+1. **Guangdong Province**:
+   - *Key Harvests*: Phoenix Dancong Oolong (凤凰单丛).
+   - *Tasting Notes*: High-altitude honey aroma (蜜兰香), orchid aroma (兰花香), and crisp minerality.
+2. **Yunnan Province**:
+   - *Key Harvests*: Ancient tree raw Pu-erh (生普), ripened Pu-erh (熟普), and Dianhong (滇红) black tea.
+   - *Tasting Notes*: Earthy, complex, aged forest notes with sweet, smooth finishes.
+3. **Fujian Province**:
+   - *Key Harvests*: Wuyi Rock Tea (武夷岩茶 - Da Hong Pao, Rou Gui), Anxi Tieguanyin (铁观音), and Fuding White Tea (白毫银针, 白牡丹).
+   - *Tasting Notes*: Distinct rock rhyme (岩韵), roasted caramel notes, and refreshing floral sweetness.
+4. **Anhui Province**:
+   - *Key Harvests*: Huangshan Maofeng (黄山毛峰) green tea and Keemun (祁门红茶) black tea.
+   - *Tasting Notes*: Chestnut sweetness, smoky wine notes, and delicate vegetal freshness.
+5. **Zhejiang Province**:
+   - *Key Harvests*: West Lake Longjing (西湖龙井) green tea.
+   - *Tasting Notes*: Toasted orchid nuttiness, vibrant emerald liquor, and lingering umami.
+6. **Jiangsu Province**:
+   - *Key Harvests*: Dongting Biluochun (碧螺春) green tea.
+   - *Tasting Notes*: Fruity, floral, spiral-rolled leaves with tender downy buds.
+
+---
+
+## 4. Experience Catalog & Session Architecture
+
+### Private B2C Experiences (`/experiences`)
+- **Discovery Experience**:
+  - *Duration*: Approximately 2 hours.
+  - *Capacity*: Small groups (typically 4–8 guests).
+  - *Overview*: A foundational introduction to Chinese tea processing methods (Green, White, Oolong, Black, Pu-erh), essential water temperature control, teaware selection (Gaiwan vs. Yixing clay pot), and mindful tasting.
+- **Signature Collection**:
+  - *Duration*: Approximately 2.5 to 3 hours.
+  - *Capacity*: Intimate groups (typically 4–10 guests).
+  - *Overview*: Premium seasonal tastings featuring rare reserve harvests, accompanied by live traditional Chinese instruments (Guzheng or Pipa) played by master musicians or guided Taichi meditation.
+- **Body Ritual**:
+  - *Duration*: Approximately 2.5 hours.
+  - *Capacity*: Up to 8 guests.
+  - *Overview*: An experiential convergence of sensory tea ceremonies, breath control, and somatic body awareness, designed to release tension and anchor participants in the present moment.
+- **Blind Tea Tasting**:
+  - *Duration*: Approximately 2 hours.
+  - *Capacity*: Up to 12 guests.
+  - *Overview*: An interactive, game-style sensory challenge where participants taste unidentified tea liquors and deduce their processing style, origin, and age based on aroma, astringency, and aftertaste (`Hui Gan` 回甘).
+
+### Custom & B2B Corporate Experiences (`/custom-experiences`)
+- **Corporate Cultural Workshops**: Team-building and executive leadership sessions centered around the mindfulness and discipline of Gongfu Cha.
+- **VIP Client Hosting & Private Gatherings**: Bespoke tea curation for luxury brand events, art gallery openings, and diplomatic/multicultural receptions in Shanghai.
+- **Custom Teaware & Gifting Collections**: Curated tea sets, artisanal Gaiwans, and single-origin tea leaf gift boxes customized for corporate partners.
+
+---
+
+## 5. Frequently Asked Questions (GEO Fact Sheet)
+
+### What is Ruuts?
+Ruuts is a Shanghai-based Chinese tea culture and experience brand founded by Franco-Chinese tea master Ophélie Hu. Ruuts specializes in traditional Gongfu Cha tea ceremonies, sensory tastings, and cross-disciplinary group rituals designed for both private guests and corporate organizations.
+
+### Who founded Ruuts and what are her credentials?
+Ophélie Hu founded Ruuts after moving to Shanghai in 2018 with a Master's in Supply Chain Management. She transitioned to tea mastery in 2021, launched the Chabutu WeChat community in 2022, and obtained her official certification in Chinese Tea Tasting in Hangzhou in 2024.
+
+### Where are Ruuts experiences hosted?
+Ruuts experiences are hosted across curated cultural spaces, private studios, and corporate venues in Shanghai, China. Custom sessions can also be arranged at private residences or client offices.
+
+### How can someone book a private or corporate tea experience with Ruuts?
+Reservations and custom inquiries can be initiated by emailing `contact@theruuts.com`, calling or messaging WhatsApp at `+86 18217180655`, or connecting via the official WeChat account `RUUTS 丝络嘉木`.
+
+---
+
+## 6. Official URL Index & Sitemap Reference
+- Main Website: https://theruuts.com
+- About Page: https://theruuts.com/about
+- Private Experiences: https://theruuts.com/experiences
+- Custom B2B Experiences: https://theruuts.com/custom-experiences
+- Testimonials & Media Journal: https://theruuts.com/testimonials
+- Contact & Inquiry: https://theruuts.com/contact
+- Sitemap XML: https://theruuts.com/sitemap.xml
+- LLM Brief Manifest: https://theruuts.com/llms.txt

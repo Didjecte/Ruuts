@@ -7,7 +7,7 @@
       ]"
     >
       <h1 class="text-5xl mb-6 font-heading font-semibold text-primary">
-        {{ title }}
+        {{ resolvedTitle }}
       </h1>
       <p
         :class="[
@@ -15,7 +15,7 @@
           { 'mx-auto': catalogType === 'b2b' || activeExperiences.length === 2 }
         ]"
       >
-        {{ description || (catalogType === 'b2b' ? 'Bespoke tea experiences for hotels, corporate events, and wellness venues. Bring the art of Chinese tea culture to your space.' : 'Carefully composed private encounters where Chinese tea culture, sound, breath, and presence meet. Find the perfect session for your group.') }}
+        {{ resolvedDescription }}
       </p>
     </div>
 
@@ -180,6 +180,21 @@ if (process.client) {
 }
 
 const { data: sanityExperiences } = useSanityExperiences(props.catalogType);
+const { data: pageContent } = useSanityHomepageContent();
+
+const resolvedTitle = computed(() => {
+  if (props.title !== 'Private Experiences' && props.title !== 'Tea Anywhere') return props.title;
+  if (props.catalogType === 'b2b') return pageContent.value?.b2bTitle || props.title;
+  return pageContent.value?.b2cTitle || props.title;
+});
+
+const resolvedDescription = computed(() => {
+  if (props.description) return props.description;
+  if (props.catalogType === 'b2b') {
+    return pageContent.value?.b2bDescription || 'Bespoke tea experiences for hotels, corporate events, and wellness venues. Bring the art of Chinese tea culture to your space.';
+  }
+  return pageContent.value?.b2cDescription || 'Carefully composed private encounters where Chinese tea culture, sound, breath, and presence meet. Find the perfect session for your group.';
+});
 
 const activeExperiences = computed(() => {
   if (sanityExperiences.value && sanityExperiences.value.length > 0) {

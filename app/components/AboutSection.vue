@@ -13,7 +13,7 @@
           class="relative w-full order-1 lg:order-2 reveal-item rounded-2xl overflow-hidden shadow-[0_20px_40px_rgba(0,0,0,0.15)] parallax-container mt-6 lg:mt-0"
         >
           <img
-            src="~/assets/images/origin.jpg"
+            :src="pageContent?.aboutStoryImage || defaultOriginImg"
             alt="Terraced tea fields in China"
             class="w-full h-[350px] lg:h-[480px] object-cover relative z-10 parallax-img"
             loading="lazy"
@@ -24,15 +24,20 @@
           <h2
             class="text-5xl relative font-heading font-semibold text-primary mb-2"
           >
-            Our Story
+            {{ pageContent?.aboutStoryTitle || 'Our Story' }}
           </h2>
-          <div class="space-y-4 text-foreground">
-            <p
-              class="font-body text-xl tracking-[0.01em] text-secondary leading-relaxed"
-            >
-              <span class="font-logo">RUUTS</span> was born from a simple wish:
-              to reconnect with ones' roots.
-            </p>
+          <p
+            class="font-body text-xl tracking-[0.01em] text-secondary leading-relaxed mb-4"
+          >
+            <template v-if="storySubtitle.startsWith('RUUTS')">
+              <span class="font-logo">RUUTS</span>{{ storySubtitle.slice(5) }}
+            </template>
+            <template v-else>
+              {{ storySubtitle }}
+            </template>
+          </p>
+          <div v-if="pageContent?.aboutStoryHtml" class="space-y-4 text-foreground" v-html="pageContent.aboutStoryHtml"></div>
+          <div v-else class="space-y-4 text-foreground">
             <p>
               Through exploring the world of Chinese tea, our Franco-Chinese
               founder rediscovered the true <b>meaning of roots</b>.
@@ -71,7 +76,7 @@
             class="relative w-full reveal-item rounded-2xl overflow-hidden shadow-[0_20px_40px_rgba(0,0,0,0.15)] parallax-container"
           >
             <img
-              src="~/assets/images/founder.jpg"
+              :src="pageContent?.aboutFounderImage || defaultFounderImg"
               alt="Ophélie Hu - Founder of RUUTS"
               class="w-full h-[350px] lg:h-[580px] object-cover relative z-10 parallax-img"
               loading="lazy"
@@ -81,14 +86,15 @@
             <h2
               class="text-5xl relative font-heading font-semibold text-primary mb-2"
             >
-              The Founder
+              {{ pageContent?.aboutFounderTitle || 'The Founder' }}
             </h2>
-            <div class="space-y-4 text-foreground">
-              <p
-                class="font-body text-xl tracking-[0.01em] text-secondary leading-relaxed"
-              >
-                Ophélie Hu
-              </p>
+            <p
+              class="font-body text-xl tracking-[0.01em] text-secondary leading-relaxed mb-4"
+            >
+              {{ founderSubtitle }}
+            </p>
+            <div v-if="pageContent?.aboutFounderHtml" class="space-y-4 text-foreground" v-html="pageContent.aboutFounderHtml"></div>
+            <div v-else class="space-y-4 text-foreground">
               <p>
                 Franco-Chinese and driven by her curiosity for China and her own
                 roots, Ophélie earned a Master’s degree in Supply Chain
@@ -127,52 +133,52 @@
         >
           <!-- Left Side: Image and Quote -->
           <div class="flex flex-col gap-10 reveal-item">
-            <div
-              class="w-full rounded-2xl overflow-hidden shadow-[0_20px_40px_rgba(136,169,91,0.15)] parallax-container"
-            >
-              <img
-                src="~/assets/images/mission.jpg"
-                alt="Ruuts Mission"
-                class="w-full h-[300px] md:h-[350px] object-cover parallax-img"
-                loading="lazy"
-              />
-            </div>
-
-            <!-- Quote Callout -->
-            <div class="text-center relative px-4 py-6">
               <div
-                class="absolute -top-6 left-1/2 -translate-x-1/2 font-heading text-8xl text-secondary/20 z-0 leading-none"
+                class="w-full rounded-2xl overflow-hidden shadow-[0_20px_40px_rgba(136,169,91,0.15)] parallax-container"
               >
-                “
+                <img
+                  :src="pageContent?.aboutMissionImage || defaultMissionImg"
+                  alt="Ruuts Mission"
+                  class="w-full h-[300px] md:h-[350px] object-cover parallax-img"
+                  loading="lazy"
+                />
               </div>
-              <p
-                class="font-heading text-xl md:text-[1.7em] italic relative z-10 mb-4"
-              >
-                "Taking one’s time is the best way for not wasting it."
-              </p>
-              <p
-                class="font-body uppercase tracking-[0.1em] text-secondary relative z-10"
-              >
-                &mdash; Nicolas Bouvier
-              </p>
-            </div>
-          </div>
 
-          <!-- Right Side: Accordion -->
-          <div class="reveal-item">
-            <div class="mb-10">
-              <h2 class="text-5xl mb-8 relative font-heading font-semibold">
-                Our Mission
-              </h2>
+              <!-- Quote Callout -->
+              <div class="text-center relative px-4 py-6">
+                <div
+                  class="absolute -top-6 left-1/2 -translate-x-1/2 font-heading text-8xl text-secondary/20 z-0 leading-none"
+                >
+                  “
+                </div>
+                <p
+                  class="font-heading text-xl md:text-[1.7em] italic relative z-10 mb-4"
+                >
+                  "{{ pageContent?.aboutMissionQuote || 'Taking one’s time is the best way for not wasting it.' }}"
+                </p>
+                <p
+                  class="font-body uppercase tracking-[0.1em] text-secondary relative z-10"
+                >
+                  &mdash; {{ pageContent?.aboutMissionQuoteAuthor || 'Nicolas Bouvier' }}
+                </p>
+              </div>
             </div>
-            <div class="flex flex-col border-t border-foreground/10">
-              <div
-                v-for="(mission, index) in missions"
-                :key="index"
-                class="border-b border-foreground/10 group cursor-pointer"
-                @click="activeMission = activeMission === index ? null : index"
-                @mouseenter="handleMouseEnter(index)"
-              >
+
+            <!-- Right Side: Accordion -->
+            <div class="reveal-item">
+              <div class="mb-10">
+                <h2 class="text-5xl mb-8 relative font-heading font-semibold">
+                  {{ pageContent?.aboutMissionTitle || 'Our Mission' }}
+                </h2>
+              </div>
+              <div class="flex flex-col border-t border-foreground/10">
+                <div
+                  v-for="(mission, index) in activeMissions"
+                  :key="index"
+                  class="border-b border-foreground/10 group cursor-pointer"
+                  @click="activeMission = activeMission === index ? null : index"
+                  @mouseenter="handleMouseEnter(index)"
+                >
                 <!-- Accordion Header -->
                 <div
                   class="py-3 lg:py-6 flex items-center justify-between transition-colors duration-300"
@@ -227,9 +233,17 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted } from "vue";
+import { ref, computed, onMounted, onUnmounted } from "vue";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
+import defaultOriginImg from "~/assets/images/origin.jpg";
+import defaultFounderImg from "~/assets/images/founder.jpg";
+import defaultMissionImg from "~/assets/images/mission.jpg";
+
+const { data: pageContent } = useSanityHomepageContent();
+
+const storySubtitle = computed(() => pageContent.value?.aboutStorySubtitle || "RUUTS was born from a simple wish: to reconnect with ones' roots.");
+const founderSubtitle = computed(() => pageContent.value?.aboutFounderSubtitle || "Ophélie Hu");
 
 const props = defineProps({
   showStoryAndFounder: {
@@ -301,7 +315,7 @@ onUnmounted(() => {
   if (ctx) ctx.revert();
 });
 
-const missions = [
+const defaultMissions = [
   {
     title: "Create Community",
     description:
@@ -323,4 +337,11 @@ const missions = [
       "Bridging the gap between guests and the tea farmers, honoring the soil and land they cultivate.",
   },
 ];
+
+const activeMissions = computed(() => {
+  if (pageContent.value && pageContent.value.aboutMissions && pageContent.value.aboutMissions.length > 0) {
+    return pageContent.value.aboutMissions;
+  }
+  return defaultMissions;
+});
 </script>

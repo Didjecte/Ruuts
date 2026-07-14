@@ -7,9 +7,10 @@
         <!-- Text block second in HTML, ordered to be on the left on desktop -->
         <div class="order-2 lg:order-1 reveal-item">
           <h2 class="text-5xl font-heading font-semibold text-primary mb-6">
-            Build unforgettable moments
+            {{ pageContent?.introTitle || 'Build unforgettable moments' }}
           </h2>
-          <div class="space-y-4 text-foreground">
+          <div v-if="pageContent?.introHtml" class="space-y-4 text-foreground" v-html="pageContent.introHtml"></div>
+          <div v-else class="space-y-4 text-foreground">
             <p>
               Based in Shanghai for the past eight years, Ophélie creates bespoke tea experiences for hotels, brands and events seeking more than entertainment — meaningful cultural encounters that leave a lasting impression.
             </p>
@@ -27,7 +28,7 @@
           class="relative w-full order-1 lg:order-2 reveal-item rounded-2xl overflow-hidden shadow-[0_20px_40px_rgba(0,0,0,0.15)] parallax-container mt-6 lg:mt-0"
         >
           <img
-            src="~/assets/images/founder.jpg"
+            :src="pageContent?.introImage || defaultFounderImg"
             alt="Ophélie Hu - Founder of RUUTS"
             class="w-full h-[350px] lg:h-[480px] object-cover relative z-10 parallax-img"
             loading="lazy"
@@ -42,6 +43,9 @@
 import { onMounted, onUnmounted } from "vue";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
+import defaultFounderImg from "~/assets/images/founder.jpg";
+
+const { data: pageContent } = useSanityHomepageContent();
 
 let ctx;
 
