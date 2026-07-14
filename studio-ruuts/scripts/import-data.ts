@@ -1,5 +1,6 @@
-import { getCliClient } from 'sanity/cli'
+import * as cliPkg from 'sanity/cli'
 
+const getCliClient = (cliPkg as any).getCliClient || (cliPkg as any).default?.getCliClient
 const client = getCliClient({ apiVersion: '2026-07-10' })
 
 // 1. Experiences (Private Experiences - B2C)

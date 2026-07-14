@@ -6,9 +6,9 @@
 </template>
 
 <script setup>
-useSeoMeta({
-  title: "Ruuts - About Us",
-  description: "Our Story, Founder, and Mission.",
+useSanitySeo({
+  seoTitle: "About Us | Founder Ophélie Hu & Chinese Tea Culture",
+  seoDescription: "Reconnecting with roots through authentic Chinese tea exploration across 6 provinces. Learn about our founder Ophélie Hu, our heritage, and our mission in Shanghai."
 });
 </script>
 

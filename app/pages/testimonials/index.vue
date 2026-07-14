@@ -8,8 +8,8 @@ definePageMeta({
   headerTheme: "dark",
 });
 
-useSeoMeta({
-  title: "Ruuts - Testimonials",
-  description: "Read testimonials from our community and watch live Guzheng and tea ceremony sessions.",
+useSanitySeo({
+  seoTitle: "Testimonials & Community Stories | Chinese Tea Culture",
+  seoDescription: "Read stories and watch live Guzheng and Pipa tea ceremony sessions from the Ruuts community across Shanghai."
 });
 </script>

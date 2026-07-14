@@ -1,0 +1,386 @@
+import { defineType, defineField } from 'sanity'
+
+export const homepageContent = defineType({
+  name: 'homepageContent',
+  title: 'Homepage Content',
+  type: 'document',
+  groups: [
+    { name: 'index', title: 'Index' },
+    { name: 'hero', title: 'Hero Section', default: true },
+    { name: 'intro', title: 'Intro Section' },
+    { name: 'testimonials', title: 'Testimonials Section' },
+    { name: 'teaAnywhere', title: 'Tea Anywhere' },
+    { name: 'privateExperiences', title: 'Private Experiences' },
+    { name: 'about', title: 'About Section' },
+    { name: 'contact', title: 'Contact Section' },
+  ],
+  fields: [
+    defineField({
+      name: 'title',
+      title: 'Document Title',
+      type: 'string',
+      initialValue: 'Homepage Content Settings',
+      readOnly: true,
+      hidden: true,
+      group: 'index',
+    }),
+
+    // SEO Overrides
+    defineField({
+      name: 'seoTitle',
+      title: 'Page Meta Title Override',
+      type: 'string',
+      description: 'Leave blank to use Global Site Settings. If filled, combines with your Global Title Suffix.',
+      group: 'index',
+    }),
+    defineField({
+      name: 'seoDescription',
+      title: 'Page Meta Description Override',
+      type: 'text',
+      rows: 3,
+      description: 'Leave blank to use Global Site Settings description.',
+      group: 'index',
+    }),
+    
+    // HERO
+    defineField({
+      name: 'heroTitle',
+      title: 'Hero Title',
+      type: 'string',
+      group: 'hero',
+    }),
+    defineField({
+      name: 'heroSubtext',
+      title: 'Hero Subtext',
+      type: 'string',
+      group: 'hero',
+    }),
+    defineField({
+      name: 'heroImage',
+      title: 'Hero Background Image',
+      type: 'image',
+      options: { hotspot: true },
+      group: 'hero',
+    }),
+
+    // INTRO
+    defineField({
+      name: 'introTitle',
+      title: 'Intro Title',
+      type: 'string',
+      group: 'intro',
+    }),
+    defineField({
+      name: 'introParagraphs',
+      title: 'Intro Paragraphs',
+      type: 'array',
+      of: [{ type: 'block' }],
+      group: 'intro',
+    }),
+    defineField({
+      name: 'introImage',
+      title: 'Intro Founder Image',
+      type: 'image',
+      options: { hotspot: true },
+      group: 'intro',
+    }),
+
+    // TESTIMONIALS
+    defineField({
+      name: 'testimonialsMetaTitle',
+      title: 'Testimonials Meta Title Override',
+      type: 'string',
+      description: 'Leave blank to use Page/Global default meta title.',
+      group: 'testimonials',
+    }),
+    defineField({
+      name: 'testimonialsMetaDescription',
+      title: 'Testimonials Meta Description Override',
+      type: 'text',
+      rows: 3,
+      description: 'Leave blank to use Page/Global default meta description.',
+      group: 'testimonials',
+    }),
+    defineField({
+      name: 'testimonialsTitle',
+      title: 'Testimonials Section Title',
+      type: 'string',
+      group: 'testimonials',
+    }),
+    defineField({
+      name: 'testimonialsSubtext',
+      title: 'Testimonials Section Subtext',
+      type: 'text',
+      rows: 3,
+      group: 'testimonials',
+    }),
+
+    // TEA ANYWHERE
+    defineField({
+      name: 'teaAnywhereMetaTitle',
+      title: 'Tea Anywhere Meta Title Override',
+      type: 'string',
+      description: 'Leave blank to use Page/Global default meta title.',
+      group: 'teaAnywhere',
+    }),
+    defineField({
+      name: 'teaAnywhereMetaDescription',
+      title: 'Tea Anywhere Meta Description Override',
+      type: 'text',
+      rows: 3,
+      description: 'Leave blank to use Page/Global default meta description.',
+      group: 'teaAnywhere',
+    }),
+    defineField({
+      name: 'b2bTitle',
+      title: 'Tea Anywhere Section Title',
+      type: 'string',
+      group: 'teaAnywhere',
+    }),
+    defineField({
+      name: 'b2bDescription',
+      title: 'Tea Anywhere Section Description',
+      type: 'text',
+      rows: 3,
+      group: 'teaAnywhere',
+    }),
+
+    // PRIVATE EXPERIENCES
+    defineField({
+      name: 'privateExperiencesMetaTitle',
+      title: 'Private Experiences Meta Title Override',
+      type: 'string',
+      description: 'Leave blank to use Page/Global default meta title.',
+      group: 'privateExperiences',
+    }),
+    defineField({
+      name: 'privateExperiencesMetaDescription',
+      title: 'Private Experiences Meta Description Override',
+      type: 'text',
+      rows: 3,
+      description: 'Leave blank to use Page/Global default meta description.',
+      group: 'privateExperiences',
+    }),
+    defineField({
+      name: 'b2cTitle',
+      title: 'Private Experiences Section Title',
+      type: 'string',
+      group: 'privateExperiences',
+    }),
+    defineField({
+      name: 'b2cDescription',
+      title: 'Private Experiences Section Description',
+      type: 'text',
+      rows: 3,
+      group: 'privateExperiences',
+    }),
+
+    // ABOUT
+    defineField({
+      name: 'aboutMetaTitle',
+      title: 'About Meta Title Override',
+      type: 'string',
+      description: 'Leave blank to use Page/Global default meta title.',
+      group: 'about',
+    }),
+    defineField({
+      name: 'aboutMetaDescription',
+      title: 'About Meta Description Override',
+      type: 'text',
+      rows: 3,
+      description: 'Leave blank to use Page/Global default meta description.',
+      group: 'about',
+    }),
+    defineField({
+      name: 'aboutStoryTitle',
+      title: 'Story Title',
+      type: 'string',
+      group: 'about',
+    }),
+    defineField({
+      name: 'aboutStorySubtitle',
+      title: 'Story Subtitle (Gold)',
+      type: 'string',
+      group: 'about',
+    }),
+    defineField({
+      name: 'aboutStoryText',
+      title: 'Story Text',
+      type: 'array',
+      of: [{ type: 'block' }],
+      group: 'about',
+    }),
+    defineField({
+      name: 'aboutStoryImage',
+      title: 'Story Image',
+      type: 'image',
+      options: { hotspot: true },
+      group: 'about',
+    }),
+    defineField({
+      name: 'aboutFounderTitle',
+      title: 'Founder Section Title',
+      type: 'string',
+      group: 'about',
+    }),
+    defineField({
+      name: 'aboutFounderSubtitle',
+      title: 'Founder Subtitle (Gold)',
+      type: 'string',
+      group: 'about',
+    }),
+    defineField({
+      name: 'aboutFounderText',
+      title: 'Founder Text',
+      type: 'array',
+      of: [{ type: 'block' }],
+      group: 'about',
+    }),
+    defineField({
+      name: 'aboutFounderImage',
+      title: 'Founder Image',
+      type: 'image',
+      options: { hotspot: true },
+      group: 'about',
+    }),
+    defineField({
+      name: 'aboutMissionTitle',
+      title: 'Mission Section Title',
+      type: 'string',
+      group: 'about',
+    }),
+    defineField({
+      name: 'aboutMissionImage',
+      title: 'Mission Image',
+      type: 'image',
+      options: { hotspot: true },
+      group: 'about',
+    }),
+    defineField({
+      name: 'aboutMissionQuote',
+      title: 'Mission Quote Text',
+      type: 'string',
+      group: 'about',
+    }),
+    defineField({
+      name: 'aboutMissionQuoteAuthor',
+      title: 'Mission Quote Author',
+      type: 'string',
+      group: 'about',
+    }),
+    defineField({
+      name: 'aboutMissions',
+      title: 'Mission Cards',
+      type: 'array',
+      group: 'about',
+      of: [
+        {
+          type: 'object',
+          name: 'missionCard',
+          title: 'Mission Card',
+          fields: [
+            { name: 'title', title: 'Title', type: 'string' },
+            { name: 'description', title: 'Description', type: 'text', rows: 3 },
+          ],
+        },
+      ],
+    }),
+
+    // CONTACT
+    defineField({
+      name: 'contactMetaTitle',
+      title: 'Contact Meta Title Override',
+      type: 'string',
+      description: 'Leave blank to use Page/Global default meta title.',
+      group: 'contact',
+    }),
+    defineField({
+      name: 'contactMetaDescription',
+      title: 'Contact Meta Description Override',
+      type: 'text',
+      rows: 3,
+      description: 'Leave blank to use Page/Global default meta description.',
+      group: 'contact',
+    }),
+    defineField({
+      name: 'contactTitle',
+      title: 'Contact Title',
+      type: 'string',
+      group: 'contact',
+    }),
+    defineField({
+      name: 'contactDescription',
+      title: 'Contact Description',
+      type: 'text',
+      rows: 3,
+      group: 'contact',
+    }),
+    defineField({
+      name: 'contactImage',
+      title: 'Contact Image',
+      type: 'image',
+      options: { hotspot: true },
+      group: 'contact',
+    }),
+    defineField({
+      name: 'contactEmail',
+      title: 'Contact Email',
+      type: 'string',
+      group: 'contact',
+    }),
+    defineField({
+      name: 'contactPhone',
+      title: 'Contact Phone',
+      type: 'string',
+      group: 'contact',
+    }),
+    defineField({
+      name: 'contactWhatsappQR',
+      title: 'WhatsApp QR Code Image',
+      type: 'image',
+      group: 'contact',
+    }),
+    defineField({
+      name: 'contactWhatsappLink',
+      title: 'WhatsApp Link/URL',
+      type: 'string',
+      group: 'contact',
+    }),
+    defineField({
+      name: 'contactInstagramQR',
+      title: 'Instagram QR Code Image',
+      type: 'image',
+      group: 'contact',
+    }),
+    defineField({
+      name: 'contactInstagramLink',
+      title: 'Instagram Link/URL',
+      type: 'string',
+      group: 'contact',
+    }),
+    defineField({
+      name: 'contactWechatQR',
+      title: 'WeChat QR Code Image',
+      type: 'image',
+      group: 'contact',
+    }),
+    defineField({
+      name: 'contactWechatLink',
+      title: 'WeChat Link/URL',
+      type: 'string',
+      group: 'contact',
+    }),
+    defineField({
+      name: 'contactLinkedinQR',
+      title: 'LinkedIn QR Code Image',
+      type: 'image',
+      group: 'contact',
+    }),
+    defineField({
+      name: 'contactLinkedinLink',
+      title: 'LinkedIn Link/URL',
+      type: 'string',
+      group: 'contact',
+    }),
+  ],
+})

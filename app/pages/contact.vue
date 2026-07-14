@@ -5,9 +5,9 @@
 </template>
 
 <script setup>
-useSeoMeta({
-  title: "Ruuts - Contact Us",
-  description: "Get in touch for private sessions and events.",
+useSanitySeo({
+  seoTitle: "Contact Us & Private Reservations | Chinese Tea Experiences",
+  seoDescription: "Get in touch with Ruuts for private tea ceremonies, custom corporate workshops, and bookings across Shanghai."
 });
 </script>
 

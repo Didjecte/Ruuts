@@ -54,6 +54,7 @@ export function useSanityTestimonials() {
     galleryUrls,
     "galleryImageAssets": galleryImages[].asset->url,
     videoUrl,
+    "videoFileAsset": videoFile.asset->url,
     duration,
     body
   }`
@@ -79,7 +80,7 @@ export function useSanityTestimonials() {
         description: blocksToHtml(item.description),
         mediaUrl: item.mediaImageAsset || item.mediaUrl || '',
         gallery: gallery.length > 0 ? gallery : undefined,
-        videoUrl: item.videoUrl || '',
+        videoUrl: item.videoFileAsset || item.videoUrl || '',
         duration: item.duration || '',
         body: blocksToHtml(item.body)
       }
@@ -148,4 +149,228 @@ function blocksToHtml(blocks: any[] | string | undefined | null): string {
 
   return htmlParts.join('')
 }
+
+export function useSanitySiteSettings() {
+  const query = `*[_type == "siteSettings" && _id == "siteSettings"][0] {
+    defaultSeoTitle,
+    titlePrefix,
+    defaultSeoDescription,
+    "defaultSeoImage": defaultSeoImage.asset->url,
+    siteName,
+    founderName,
+    contactEmail,
+    contactPhone,
+    location
+  }`
+
+  const { data, pending, error } = useAsyncData(
+    'siteSettings',
+    () => useSanity().fetch(query)
+  )
+
+  return {
+    data,
+    pending,
+    error
+  }
+}
+
+export function useSanityHomepageContent() {
+  const query = `*[_type == "homepageContent" && _id == "homepageContent"][0] {
+    seoTitle,
+    seoDescription,
+    heroTitle,
+    heroSubtext,
+    "heroImage": heroImage.asset->url,
+    introTitle,
+    introParagraphs,
+    "introImage": introImage.asset->url,
+    testimonialsTitle,
+    testimonialsSubtext,
+    testimonialsMetaTitle,
+    testimonialsMetaDescription,
+    b2bTitle,
+    b2bDescription,
+    b2cTitle,
+    b2cDescription,
+    teaAnywhereMetaTitle,
+    teaAnywhereMetaDescription,
+    privateExperiencesMetaTitle,
+    privateExperiencesMetaDescription,
+    aboutStoryTitle,
+    aboutStorySubtitle,
+    aboutStoryText,
+    "aboutStoryImage": aboutStoryImage.asset->url,
+    aboutFounderTitle,
+    aboutFounderSubtitle,
+    aboutFounderText,
+    "aboutFounderImage": aboutFounderImage.asset->url,
+    aboutMissionTitle,
+    "aboutMissionImage": aboutMissionImage.asset->url,
+    aboutMissionQuote,
+    aboutMissionQuoteAuthor,
+    aboutMissions,
+    aboutMetaTitle,
+    aboutMetaDescription,
+    contactTitle,
+    contactDescription,
+    "contactImage": contactImage.asset->url,
+    contactEmail,
+    contactPhone,
+    "contactWechatQR": contactWechatQR.asset->url,
+    contactWechatLink,
+    "contactWhatsappQR": contactWhatsappQR.asset->url,
+    contactWhatsappLink,
+    "contactInstagramQR": contactInstagramQR.asset->url,
+    contactInstagramLink,
+    "contactLinkedinQR": contactLinkedinQR.asset->url,
+    contactLinkedinLink,
+    contactMetaTitle,
+    contactMetaDescription
+  }`
+
+  const { data, pending, error } = useAsyncData(
+    'homepageContent',
+    () => useSanity().fetch(query)
+  )
+
+  const normalizedData = computed(() => {
+    if (!data.value) return null
+    return {
+      ...data.value,
+      introHtml: blocksToHtml(data.value.introParagraphs),
+      aboutStoryHtml: blocksToHtml(data.value.aboutStoryText),
+      aboutFounderHtml: blocksToHtml(data.value.aboutFounderText)
+    }
+  })
+
+  return {
+    data: normalizedData,
+    raw: data,
+    pending,
+    error
+  }
+}
+
+export function useSanitySeo(pageSeo?: any) {
+  const { data: siteSettings } = useSanitySiteSettings()
+  const route = useRoute()
+
+  const resolvedSeo = computed(() => {
+    const settings = siteSettings.value || {}
+    const page = pageSeo && (pageSeo.value || pageSeo) ? (pageSeo.value || pageSeo) : {}
+
+    const prefix = settings.titlePrefix || 'Ruuts - '
+    const baseTitle = page.seoTitle 
+      ? `${prefix}${page.seoTitle}` 
+      : (settings.defaultSeoTitle || 'Ruuts - Premium Group Experiences & Tea Rituals')
+
+    const description = page.seoDescription || settings.defaultSeoDescription || 'Reconnect with your roots through Chinese tea culture. We design signature tea ceremonies, body rituals, and premium group experiences.'
+    const image = page.seoImage || settings.defaultSeoImage || ''
+    const canonicalPath = route.path ? (route.path.endsWith('/') && route.path !== '/' ? route.path.slice(0, -1) : route.path) : ''
+    const canonicalUrl = `https://theruuts.com${canonicalPath}`
+
+    return {
+      title: baseTitle,
+      description,
+      image,
+      canonicalUrl,
+      siteName: settings.siteName || 'RUUTS',
+      founderName: settings.founderName || 'Ophélie Hu',
+      contactEmail: settings.contactEmail || 'contact@theruuts.com',
+      contactPhone: settings.contactPhone || '+86 18217180655',
+      location: settings.location || 'Shanghai, China'
+    }
+  })
+
+  // Set standard meta tags and canonical link
+  useSeoMeta({
+    title: () => resolvedSeo.value.title,
+    ogTitle: () => resolvedSeo.value.title,
+    description: () => resolvedSeo.value.description,
+    ogDescription: () => resolvedSeo.value.description,
+    ogImage: () => resolvedSeo.value.image,
+    ogUrl: () => resolvedSeo.value.canonicalUrl,
+    twitterCard: 'summary_large_image',
+    twitterTitle: () => resolvedSeo.value.title,
+    twitterDescription: () => resolvedSeo.value.description,
+    twitterImage: () => resolvedSeo.value.image,
+  })
+
+  // Inject Organization, LocalBusiness & BreadcrumbList JSON-LD structured data for AI search engines (GEO)
+  useHead({
+    link: [
+      { rel: 'canonical', href: computed(() => resolvedSeo.value.canonicalUrl) }
+    ],
+    script: [
+      {
+        type: 'application/ld+json',
+        innerHTML: computed(() => {
+          const pathSegments = route.path.split('/').filter(Boolean)
+          const breadcrumbItems: any[] = [
+            {
+              '@type': 'ListItem',
+              'position': 1,
+              'name': 'Home',
+              'item': 'https://theruuts.com'
+            }
+          ]
+
+          pathSegments.forEach((segment, idx) => {
+            const segmentName = segment.charAt(0).toUpperCase() + segment.slice(1).replace(/-/g, ' ')
+            breadcrumbItems.push({
+              '@type': 'ListItem',
+              'position': idx + 2,
+              'name': segmentName,
+              'item': `https://theruuts.com/${pathSegments.slice(0, idx + 1).join('/')}`
+            })
+          })
+
+          return JSON.stringify({
+            '@context': 'https://schema.org',
+            '@graph': [
+              {
+                '@type': 'BreadcrumbList',
+                '@id': `https://theruuts.com${route.path}#breadcrumbs`,
+                'itemListElement': breadcrumbItems
+              },
+              {
+                '@type': 'Organization',
+                '@id': 'https://theruuts.com/#organization',
+                'name': resolvedSeo.value.siteName,
+                'url': 'https://theruuts.com',
+                'logo': resolvedSeo.value.image || 'https://theruuts.com/logo.png',
+                'founder': {
+                  '@type': 'Person',
+                  'name': resolvedSeo.value.founderName
+                },
+                'contactPoint': {
+                  '@type': 'ContactPoint',
+                  'telephone': resolvedSeo.value.contactPhone,
+                  'contactType': 'customer service',
+                  'email': resolvedSeo.value.contactEmail
+                }
+              },
+              {
+                '@type': 'LocalBusiness',
+                '@id': 'https://theruuts.com/#localbusiness',
+                'name': resolvedSeo.value.siteName,
+                'image': resolvedSeo.value.image || 'https://theruuts.com/logo.png',
+                'telephone': resolvedSeo.value.contactPhone,
+                'email': resolvedSeo.value.contactEmail,
+                'address': {
+                  '@type': 'PostalAddress',
+                  'addressLocality': resolvedSeo.value.location,
+                  'addressCountry': 'CN'
+                },
+                'url': 'https://theruuts.com'
+              }
+            ]
+          })
+        })
+      }
+    ]
+  })
+}
+
 

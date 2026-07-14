@@ -68,7 +68,7 @@ export const testimonialsMockData: TestimonialPost[] = [
     publishedAt: '2026-04-05T14:15:00Z',
     mediaUrl: 'https://images.unsplash.com/photo-1544787219-7f47ccb76574?q=80&w=800&auto=format&fit=crop',
     description: 'Listen to the delicate harmonics of the Pipa string instrument recorded live during our Signature Tea session in Cité Bourgogne.',
-    videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4',
+    videoUrl: '',
     duration: '0:15'
   },
   {
@@ -118,7 +118,7 @@ export const testimonialsMockData: TestimonialPost[] = [
     publishedAt: '2026-02-14T16:40:00Z',
     mediaUrl: 'https://images.unsplash.com/photo-1563822249548-9a72b6353cd1?q=80&w=800&auto=format&fit=crop',
     description: 'Watch a short cinematic flow displaying the movements of the Gongfu tea ceremony, accompanied by meditation bowls.',
-    videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4',
+    videoUrl: '',
     duration: '0:15'
   }
 ];
