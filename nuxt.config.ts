@@ -8,7 +8,49 @@ export default defineNuxtConfig({
   },
 
   css: ['~/assets/css/main.css'],
-  modules: ['@nuxtjs/tailwindcss', '@nuxtjs/sanity'],
+  modules: ['@nuxtjs/tailwindcss', '@nuxtjs/sanity', '@nuxtjs/sitemap', '@nuxtjs/robots'],
+
+  site: {
+    url: 'https://theruuts.com',
+    name: 'RUUTS'
+  },
+
+  sitemap: {
+    urls: [
+      '/',
+      '/about',
+      '/experiences',
+      '/custom-experiences',
+      '/contact',
+      '/testimonials'
+    ],
+    exclude: [
+      '/studio-ruuts/**'
+    ]
+  },
+
+  robots: {
+    groups: [
+      {
+        userAgent: ['*'],
+        allow: ['/'],
+        disallow: ['/studio-ruuts/']
+      },
+      {
+        userAgent: [
+          'PerplexityBot',
+          'GPTBot',
+          'OAI-SearchBot',
+          'Claude-Web',
+          'ClaudeBot',
+          'Google-Extended',
+          'Applebot-Extended'
+        ],
+        allow: ['/']
+      }
+    ],
+    sitemap: 'https://theruuts.com/sitemap.xml'
+  },
 
   sanity: {
     projectId: 'vyyl6ql8',
@@ -24,8 +66,7 @@ export default defineNuxtConfig({
         { rel: 'icon', type: 'image/svg+xml', href: '/FAVICON/favicon.svg' },
         { rel: 'shortcut icon', href: '/FAVICON/favicon.ico' },
         { rel: 'apple-touch-icon', sizes: '180x180', href: '/FAVICON/apple-touch-icon.png' },
-        { rel: 'manifest', href: '/FAVICON/site.webmanifest' },
-        { rel: 'stylesheet', href: 'https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/css/flag-icons.min.css' }
+        { rel: 'manifest', href: '/FAVICON/site.webmanifest' }
       ],
       meta: [
         { name: 'apple-mobile-web-app-title', content: 'Ruuts' },

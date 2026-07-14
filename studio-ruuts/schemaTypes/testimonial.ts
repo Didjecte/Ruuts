@@ -66,19 +66,18 @@ export const testimonial = defineType({
     }),
     defineField({
       name: 'mediaImage',
-      title: 'Main Image (File Upload)',
+      title: 'Cover / Thumbnail Image (File Upload)',
       type: 'image',
       options: {
         hotspot: true,
       },
-      hidden: ({document}) => document?.type !== 'article',
+      description: 'The main cover image displayed on the cards grid and at the top of detail views.',
     }),
     defineField({
       name: 'mediaUrl',
-      title: 'Main Image / Media External URL',
+      title: 'Cover / Thumbnail Image External URL',
       type: 'string',
       description: 'Used if you want to paste an external image link instead of uploading a file.',
-      hidden: ({document}) => document?.type !== 'article',
     }),
     defineField({
       name: 'galleryImages',
@@ -95,6 +94,16 @@ export const testimonial = defineType({
       of: [{type: 'string'}],
       description: 'For Photo Posts: paste external image links for the gallery.',
       hidden: ({document}) => document?.type !== 'photo',
+    }),
+    defineField({
+      name: 'videoFile',
+      title: 'Video File Upload',
+      type: 'file',
+      options: {
+        accept: 'video/*',
+      },
+      description: 'Upload an MP4 video file directly to Sanity CDN (recommended for short/lightweight videos). Takes priority over Video URL.',
+      hidden: ({document}) => document?.type !== 'video',
     }),
     defineField({
       name: 'videoUrl',

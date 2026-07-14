@@ -1,4 +1,17 @@
-@import url("https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Kalnia:wght@100..700&family=Long+Cang&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Zhi+Mang+Xing&display=swap");
+@import "@fontsource/eb-garamond/400.css";
+@import "@fontsource/eb-garamond/400-italic.css";
+@import "@fontsource/eb-garamond/500.css";
+@import "@fontsource/eb-garamond/600.css";
+@import "@fontsource/eb-garamond/700.css";
+@import "@fontsource/montserrat/400.css";
+@import "@fontsource/montserrat/400-italic.css";
+@import "@fontsource/montserrat/500.css";
+@import "@fontsource/montserrat/600.css";
+@import "@fontsource/montserrat/700.css";
+@import "@fontsource/kalnia/400.css";
+@import "@fontsource/kalnia/600.css";
+@import "@fontsource/kalnia/700.css";
+@import "flag-icons/css/flag-icons.min.css";
 
 @tailwind base;
 @tailwind components;

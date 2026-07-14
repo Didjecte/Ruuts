@@ -3,6 +3,7 @@
     <!-- Hero Section -->
     <section
       class="dark h-screen min-h-[650px] relative flex items-center hero-bg text-foreground"
+      :style="pageContent?.heroImage ? { '--hero-bg-url': `url(${pageContent.heroImage})` } : {}"
     >
       <div
         class="absolute inset-0 bg-gradient-to-br from-primary/80 to-primary/80 z-[1]"
@@ -15,12 +16,12 @@
             <h1
               class="hero-title font-heading text-5xl md:text-6xl font-semibold text-primary dark:text-secondary tracking-[0.03em] leading-[1.15] mb-6"
             >
-              Bespoke Tea experiences for your venue
+              {{ pageContent?.heroTitle || 'Bespoke Tea experiences for your venue' }}
             </h1>
             <p
               class="hero-description text-xl text-foreground font-medium mb-10"
             >
-              An experience crafted only for you.
+              {{ pageContent?.heroSubtext || 'An experience crafted only for you.' }}
             </p>
           </div>
           <!-- <div class="hero-actions flex flex-col sm:flex-row gap-4 sm:gap-6">
@@ -69,16 +70,13 @@
       :show-policies="false"
     />
 
-    <!-- About Section (Our Mission only) -->
-    <AboutSection :show-story-and-founder="false" />
-
     <!-- Contact Section (Details, QRs, Form) -->
     <ContactSection />
   </div>
 </template>
 
 <script setup>
-import { onMounted } from "vue";
+import { onMounted, computed } from "vue";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -91,11 +89,8 @@ if (process.client) {
   gsap.registerPlugin(ScrollTrigger);
 }
 
-useSeoMeta({
-  title: "Ruuts - Premium Group Experiences & Tea Rituals",
-  description:
-    "Reconnect with your roots through Chinese tea culture. We design signature tea ceremonies, body rituals, and premium group experiences.",
-});
+const { data: pageContent } = useSanityHomepageContent();
+useSanitySeo(computed(() => pageContent.value));
 
 onMounted(() => {
   // Page load animations
@@ -142,7 +137,7 @@ onMounted(() => {
   content: "";
   position: absolute;
   inset: 0;
-  background-image: url("~/assets/images/home.jpg");
+  background-image: var(--hero-bg-url, url("~/assets/images/home.jpg"));
   background-size: cover;
   background-position: center;
   z-index: 0;

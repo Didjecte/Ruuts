@@ -3,8 +3,11 @@
 </template>
 
 <script setup>
-useSeoMeta({
-  title: "Ruuts - Custom Experiences | Tea anywhere",
-  description: "Bespoke tea experiences for hotels, corporate events, and wellness venues. Bring the art of Chinese tea culture to your space.",
-});
+import { computed } from "vue";
+const { data: pageContent } = useSanityHomepageContent();
+
+useSanitySeo(computed(() => ({
+  seoTitle: pageContent.value?.teaAnywhereMetaTitle || "Custom Experiences | Tea anywhere",
+  seoDescription: pageContent.value?.teaAnywhereMetaDescription || "Bespoke tea experiences for hotels, corporate events, and wellness venues. Bring the art of Chinese tea culture to your space."
+})));
 </script>
