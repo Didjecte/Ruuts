@@ -149,3 +149,13 @@
     @apply w-full my-8;
   }
 }
+
+/* Pre-hide animated hero elements until JS is hydrated & AppLoader finishes */
+html:not(.js-ready) .hero-title,
+html:not(.js-ready) .hero-description,
+html:not(.js-ready) .hero-actions,
+html:not(.js-ready) .hero-social-dock,
+html:not(.js-ready) .scroll-indicator {
+  opacity: 0;
+}
+

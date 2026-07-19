@@ -104,11 +104,14 @@
           <div
             class="w-full h-[240px] sm:h-[320px] mb-8 rounded-xl border border-secondary/20 overflow-hidden"
           >
-            <img
+            <NuxtImg
+              v-if="post.mediaUrl"
+              provider="sanity"
               :src="post.mediaUrl"
               :alt="post.title"
               class="w-full h-full object-cover"
               loading="lazy"
+              sizes="sm:100vw md:50vw lg:800px"
             />
           </div>
 

@@ -2,16 +2,17 @@
   <section :id="sectionId" ref="sectionRef" class="bg-background pt-[90px] md:pt-[100px] pb-0">
     <div
       :class="[
-        'max-w-[1200px] mx-auto px-6 w-full page-header',
-        { 'text-center flex flex-col items-center': catalogType === 'b2b' || activeExperiences.length === 2 }
+        'max-w-[1200px] mx-auto px-6 w-full page-header flex flex-col gap-6',
+        { 'text-center items-center': catalogType === 'b2b' || activeExperiences.length === 2 }
       ]"
     >
-      <h1 class="text-5xl mb-6 font-heading font-semibold text-primary">
+      <h1 class="text-5xl font-heading font-semibold text-primary">
         {{ resolvedTitle }}
       </h1>
       <p
+        v-if="resolvedDescription"
         :class="[
-          'text-foreground/80 max-w-[600px] leading-[1.8] mb-8',
+          'text-foreground/80 max-w-[600px] leading-[1.8]',
           { 'mx-auto': catalogType === 'b2b' || activeExperiences.length === 2 }
         ]"
       >
@@ -20,7 +21,7 @@
     </div>
 
     <!-- Experiences Grid -->
-    <div class="max-w-[1200px] mx-auto px-6 w-full mt-6 mb-24">
+    <div class="max-w-[1200px] mx-auto px-6 w-full mt-10 md:mt-12 mb-24">
       <div
         :class="[
           'grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8',
@@ -47,13 +48,12 @@
       <div class="max-w-[1200px] mx-auto px-6 w-full">
         <div class="text-center reveal-item">
           <h2 class="font-heading text-5xl mb-4 font-semibold text-primary">
-            Private Session Policies
+            {{ resolvedBookingPolicy.title }}
           </h2>
           <p
             class="text-base md:text-xl text-foreground/75 max-w-[650px] mx-auto mb-8 leading-[1.7]"
           >
-            To preserve the quality of each experience and the integrity of the
-            hosting space, the following guidelines govern all bookings.
+            {{ resolvedBookingPolicy.description }}
           </p>
         </div>
 
@@ -69,7 +69,7 @@
             </h3>
             <ul class="flex flex-col gap-[0.8rem]">
               <li
-                v-for="(item, idx) in bookingPolicy.confirmation"
+                v-for="(item, idx) in resolvedBookingPolicy.confirmation"
                 :key="idx"
                 class="text-sm leading-[1.5] text-foreground/80 relative pl-[1.2rem] before:content-['•'] before:text-primary before:text-lg before:absolute before:left-0 before:-top-[2px]"
               >
@@ -89,7 +89,7 @@
             </h3>
             <ul class="flex flex-col gap-[0.8rem]">
               <li
-                v-for="(item, idx) in bookingPolicy.modification"
+                v-for="(item, idx) in resolvedBookingPolicy.modification"
                 :key="idx"
                 class="text-sm leading-[1.5] text-foreground/80 relative pl-[1.2rem] before:content-['•'] before:text-primary before:text-lg before:absolute before:left-0 before:-top-[2px]"
               >
@@ -109,7 +109,7 @@
             </h3>
             <div class="flex flex-col gap-[0.8rem]">
               <div
-                v-for="(sched, idx) in bookingPolicy.cancellation"
+                v-for="(sched, idx) in resolvedBookingPolicy.cancellation"
                 :key="idx"
                 class="flex justify-between border-b border-dashed border-secondary/20 pb-[0.6rem] text-sm gap-4"
               >
@@ -131,7 +131,7 @@
               4. Force Majeure
             </h3>
             <p class="text-sm leading-[1.7] text-foreground/80">
-              {{ bookingPolicy.forceMajeure }}
+              {{ resolvedBookingPolicy.forceMajeure }}
             </p>
           </div>
         </div>
@@ -143,8 +143,6 @@
 <script setup>
 import { ref, computed, watch, nextTick, onMounted } from "vue";
 import {
-  experiencesB2C,
-  experiencesB2B,
   bookingPolicy,
 } from "~/data/experiences";
 import { gsap } from "gsap";
@@ -191,16 +189,37 @@ const resolvedTitle = computed(() => {
 const resolvedDescription = computed(() => {
   if (props.description) return props.description;
   if (props.catalogType === 'b2b') {
-    return pageContent.value?.b2bDescription || 'Bespoke tea experiences for hotels, corporate events, and wellness venues. Bring the art of Chinese tea culture to your space.';
+    return pageContent.value?.b2bDescription || '';
   }
-  return pageContent.value?.b2cDescription || 'Carefully composed private encounters where Chinese tea culture, sound, breath, and presence meet. Find the perfect session for your group.';
+  return pageContent.value?.b2cDescription || '';
+});
+
+const resolvedBookingPolicy = computed(() => {
+  const pc = pageContent.value;
+  return {
+    title: pc?.b2cPolicyTitle || 'Private Session Policies',
+    description: pc?.b2cPolicyDescription || 'To preserve the quality of each experience and the integrity of the hosting space, the following guidelines govern all bookings.',
+    confirmation:
+      pc?.b2cPolicyConfirmation && pc.b2cPolicyConfirmation.length > 0
+        ? pc.b2cPolicyConfirmation
+        : bookingPolicy.confirmation,
+    modification:
+      pc?.b2cPolicyModification && pc.b2cPolicyModification.length > 0
+        ? pc.b2cPolicyModification
+        : bookingPolicy.modification,
+    cancellation:
+      pc?.b2cPolicyCancellation && pc.b2cPolicyCancellation.length > 0
+        ? pc.b2cPolicyCancellation
+        : bookingPolicy.cancellation,
+    forceMajeure: pc?.b2cPolicyForceMajeure || bookingPolicy.forceMajeure,
+  };
 });
 
 const activeExperiences = computed(() => {
   if (sanityExperiences.value && sanityExperiences.value.length > 0) {
     return sanityExperiences.value;
   }
-  return props.catalogType === "b2b" ? experiencesB2B : experiencesB2C;
+  return [];
 });
 
 onMounted(() => {

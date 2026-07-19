@@ -136,10 +136,13 @@
                 v-if="pageContent?.contactWechatQR"
                 class="absolute top-full right-0 mt-3 hidden group-hover:flex flex-col items-center bg-white p-2.5 rounded-xl shadow-2xl border border-secondary/30 z-50 w-32 h-32 pointer-events-none transition-opacity duration-200"
               >
-                <img
+                <NuxtImg
+                  provider="sanity"
                   :src="pageContent.contactWechatQR"
                   alt="WeChat QR"
                   class="w-full h-full object-contain"
+                  width="128"
+                  height="128"
                 />
               </div>
             </a>

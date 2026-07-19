@@ -8,7 +8,14 @@ export default defineNuxtConfig({
   },
 
   css: ['~/assets/css/main.css'],
-  modules: ['@nuxtjs/tailwindcss', '@nuxtjs/sanity', '@nuxtjs/sitemap', '@nuxtjs/robots'],
+  modules: ['@nuxtjs/tailwindcss', '@nuxtjs/sanity', '@nuxtjs/sitemap', '@nuxtjs/robots', '@nuxt/image'],
+
+  image: {
+    sanity: {
+      projectId: 'vyyl6ql8',
+      dataset: 'production',
+    }
+  },
 
   site: {
     url: 'https://theruuts.com',

@@ -40,7 +40,7 @@
       </NuxtLink>
 
       <!-- Desktop Menu -->
-      <nav class="hidden md:flex items-center gap-10">
+      <nav class="hidden lg:flex items-center gap-10">
         <NuxtLink
           to="/custom-experiences"
           @click="(e) => handleNavLinkClick(e, '/custom-experiences')"
@@ -51,7 +51,7 @@
               : 'text-foreground hover:text-primary',
           ]"
         >
-          Tea Anywhere
+          {{ pageContent?.b2bTitle || 'Tea Anywhere' }}
           <span
             :class="[
               'absolute bottom-0 left-0 w-0 h-[1px] transition-all duration-200 group-hover:w-full',
@@ -69,7 +69,7 @@
               : 'text-foreground hover:text-primary',
           ]"
         >
-          Private Experiences
+          {{ pageContent?.b2cTitle || 'Private Experiences' }}
           <span
             :class="[
               'absolute bottom-0 left-0 w-0 h-[1px] transition-all duration-200 group-hover:w-full',
@@ -125,9 +125,9 @@
         </NuxtLink>
       </nav>
 
-      <!-- Burger Button (Mobile) -->
+      <!-- Burger Button (Mobile / Tablet) -->
       <button
-        class="flex md:hidden flex-col justify-between w-[50px] h-[40px] p-[10px] -mr-[10px] bg-transparent border-none cursor-pointer relative z-[101]"
+        class="flex lg:hidden flex-col justify-between w-[50px] h-[40px] p-[10px] -mr-[10px] bg-transparent border-none cursor-pointer relative z-[101]"
         :aria-expanded="isMenuOpen"
         aria-label="Toggle menu"
         @click="toggleMenu"
@@ -170,13 +170,13 @@
             to="/custom-experiences"
             class="mobile-nav-link font-heading text-4xl text-foreground tracking-[0.05em] opacity-0 hover:text-primary transition-colors duration-200"
             @click="(e) => handleNavLinkClick(e, '/custom-experiences')"
-            >Tea anywhere</NuxtLink
+            >{{ pageContent?.b2bTitle || 'Tea anywhere' }}</NuxtLink
           >
           <NuxtLink
             to="/experiences"
             class="mobile-nav-link font-heading text-4xl text-foreground tracking-[0.05em] opacity-0 hover:text-primary transition-colors duration-200"
             @click="(e) => handleNavLinkClick(e, '/experiences')"
-            >Private Experiences</NuxtLink
+            >{{ pageContent?.b2cTitle || 'Private Experiences' }}</NuxtLink
           >
           <NuxtLink
             to="/testimonials"
@@ -213,6 +213,8 @@
 import { ref, computed, onMounted, onUnmounted } from "vue";
 import { useRoute } from "vue-router";
 import { gsap } from "gsap";
+
+const { data: pageContent } = useSanityHomepageContent();
 
 const route = useRoute();
 const headerRef = ref(null);

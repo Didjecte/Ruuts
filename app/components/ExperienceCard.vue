@@ -6,11 +6,14 @@
     ]"
   >
     <div class="relative w-full h-[180px] sm:h-[200px] shrink-0 overflow-hidden">
-      <img
+      <NuxtImg
+        v-if="experience.image"
+        provider="sanity"
         :src="experience.image"
         :alt="experience.title"
-        class="w-full h-full object-cover transition-transform duration-[800ms] ease-[cubic-bezier(0.25,1,0.5,1)] group-hover:scale-105"
+        class="w-full h-full object-cover transition-transform duration-[600ms] ease-[cubic-bezier(0.25,1,0.5,1)] group-hover:scale-105"
         loading="lazy"
+        sizes="sm:100vw md:50vw lg:600px"
       />
       <!-- Floating Badges for Duration & Capacity -->
       <div

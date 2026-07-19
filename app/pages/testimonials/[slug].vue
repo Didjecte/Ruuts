@@ -25,7 +25,7 @@
         </header>
 
         <div class="w-full h-[300px] md:h-[480px] mb-14 rounded-2xl border border-secondary/20 overflow-hidden reveal-item-detail">
-          <img :src="post.mediaUrl" :alt="post.title" class="w-full h-full object-cover" loading="lazy" />
+          <NuxtImg provider="sanity" :src="post.mediaUrl" :alt="post.title" class="w-full h-full object-cover" loading="lazy" sizes="sm:100vw md:100vw lg:1000px" />
         </div>
 
         <div v-if="post.description" class="reveal-item-detail text-lg leading-[1.8] text-dark/90 font-medium mb-10 [&>p]:mb-4 [&>ul]:ml-6 [&>ul>li]:mb-2 [&>ol]:ml-6 [&>ol>li]:mb-2" v-html="post.description"></div>
@@ -43,7 +43,7 @@
         </header>
 
         <div class="w-full rounded-2xl border border-secondary/20 overflow-hidden mb-12 reveal-item-detail">
-          <img :src="post.mediaUrl" :alt="post.title" class="w-full block" loading="lazy" />
+          <NuxtImg provider="sanity" :src="post.mediaUrl" :alt="post.title" class="w-full block" loading="lazy" sizes="sm:100vw md:100vw lg:1000px" />
         </div>
 
         <div class="reveal-item-detail">
@@ -60,7 +60,7 @@
               class="rounded-lg border border-secondary/20 overflow-hidden h-[180px] cursor-pointer group relative"
               @click="openLightbox(idx)"
             >
-              <img :src="img" :alt="`${post.title} gallery ${idx + 1}`" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" loading="lazy" />
+              <NuxtImg provider="sanity" :src="img" :alt="`${post.title} gallery ${idx + 1}`" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" loading="lazy" sizes="sm:100vw md:33vw lg:33vw" />
               <div class="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-center justify-center">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-white">
                   <circle cx="11" cy="11" r="8"></circle>
@@ -105,7 +105,7 @@
               class="absolute inset-0 cursor-pointer"
               @click="toggleVideoPlay"
             >
-              <img :src="post.mediaUrl" :alt="post.title" class="w-full h-full object-cover opacity-80" loading="lazy" />
+              <NuxtImg provider="sanity" :src="post.mediaUrl" :alt="post.title" class="w-full h-full object-cover opacity-80" loading="lazy" sizes="sm:100vw md:100vw lg:1000px" />
               <div class="absolute inset-0 flex items-center justify-center bg-black/15">
                 <button
                   class="w-[70px] h-[70px] rounded-full border border-[#88A95B] bg-[#88A95B]/85 text-light flex items-center justify-center cursor-pointer transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] hover:scale-110 hover:bg-secondary hover:text-dark hover:border-secondary shadow-2xl"
@@ -320,11 +320,13 @@
 
           <div class="max-w-full max-h-[75vh] flex items-center justify-center" @click.self="closeLightbox">
             <Transition name="fade-scale" mode="out-in">
-              <img
+              <NuxtImg
+                provider="sanity"
                 :key="activeLightboxIndex"
                 :src="post.gallery[activeLightboxIndex]"
                 alt="Testimonial Gallery Detail"
                 class="max-w-full max-h-[75vh] object-contain rounded-lg shadow-2xl"
+                sizes="sm:100vw md:100vw lg:1200px"
               />
             </Transition>
           </div>
@@ -352,7 +354,7 @@
               :class="idx === activeLightboxIndex ? 'border-[#88A95B] scale-105' : 'border-transparent opacity-50 hover:opacity-100'"
               @click="openLightbox(idx)"
             >
-              <img :src="img" class="w-full h-full object-cover pointer-events-none" />
+              <NuxtImg provider="sanity" :src="img" class="w-full h-full object-cover pointer-events-none" sizes="100px" />
             </button>
           </div>
         </div>
@@ -379,7 +381,7 @@ const activePostsList = computed(() => {
   if (sanityTestimonials.value && sanityTestimonials.value.length > 0) {
     return sanityTestimonials.value;
   }
-  return testimonialsMockData;
+  return [];
 });
 
 const post = computed(() => {

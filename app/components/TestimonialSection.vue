@@ -3,17 +3,17 @@
     id="testimonials"
     class="dark bg-background pt-[90px] md:pt-[100px] pb-16 md:pb-24"
   >
-    <div class="max-w-[1200px] mx-auto px-6 w-full page-header">
-      <h1 class="font-heading text-5xl mb-6 font-semibold">
+    <div class="max-w-[1200px] mx-auto px-6 w-full page-header flex flex-col gap-6">
+      <h1 class="font-heading text-5xl font-semibold">
         {{ pageContent?.testimonialsTitle || 'Testimonials' }}
       </h1>
-      <p class="text-foreground/80 max-w-[600px] leading-[1.8] mb-8">
-        {{ pageContent?.testimonialsSubtext || 'Deep dives into tea ceremonies, photographic journals of mountain harvests, and auditory experiences of traditional instruments.' }}
+      <p v-if="pageContent?.testimonialsSubtext" class="text-foreground/80 max-w-[600px] leading-[1.8]">
+        {{ pageContent.testimonialsSubtext }}
       </p>
     </div>
 
     <!-- Testimonials Grid -->
-    <div class="max-w-[1200px] mx-auto px-6 w-full mt-6 mb-0">
+    <div class="max-w-[1200px] mx-auto px-6 w-full mt-10 md:mt-12 mb-0">
       <div class="columns-2 lg:columns-3 gap-3 sm:gap-[2.2rem]">
         <div
           v-for="post in posts"
@@ -48,7 +48,6 @@
 
 <script setup>
 import { ref, computed, watch, nextTick, onMounted } from "vue";
-import { testimonialsMockData } from "~/data/testimonials";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -63,7 +62,7 @@ const posts = computed(() => {
   if (sanityTestimonials.value && sanityTestimonials.value.length > 0) {
     return sanityTestimonials.value;
   }
-  return testimonialsMockData;
+  return [];
 });
 
 const activePost = ref(null);

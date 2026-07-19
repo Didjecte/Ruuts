@@ -175,6 +175,28 @@ async function importSiteContent() {
     b2cDescription: 'Explore the profound world of Chinese tea through our curated private sessions. From seasonal tastings to live Pipa music pairings and Taichi meditations, each session invites you to slow down and savor the present.',
     privateExperiencesMetaTitle: '',
     privateExperiencesMetaDescription: '',
+    b2cPolicyTitle: 'Private Session Policies',
+    b2cPolicyDescription: 'To preserve the quality of each experience and the integrity of the hosting space, the following guidelines govern all bookings.',
+    b2cPolicyConfirmation: [
+      'Confirmed date and time',
+      'Number of guests',
+      'Selected experience type',
+      'Bookings are considered confirmed only upon full payment.'
+    ],
+    b2cPolicyModification: [
+      'You may reschedule your session to a new date within 30 days after the original session date.',
+      'Requests must be made at least 14 working days before the original session date.',
+      'Rescheduling is subject to availability. No fee applies, but only one modification is allowed.',
+      'If you cancel after rescheduling, the original cancellation policy applies based on the new session date.'
+    ],
+    b2cPolicyCancellation: [
+      { _key: randomKey(), range: 'More than 10 days before', refund: '60% refund' },
+      { _key: randomKey(), range: 'Between 5 and 10 days before (5 days included)', refund: '50% refund' },
+      { _key: randomKey(), range: 'Between 2 and 5 days before (2 days included)', refund: '30% refund' },
+      { _key: randomKey(), range: 'Less than 2 days but at least 24 hours before', refund: '10% refund' },
+      { _key: randomKey(), range: 'Less than 24 hours before the start', refund: '0% refund' }
+    ],
+    b2cPolicyForceMajeure: 'Force majeure means any event beyond reasonable human control that is unavoidable and makes performance impossible, including but not limited to natural disasters, government-ordered lockdowns, epidemics, or pandemics. If a force majeure event occurs, you may choose either: Reschedule to a new date (subject to availability), or a full refund of all amounts paid.',
 
     // About Section
     aboutStoryTitle: 'Our Story',
@@ -239,7 +261,17 @@ async function importSiteContent() {
   }
 
   await client.createIfNotExists(homepageContentDoc)
-  await client.patch('homepageContent').setIfMissing(homepageContentDoc).commit()
+  await client.patch('homepageContent')
+    .setIfMissing(homepageContentDoc)
+    .setIfMissing({
+      b2cPolicyTitle: homepageContentDoc.b2cPolicyTitle,
+      b2cPolicyDescription: homepageContentDoc.b2cPolicyDescription,
+      b2cPolicyConfirmation: homepageContentDoc.b2cPolicyConfirmation,
+      b2cPolicyModification: homepageContentDoc.b2cPolicyModification,
+      b2cPolicyCancellation: homepageContentDoc.b2cPolicyCancellation,
+      b2cPolicyForceMajeure: homepageContentDoc.b2cPolicyForceMajeure
+    })
+    .commit()
   console.log('✅ Homepage Content imported!')
 
   console.log('\n🎉 All local site info successfully imported into Sanity Studio!')

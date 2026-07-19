@@ -82,11 +82,14 @@
             <!-- Active Image -->
             <div class="max-w-full max-h-[70vh] md:max-h-[78vh] flex items-center justify-center" @click.self="close">
               <Transition name="fade-scale" mode="out-in">
-                <img
-                  :key="currentImage"
-                  :src="currentImage"
-                  alt="Testimonial Photo"
-                  class="max-w-full max-h-[70vh] md:max-h-[78vh] object-contain rounded-lg shadow-2xl animate-fade-in"
+                <NuxtImg
+                  provider="sanity"
+                  :key="currentIndex"
+                  :src="gallery[currentIndex]"
+                  alt="Gallery image"
+                  class="max-w-full max-h-full object-contain rounded-lg shadow-[0_0_40px_rgba(0,0,0,0.5)]"
+                  sizes="sm:100vw md:100vw lg:1200px"
+                  loading="lazy"
                 />
               </Transition>
             </div>
@@ -119,7 +122,7 @@
                 :class="idx === currentIndex ? 'border-[#88A95B] scale-105 shadow-md shadow-[#88A95B]/20' : 'border-transparent opacity-50 hover:opacity-100'"
                 @click="selectImage(idx)"
               >
-                <img :src="img" class="w-full h-full object-cover pointer-events-none" />
+                <NuxtImg provider="sanity" :src="img" class="w-full h-full object-cover pointer-events-none" sizes="100px" loading="lazy" />
               </button>
             </div>
 
