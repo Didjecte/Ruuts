@@ -11,12 +11,17 @@ export function useSanityExperiences(catalogType: string) {
     bullets,
     highlights,
     "imageUrl": imageUrl,
-    "imageAsset": image.asset->url
+    "imageAsset": image.asset._ref
   }`
 
-  const { data, pending, error } = useLazyAsyncData(
+  const { data, pending, error } = useAsyncData(
     `experiences-${catalogType}`,
-    () => useSanity().fetch(query, { catalogType })
+    () => useSanity().fetch(query, { catalogType }),
+    {
+      getCachedData(key, nuxtApp) {
+        return nuxtApp.payload.data[key] || nuxtApp.static.data[key]
+      }
+    }
   )
 
   const normalizedData = computed(() => {
@@ -50,18 +55,23 @@ export function useSanityTestimonials() {
     publishedAt,
     description,
     "mediaUrl": mediaUrl,
-    "mediaImageAsset": mediaImage.asset->url,
+    "mediaImageAsset": mediaImage.asset._ref,
     galleryUrls,
-    "galleryImageAssets": galleryImages[].asset->url,
+    "galleryImageAssets": galleryImages[].asset._ref,
     videoUrl,
     "videoFileAsset": videoFile.asset->url,
     duration,
     body
   }`
 
-  const { data, pending, error } = useLazyAsyncData(
+  const { data, pending, error } = useAsyncData(
     'testimonials-list',
-    () => useSanity().fetch(query)
+    () => useSanity().fetch(query),
+    {
+      getCachedData(key, nuxtApp) {
+        return nuxtApp.payload.data[key] || nuxtApp.static.data[key]
+      }
+    }
   )
 
   const normalizedData = computed(() => {
@@ -165,7 +175,12 @@ export function useSanitySiteSettings() {
 
   const { data, pending, error } = useAsyncData(
     'siteSettings',
-    () => useSanity().fetch(query)
+    () => useSanity().fetch(query),
+    {
+      getCachedData(key, nuxtApp) {
+        return nuxtApp.payload.data[key] || nuxtApp.static.data[key]
+      }
+    }
   )
 
   return {
@@ -184,7 +199,7 @@ export function useSanityHomepageContent() {
     "heroImage": heroImage.asset->url,
     introTitle,
     introParagraphs,
-    "introImage": introImage.asset->url,
+    "introImage": introImage.asset._ref,
     testimonialsTitle,
     testimonialsSubtext,
     testimonialsMetaTitle,
@@ -193,6 +208,12 @@ export function useSanityHomepageContent() {
     b2bDescription,
     b2cTitle,
     b2cDescription,
+    b2cPolicyTitle,
+    b2cPolicyDescription,
+    b2cPolicyConfirmation,
+    b2cPolicyModification,
+    b2cPolicyCancellation,
+    b2cPolicyForceMajeure,
     teaAnywhereMetaTitle,
     teaAnywhereMetaDescription,
     privateExperiencesMetaTitle,
@@ -200,13 +221,13 @@ export function useSanityHomepageContent() {
     aboutStoryTitle,
     aboutStorySubtitle,
     aboutStoryText,
-    "aboutStoryImage": aboutStoryImage.asset->url,
+    "aboutStoryImage": aboutStoryImage.asset._ref,
     aboutFounderTitle,
     aboutFounderSubtitle,
     aboutFounderText,
-    "aboutFounderImage": aboutFounderImage.asset->url,
+    "aboutFounderImage": aboutFounderImage.asset._ref,
     aboutMissionTitle,
-    "aboutMissionImage": aboutMissionImage.asset->url,
+    "aboutMissionImage": aboutMissionImage.asset._ref,
     aboutMissionQuote,
     aboutMissionQuoteAuthor,
     aboutMissions,
@@ -214,16 +235,16 @@ export function useSanityHomepageContent() {
     aboutMetaDescription,
     contactTitle,
     contactDescription,
-    "contactImage": contactImage.asset->url,
+    "contactImage": contactImage.asset._ref,
     contactEmail,
     contactPhone,
-    "contactWechatQR": contactWechatQR.asset->url,
+    "contactWechatQR": contactWechatQR.asset._ref,
     contactWechatLink,
-    "contactWhatsappQR": contactWhatsappQR.asset->url,
+    "contactWhatsappQR": contactWhatsappQR.asset._ref,
     contactWhatsappLink,
-    "contactInstagramQR": contactInstagramQR.asset->url,
+    "contactInstagramQR": contactInstagramQR.asset._ref,
     contactInstagramLink,
-    "contactLinkedinQR": contactLinkedinQR.asset->url,
+    "contactLinkedinQR": contactLinkedinQR.asset._ref,
     contactLinkedinLink,
     contactMetaTitle,
     contactMetaDescription
@@ -231,13 +252,19 @@ export function useSanityHomepageContent() {
 
   const { data, pending, error } = useAsyncData(
     'homepageContent',
-    () => useSanity().fetch(query)
+    () => useSanity().fetch(query),
+    {
+      getCachedData(key, nuxtApp) {
+        return nuxtApp.payload.data[key] || nuxtApp.static.data[key]
+      }
+    }
   )
 
   const normalizedData = computed(() => {
     if (!data.value) return null
     return {
       ...data.value,
+      heroImage: data.value.heroImage ? `${data.value.heroImage}?auto=format` : '',
       introHtml: blocksToHtml(data.value.introParagraphs),
       aboutStoryHtml: blocksToHtml(data.value.aboutStoryText),
       aboutFounderHtml: blocksToHtml(data.value.aboutFounderText)

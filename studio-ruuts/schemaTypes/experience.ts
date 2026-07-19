@@ -4,6 +4,16 @@ export const experience = defineType({
   name: 'experience',
   title: 'Experience',
   type: 'document',
+  orderings: [
+    {
+      title: 'Type & Order',
+      name: 'typeAndOrder',
+      by: [
+        {field: 'type', direction: 'asc'},
+        {field: 'order', direction: 'asc'},
+      ],
+    },
+  ],
   fields: [
     defineField({
       name: 'order',

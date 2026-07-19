@@ -5,11 +5,14 @@
   >
     <div class="block text-inherit">
       <div class="relative w-full overflow-hidden">
-        <img
+        <NuxtImg
+          v-if="post.mediaUrl"
+          provider="sanity"
           :src="post.mediaUrl"
           :alt="post.title"
           class="w-full h-auto block transition-transform duration-[600ms] ease-[cubic-bezier(0.25,1,0.5,1)] group-hover:scale-105"
           loading="lazy"
+          sizes="sm:100vw md:50vw lg:400px"
         />
 
         <!-- Hover overlay icon based on post type -->

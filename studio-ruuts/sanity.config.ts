@@ -40,7 +40,23 @@ export default defineConfig({
             // All other regular document lists
             ...S.documentTypeListItems().filter(
               (listItem) => !singletonTypes.has(listItem.getId() || '')
-            ),
+            ).map((listItem) => {
+              if (listItem.getId() === 'testimonial') {
+                return listItem.child(
+                  S.documentTypeList('testimonial')
+                    .title(listItem.getTitle() || 'Testimonials')
+                    .defaultOrdering([{field: 'publishedAt', direction: 'desc'}])
+                )
+              }
+              if (listItem.getId() === 'experience') {
+                return listItem.child(
+                  S.documentTypeList('experience')
+                    .title(listItem.getTitle() || 'Experiences')
+                    .defaultOrdering([{field: 'order', direction: 'asc'}])
+                )
+              }
+              return listItem
+            }),
           ]),
     }),
   ],

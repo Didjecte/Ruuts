@@ -12,11 +12,22 @@
         <div
           class="relative w-full order-1 lg:order-2 reveal-item rounded-2xl overflow-hidden shadow-[0_20px_40px_rgba(0,0,0,0.15)] parallax-container mt-6 lg:mt-0"
         >
-          <img
-            :src="pageContent?.aboutStoryImage || defaultOriginImg"
+          <NuxtImg
+            v-if="pageContent?.aboutStoryImage"
+            provider="sanity"
+            :src="pageContent.aboutStoryImage"
             alt="Terraced tea fields in China"
             class="w-full h-[350px] lg:h-[480px] object-cover relative z-10 parallax-img"
             loading="lazy"
+            sizes="sm:100vw md:50vw lg:800px"
+          />
+          <NuxtImg
+            v-else
+            :src="defaultOriginImg"
+            alt="Terraced tea fields in China"
+            class="w-full h-[350px] lg:h-[480px] object-cover relative z-10 parallax-img"
+            loading="lazy"
+            sizes="sm:100vw md:50vw lg:800px"
           />
         </div>
         <!-- Text block second in HTML, ordered to be on the left on desktop -->
@@ -37,28 +48,6 @@
             </template>
           </p>
           <div v-if="pageContent?.aboutStoryHtml" class="space-y-4 text-foreground" v-html="pageContent.aboutStoryHtml"></div>
-          <div v-else class="space-y-4 text-foreground">
-            <p>
-              Through exploring the world of Chinese tea, our Franco-Chinese
-              founder rediscovered the true <b>meaning of roots</b>.
-            </p>
-            <p>
-              Invisible yet essential, roots are what all beings share. They
-              hold our stories, our strength, our sense of belonging. The deeper
-              we understand them, the more grounded we become. RUUTS is
-              <b>a journey back to the origin</b>.
-            </p>
-            <p>
-              From Guangdong to Yunnan, from Fujian to Anhui, from Zhejiang to
-              Jiangsu, Chinese tea culture shifts from one province to another,
-              from one village to the next — yet everywhere, the same spirit
-              endures:
-              <b
-                >passion, patience, and the quiet belief that mastery is born of
-                time and dedication</b
-              >.
-            </p>
-          </div>
         </div>
       </div>
     </div>
@@ -75,11 +64,22 @@
           <div
             class="relative w-full reveal-item rounded-2xl overflow-hidden shadow-[0_20px_40px_rgba(0,0,0,0.15)] parallax-container"
           >
-            <img
-              :src="pageContent?.aboutFounderImage || defaultFounderImg"
+            <NuxtImg
+              v-if="pageContent?.aboutFounderImage"
+              provider="sanity"
+              :src="pageContent.aboutFounderImage"
               alt="Ophélie Hu - Founder of RUUTS"
               class="w-full h-[350px] lg:h-[580px] object-cover relative z-10 parallax-img"
               loading="lazy"
+              sizes="sm:100vw md:50vw lg:800px"
+            />
+            <NuxtImg
+              v-else
+              :src="defaultFounderImg"
+              alt="Ophélie Hu - Founder of RUUTS"
+              class="w-full h-[350px] lg:h-[580px] object-cover relative z-10 parallax-img"
+              loading="lazy"
+              sizes="sm:100vw md:50vw lg:800px"
             />
           </div>
           <div class="reveal-item">
@@ -94,32 +94,6 @@
               {{ founderSubtitle }}
             </p>
             <div v-if="pageContent?.aboutFounderHtml" class="space-y-4 text-foreground" v-html="pageContent.aboutFounderHtml"></div>
-            <div v-else class="space-y-4 text-foreground">
-              <p>
-                Franco-Chinese and driven by her curiosity for China and her own
-                roots, Ophélie earned a Master’s degree in Supply Chain
-                Management from a French business school before moving to
-                Shanghai in 2018. She began her professional journey in supply
-                chain project management, procurement, and business development
-                — yet her heart was quietly drawn to tea.
-              </p>
-              <p>
-                By 2021, she began splitting her time between the bustling city
-                and China’s tea-growing regions, learning from master artisans
-                and uncovering the rituals, aromas, and stories behind every
-                leaf. In 2022, she created <em>Chabutu 茶不土</em>, a WeChat
-                page devoted to sharing these discoveries with a wider audience.
-                Her journey of mastery continued in 2024, when she earned her
-                first Chinese tea tasting certification in Hangzhou.
-              </p>
-              <p>
-                Today, Ophélie blends her cross-cultural expertise with her
-                creative spirit to craft tea experiences that go beyond
-                delighting the senses — experiences that tell stories, connect
-                people, and transform corporate events into genuine cultural
-                journeys.
-              </p>
-            </div>
           </div>
         </div>
       </div>
@@ -136,11 +110,22 @@
               <div
                 class="w-full rounded-2xl overflow-hidden shadow-[0_20px_40px_rgba(136,169,91,0.15)] parallax-container"
               >
-                <img
-                  :src="pageContent?.aboutMissionImage || defaultMissionImg"
+                <NuxtImg
+                  v-if="pageContent?.aboutMissionImage"
+                  provider="sanity"
+                  :src="pageContent.aboutMissionImage"
                   alt="Ruuts Mission"
                   class="w-full h-[300px] md:h-[350px] object-cover parallax-img"
                   loading="lazy"
+                  sizes="sm:100vw md:50vw lg:600px"
+                />
+                <NuxtImg
+                  v-else
+                  :src="defaultMissionImg"
+                  alt="Ruuts Mission"
+                  class="w-full h-[300px] md:h-[350px] object-cover parallax-img"
+                  loading="lazy"
+                  sizes="sm:100vw md:50vw lg:600px"
                 />
               </div>
 
@@ -315,33 +300,10 @@ onUnmounted(() => {
   if (ctx) ctx.revert();
 });
 
-const defaultMissions = [
-  {
-    title: "Create Community",
-    description:
-      "Where we can exchange, share, and explore the world of tea through a fun and thoughtful perspective.",
-  },
-  {
-    title: "Celebrate Intercultural Connections",
-    description:
-      "Celebrating the fusion of Eastern and Western heritage to unlock a unique dimension of Chinese culture.",
-  },
-  {
-    title: "Collect Emotions",
-    description:
-      "Gathering laughter, presence, and crafting unforgettable moments together.",
-  },
-  {
-    title: "Connect with Farmers",
-    description:
-      "Bridging the gap between guests and the tea farmers, honoring the soil and land they cultivate.",
-  },
-];
-
 const activeMissions = computed(() => {
   if (pageContent.value && pageContent.value.aboutMissions && pageContent.value.aboutMissions.length > 0) {
     return pageContent.value.aboutMissions;
   }
-  return defaultMissions;
+  return [];
 });
 </script>

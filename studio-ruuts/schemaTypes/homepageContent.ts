@@ -9,8 +9,8 @@ export const homepageContent = defineType({
     { name: 'hero', title: 'Hero Section', default: true },
     { name: 'intro', title: 'Intro Section' },
     { name: 'testimonials', title: 'Testimonials Section' },
-    { name: 'teaAnywhere', title: 'Tea Anywhere' },
-    { name: 'privateExperiences', title: 'Private Experiences' },
+    { name: 'teaAnywhere', title: 'B2B' },
+    { name: 'privateExperiences', title: 'B2C' },
     { name: 'about', title: 'About Section' },
     { name: 'contact', title: 'Contact Section' },
   ],
@@ -115,17 +115,17 @@ export const homepageContent = defineType({
       group: 'testimonials',
     }),
 
-    // TEA ANYWHERE
+    // TEA ANYWHERE (B2B)
     defineField({
       name: 'teaAnywhereMetaTitle',
-      title: 'Tea Anywhere Meta Title Override',
+      title: 'B2B Meta Title Override',
       type: 'string',
       description: 'Leave blank to use Page/Global default meta title.',
       group: 'teaAnywhere',
     }),
     defineField({
       name: 'teaAnywhereMetaDescription',
-      title: 'Tea Anywhere Meta Description Override',
+      title: 'B2B Meta Description Override',
       type: 'text',
       rows: 3,
       description: 'Leave blank to use Page/Global default meta description.',
@@ -133,29 +133,29 @@ export const homepageContent = defineType({
     }),
     defineField({
       name: 'b2bTitle',
-      title: 'Tea Anywhere Section Title',
+      title: 'B2B Section Title',
       type: 'string',
       group: 'teaAnywhere',
     }),
     defineField({
       name: 'b2bDescription',
-      title: 'Tea Anywhere Section Description',
+      title: 'B2B Section Description',
       type: 'text',
       rows: 3,
       group: 'teaAnywhere',
     }),
 
-    // PRIVATE EXPERIENCES
+    // PRIVATE EXPERIENCES (B2C)
     defineField({
       name: 'privateExperiencesMetaTitle',
-      title: 'Private Experiences Meta Title Override',
+      title: 'B2C Meta Title Override',
       type: 'string',
       description: 'Leave blank to use Page/Global default meta title.',
       group: 'privateExperiences',
     }),
     defineField({
       name: 'privateExperiencesMetaDescription',
-      title: 'Private Experiences Meta Description Override',
+      title: 'B2C Meta Description Override',
       type: 'text',
       rows: 3,
       description: 'Leave blank to use Page/Global default meta description.',
@@ -163,15 +163,66 @@ export const homepageContent = defineType({
     }),
     defineField({
       name: 'b2cTitle',
-      title: 'Private Experiences Section Title',
+      title: 'B2C Section Title',
       type: 'string',
       group: 'privateExperiences',
     }),
     defineField({
       name: 'b2cDescription',
-      title: 'Private Experiences Section Description',
+      title: 'B2C Section Description',
       type: 'text',
       rows: 3,
+      group: 'privateExperiences',
+    }),
+    defineField({
+      name: 'b2cPolicyTitle',
+      title: 'Policy Section Title',
+      type: 'string',
+      group: 'privateExperiences',
+    }),
+    defineField({
+      name: 'b2cPolicyDescription',
+      title: 'Policy Section Description',
+      type: 'text',
+      rows: 3,
+      group: 'privateExperiences',
+    }),
+    defineField({
+      name: 'b2cPolicyConfirmation',
+      title: 'Session Confirmation Guidelines',
+      type: 'array',
+      of: [{ type: 'string' }],
+      group: 'privateExperiences',
+    }),
+    defineField({
+      name: 'b2cPolicyModification',
+      title: 'Modification Policy Guidelines',
+      type: 'array',
+      of: [{ type: 'string' }],
+      group: 'privateExperiences',
+    }),
+    defineField({
+      name: 'b2cPolicyCancellation',
+      title: 'Cancellation Policy Rules',
+      type: 'array',
+      of: [
+        {
+          type: 'object',
+          name: 'cancellationRule',
+          title: 'Cancellation Rule',
+          fields: [
+            { name: 'range', title: 'Time Range (e.g. More than 10 days before)', type: 'string' },
+            { name: 'refund', title: 'Refund Percentage (e.g. 60% refund)', type: 'string' },
+          ],
+        },
+      ],
+      group: 'privateExperiences',
+    }),
+    defineField({
+      name: 'b2cPolicyForceMajeure',
+      title: 'Force Majeure Policy',
+      type: 'text',
+      rows: 4,
       group: 'privateExperiences',
     }),
 
