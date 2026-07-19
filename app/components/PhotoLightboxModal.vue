@@ -80,14 +80,14 @@
             </button>
 
             <!-- Active Image -->
-            <div class="max-w-full max-h-[70vh] md:max-h-[78vh] flex items-center justify-center" @click.self="close">
+            <div class="w-full h-full flex items-center justify-center" @click.self="close">
               <Transition name="fade-scale" mode="out-in">
                 <NuxtImg
                   provider="sanity"
                   :key="currentIndex"
                   :src="gallery[currentIndex]"
                   alt="Gallery image"
-                  class="max-w-full max-h-full object-contain rounded-lg shadow-[0_0_40px_rgba(0,0,0,0.5)]"
+                  class="w-auto h-auto max-w-full max-h-[70vh] md:max-h-[78vh] object-contain rounded-lg shadow-[0_0_40px_rgba(0,0,0,0.5)]"
                   sizes="sm:100vw md:100vw lg:1200px"
                   loading="lazy"
                 />
