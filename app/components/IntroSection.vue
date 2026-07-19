@@ -10,28 +10,28 @@
             {{ pageContent?.introTitle || 'Build unforgettable moments' }}
           </h2>
           <div v-if="pageContent?.introHtml" class="space-y-4 text-foreground" v-html="pageContent.introHtml"></div>
-          <div v-else class="space-y-4 text-foreground">
-            <p>
-              Based in Shanghai for the past eight years, Ophélie creates bespoke tea experiences for hotels, brands and events seeking more than entertainment — meaningful cultural encounters that leave a lasting impression.
-            </p>
-            <p>
-              Fluent in French, English and Mandarin, she combines an international project management background with years spent travelling across China’s tea regions, learning directly from artisans and deepening her understanding of tea culture.
-            </p>
-            <p>
-              Today, she brings brands’ visions to life by designing immersive experiences that blend tea, storytelling and human connection — creating moments that are elegant, interactive and deeply memorable.
-            </p>
-          </div>
         </div>
 
         <!-- Image block first in HTML so it is on top on mobile, but ordered to be on the right on desktop -->
         <div
           class="relative w-full order-1 lg:order-2 reveal-item rounded-2xl overflow-hidden shadow-[0_20px_40px_rgba(0,0,0,0.15)] parallax-container mt-6 lg:mt-0"
         >
-          <img
-            :src="pageContent?.introImage || defaultFounderImg"
+          <NuxtImg
+            v-if="pageContent?.introImage"
+            provider="sanity"
+            :src="pageContent.introImage"
             alt="Ophélie Hu - Founder of RUUTS"
             class="w-full h-[350px] lg:h-[480px] object-cover relative z-10 parallax-img"
             loading="lazy"
+            sizes="sm:100vw md:50vw lg:800px"
+          />
+          <NuxtImg
+            v-else
+            :src="defaultFounderImg"
+            alt="Ophélie Hu - Founder of RUUTS"
+            class="w-full h-[350px] lg:h-[480px] object-cover relative z-10 parallax-img"
+            loading="lazy"
+            sizes="sm:100vw md:50vw lg:800px"
           />
         </div>
       </div>

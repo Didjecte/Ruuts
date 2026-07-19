@@ -1,5 +1,5 @@
 <template>
-  <ExperienceSection title="Tea anywhere" catalog-type="b2b" />
+  <ExperienceSection :title="pageContent?.b2bTitle || 'Tea anywhere'" catalog-type="b2b" />
 </template>
 
 <script setup>

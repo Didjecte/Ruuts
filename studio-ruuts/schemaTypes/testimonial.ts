@@ -4,6 +4,18 @@ export const testimonial = defineType({
   name: 'testimonial',
   title: 'Testimonial',
   type: 'document',
+  orderings: [
+    {
+      title: 'Published Date, Newest',
+      name: 'publishedDateDesc',
+      by: [{field: 'publishedAt', direction: 'desc'}],
+    },
+    {
+      title: 'Published Date, Oldest',
+      name: 'publishedDateAsc',
+      by: [{field: 'publishedAt', direction: 'asc'}],
+    },
+  ],
   fields: [
     defineField({
       name: 'title',
@@ -23,6 +35,12 @@ export const testimonial = defineType({
       validation: Rule => Rule.required(),
     }),
     defineField({
+      name: 'publishedAt',
+      title: 'Published Date',
+      type: 'date',
+      validation: Rule => Rule.required(),
+    }),
+    defineField({
       name: 'type',
       title: 'Type',
       type: 'string',
@@ -33,12 +51,6 @@ export const testimonial = defineType({
           {title: 'Article Post', value: 'article'},
         ],
       },
-      validation: Rule => Rule.required(),
-    }),
-    defineField({
-      name: 'publishedAt',
-      title: 'Published Date',
-      type: 'date',
       validation: Rule => Rule.required(),
     }),
     defineField({

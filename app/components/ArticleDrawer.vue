@@ -25,7 +25,7 @@
       >
         <!-- Mobile Drag Handle -->
         <div
-          class="sm:hidden w-12 h-1.5 bg-dark/20 dark:bg-light/20 rounded-full mx-auto my-3 flex-shrink-0"
+          class="sm:hidden w-12 h-1.5 bg-dark/20 dark:bg-foreground/20 rounded-full mx-auto my-3 flex-shrink-0"
           @click="close"
         ></div>
 
@@ -34,7 +34,7 @@
           class="px-6 sm:px-10 py-5 border-b border-secondary/10 flex items-center justify-between flex-shrink-0"
         >
           <div>
-            <span class="font-body text-xs text-dark/60 dark:text-light/60">
+            <span class="font-body text-xs text-foreground/60/60">
               {{ formattedDate }} &bull; {{ post.readTime || "3 min read" }}
             </span>
           </div>
@@ -44,7 +44,7 @@
             <NuxtLink
               :to="`/testimonials/${post.slug}`"
               @click.prevent="closeAndNavigate"
-              class="text-xs font-medium uppercase text-dark/70 dark:text-light/70 hover:text-[#88A95B] flex items-center gap-1.5 transition-colors duration-200"
+              class="text-xs font-medium uppercase text-foreground/70/70 hover:text-[#88A95B] flex items-center gap-1.5 transition-colors duration-200"
               title="Open as full page"
             >
               <span>Full Page</span>
@@ -71,7 +71,7 @@
 
             <!-- Close Button -->
             <button
-              class="w-9 h-9 rounded-full bg-secondary/5 hover:bg-secondary/15 active:bg-secondary/25 text-dark dark:text-light flex items-center justify-center cursor-pointer transition-colors duration-200"
+              class="w-9 h-9 -mr-2 sm:-mr-3 rounded-full bg-secondary/5 hover:bg-secondary/15 active:bg-secondary/25 text-foreground flex items-center justify-center cursor-pointer transition-colors duration-200"
               @click="close"
               aria-label="Close drawer"
             >
@@ -104,17 +104,20 @@
           <div
             class="w-full h-[240px] sm:h-[320px] mb-8 rounded-xl border border-secondary/20 overflow-hidden"
           >
-            <img
+            <NuxtImg
+              v-if="post.mediaUrl"
+              provider="sanity"
               :src="post.mediaUrl"
               :alt="post.title"
               class="w-full h-full object-cover"
               loading="lazy"
+              sizes="sm:100vw md:50vw lg:800px"
             />
           </div>
 
           <!-- Article Body -->
           <div
-            class="[&>p]:text-base [&>p]:leading-[1.85] [&>p]:text-dark [&>p]:mb-[1.8rem] [&>h3]:text-xl sm:&>h3]:text-2xl [&>h3]:mt-8 [&>h3]:mb-4 [&>h3]:text-dark [&>h3]:font-heading [&>ul]:ml-6 [&>ul]:mb-[1.8rem] [&>ol]:ml-6 [&>ol]:mb-[1.8rem] [&>ul>li]:text-base [&>ul>li]:leading-[1.7] [&>ul>li]:text-dark [&>ul>li]:mb-2 [&>blockquote]:font-heading [&>blockquote]:text-lg sm:[&>blockquote]:text-xl [&>blockquote]:italic [&>blockquote]:text-dark [&>blockquote]:border-l-[3px] [&>blockquote]:border-[#88A95B] [&>blockquote]:pl-6 [&>blockquote]:my-8"
+            class="[&>p]:text-base [&>p]:leading-[1.85] [&>p]:text-foreground [&>p]:mb-[1.8rem] [&>h3]:text-xl sm:&>h3]:text-2xl [&>h3]:mt-8 [&>h3]:mb-4 [&>h3]:text-foreground [&>h3]:font-heading [&>ul]:ml-6 [&>ul]:mb-[1.8rem] [&>ol]:ml-6 [&>ol]:mb-[1.8rem] [&>ul>li]:text-base [&>ul>li]:leading-[1.7] [&>ul>li]:text-foreground [&>ul>li]:mb-2 [&>blockquote]:font-heading [&>blockquote]:text-lg sm:[&>blockquote]:text-xl [&>blockquote]:italic [&>blockquote]:text-foreground [&>blockquote]:border-l-[3px] [&>blockquote]:border-[#88A95B] [&>blockquote]:pl-6 [&>blockquote]:my-8"
             v-html="post.body"
           ></div>
         </div>

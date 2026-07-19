@@ -136,10 +136,13 @@
                 v-if="pageContent?.contactWechatQR"
                 class="absolute top-full right-0 mt-3 hidden group-hover:flex flex-col items-center bg-white p-2.5 rounded-xl shadow-2xl border border-secondary/30 z-50 w-32 h-32 pointer-events-none transition-opacity duration-200"
               >
-                <img
+                <NuxtImg
+                  provider="sanity"
                   :src="pageContent.contactWechatQR"
                   alt="WeChat QR"
                   class="w-full h-full object-contain"
+                  width="128"
+                  height="128"
                 />
               </div>
             </a>
@@ -163,7 +166,7 @@
     <IntroSection />
 
     <!-- Testimonials Section -->
-    <TestimonialSection />
+    <TestimonialSection :use-carousel="true" />
 
     <!-- Tea Anywhere Section -->
     <ExperienceSection
@@ -178,6 +181,7 @@
       title="Private Experiences"
       catalog-type="b2c"
       :show-policies="false"
+      :use-carousel="true"
     />
 
     <!-- Contact Section (Details, QRs, Form) -->
@@ -204,44 +208,29 @@ useSanitySeo(computed(() => pageContent.value));
 
 onMounted(() => {
   // Page load animations
-  gsap.from(".hero-title", {
-    duration: 1,
-    y: 30,
-    opacity: 0,
-    ease: "power4.out",
-    delay: 0.4,
-  });
+  gsap.fromTo(
+    ".hero-title",
+    { y: 30, opacity: 0 },
+    { duration: 1, y: 0, opacity: 1, ease: "power4.out", delay: 0.2, clearProps: "opacity,transform" }
+  );
 
-  gsap.from(".hero-description", {
-    duration: 0.8,
-    y: 20,
-    opacity: 0,
-    ease: "power3.out",
-    delay: 0.6,
-  });
+  gsap.fromTo(
+    ".hero-description",
+    { y: 20, opacity: 0 },
+    { duration: 0.8, y: 0, opacity: 1, ease: "power3.out", delay: 0.4, clearProps: "opacity,transform" }
+  );
 
-  gsap.from(".hero-actions", {
-    duration: 0.8,
-    y: 20,
-    opacity: 0,
-    ease: "power3.out",
-    delay: 0.8,
-  });
+  gsap.fromTo(
+    ".hero-social-dock",
+    { y: -20, opacity: 0 },
+    { duration: 1, y: 0, opacity: 1, ease: "power3.out", delay: 0.6, clearProps: "opacity,transform" }
+  );
 
-  gsap.from(".hero-social-dock", {
-    duration: 1,
-    y: -20,
-    opacity: 0,
-    ease: "power3.out",
-    delay: 1.0,
-  });
-
-  gsap.from(".scroll-indicator", {
-    duration: 0.6,
-    opacity: 0,
-    ease: "power2.out",
-    delay: 1.2,
-  });
+  gsap.fromTo(
+    ".scroll-indicator",
+    { opacity: 0 },
+    { duration: 0.6, opacity: 1, ease: "power2.out", delay: 0.8, clearProps: "opacity" }
+  );
 });
 </script>
 

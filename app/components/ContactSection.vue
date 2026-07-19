@@ -10,11 +10,22 @@
       <div class="grid grid-cols-[2fr_3fr] gap-4 sm:gap-10 items-stretch">
         <!-- Left Side: Image (40%) -->
         <div class="reveal-item relative w-full h-[350px] sm:h-full min-h-[350px] rounded-2xl overflow-hidden shadow-[0_20px_40px_rgba(0,0,0,0.15)] parallax-container">
-          <img
-            :src="pageContent?.contactImage || defaultFounderImg"
+          <NuxtImg
+            v-if="pageContent?.contactImage"
+            provider="sanity"
+            :src="pageContent.contactImage"
             alt="Ophélie - Founder of RUUTS"
             class="w-full h-full object-cover relative z-10 parallax-img"
             loading="lazy"
+            sizes="sm:100vw md:40vw lg:600px"
+          />
+          <NuxtImg
+            v-else
+            :src="defaultFounderImg"
+            alt="Ophélie - Founder of RUUTS"
+            class="w-full h-full object-cover relative z-10 parallax-img"
+            loading="lazy"
+            sizes="sm:100vw md:40vw lg:600px"
           />
         </div>
 
@@ -51,28 +62,26 @@
               rel="noopener noreferrer"
               class="aspect-square bg-white border border-secondary/20 rounded-xl p-2 overflow-hidden shadow-sm transition-transform duration-300 hover:scale-105 flex items-center justify-center cursor-pointer"
             >
-              <img
-                :src="pageContent?.contactWhatsappQR || defaultQrImg"
+              <NuxtImg
+                v-if="pageContent?.contactWhatsappQR"
+                provider="sanity"
+                :src="pageContent.contactWhatsappQR"
                 alt="WhatsApp QR Code"
                 title="WhatsApp"
                 class="w-full h-full object-contain"
                 loading="lazy"
+                width="150"
+                height="150"
               />
-            </a>
-
-            <!-- Instagram -->
-            <a
-              :href="pageContent?.contactInstagramLink || 'javascript:void(0)'"
-              :target="pageContent?.contactInstagramLink ? '_blank' : '_self'"
-              rel="noopener noreferrer"
-              class="aspect-square bg-white border border-secondary/20 rounded-xl p-2 overflow-hidden shadow-sm transition-transform duration-300 hover:scale-105 flex items-center justify-center cursor-pointer"
-            >
-              <img
-                :src="pageContent?.contactInstagramQR || defaultQrImg"
-                alt="Instagram QR Code"
-                title="Instagram"
+              <NuxtImg
+                v-else
+                :src="defaultQrImg"
+                alt="WhatsApp QR Code"
+                title="WhatsApp"
                 class="w-full h-full object-contain"
                 loading="lazy"
+                width="150"
+                height="150"
               />
             </a>
 
@@ -83,28 +92,26 @@
               rel="noopener noreferrer"
               class="aspect-square bg-white border border-secondary/20 rounded-xl p-2 overflow-hidden shadow-sm transition-transform duration-300 hover:scale-105 flex items-center justify-center cursor-pointer"
             >
-              <img
-                :src="pageContent?.contactWechatQR || defaultQrImg"
+              <NuxtImg
+                v-if="pageContent?.contactWechatQR"
+                provider="sanity"
+                :src="pageContent.contactWechatQR"
                 alt="WeChat QR Code"
                 title="WeChat"
                 class="w-full h-full object-contain"
                 loading="lazy"
+                width="150"
+                height="150"
               />
-            </a>
-
-            <!-- LinkedIn -->
-            <a
-              :href="pageContent?.contactLinkedinLink || 'javascript:void(0)'"
-              :target="pageContent?.contactLinkedinLink ? '_blank' : '_self'"
-              rel="noopener noreferrer"
-              class="aspect-square bg-white border border-secondary/20 rounded-xl p-2 overflow-hidden shadow-sm transition-transform duration-300 hover:scale-105 flex items-center justify-center cursor-pointer"
-            >
-              <img
-                :src="pageContent?.contactLinkedinQR || defaultQrImg"
-                alt="LinkedIn QR Code"
-                title="LinkedIn"
+              <NuxtImg
+                v-else
+                :src="defaultQrImg"
+                alt="WeChat QR Code"
+                title="WeChat"
                 class="w-full h-full object-contain"
                 loading="lazy"
+                width="150"
+                height="150"
               />
             </a>
           </div>
@@ -186,28 +193,26 @@
           rel="noopener noreferrer"
           class="aspect-square bg-white border border-secondary/20 rounded-xl p-2 overflow-hidden shadow-sm transition-transform duration-300 hover:scale-105 flex items-center justify-center cursor-pointer"
         >
-          <img
-            :src="pageContent?.contactWhatsappQR || defaultQrImg"
+          <NuxtImg
+            v-if="pageContent?.contactWhatsappQR"
+            provider="sanity"
+            :src="pageContent.contactWhatsappQR"
             alt="WhatsApp QR Code"
             title="WhatsApp"
             class="w-full h-full object-contain"
             loading="lazy"
+            width="150"
+            height="150"
           />
-        </a>
-
-        <!-- Instagram -->
-        <a
-          :href="pageContent?.contactInstagramLink || 'javascript:void(0)'"
-          :target="pageContent?.contactInstagramLink ? '_blank' : '_self'"
-          rel="noopener noreferrer"
-          class="aspect-square bg-white border border-secondary/20 rounded-xl p-2 overflow-hidden shadow-sm transition-transform duration-300 hover:scale-105 flex items-center justify-center cursor-pointer"
-        >
-          <img
-            :src="pageContent?.contactInstagramQR || defaultQrImg"
-            alt="Instagram QR Code"
-            title="Instagram"
+          <NuxtImg
+            v-else
+            :src="defaultQrImg"
+            alt="WhatsApp QR Code"
+            title="WhatsApp"
             class="w-full h-full object-contain"
             loading="lazy"
+            width="150"
+            height="150"
           />
         </a>
 
@@ -218,28 +223,26 @@
           rel="noopener noreferrer"
           class="aspect-square bg-white border border-secondary/20 rounded-xl p-2 overflow-hidden shadow-sm transition-transform duration-300 hover:scale-105 flex items-center justify-center cursor-pointer"
         >
-          <img
-            :src="pageContent?.contactWechatQR || defaultQrImg"
+          <NuxtImg
+            v-if="pageContent?.contactWechatQR"
+            provider="sanity"
+            :src="pageContent.contactWechatQR"
             alt="WeChat QR Code"
             title="WeChat"
             class="w-full h-full object-contain"
             loading="lazy"
+            width="150"
+            height="150"
           />
-        </a>
-
-        <!-- LinkedIn -->
-        <a
-          :href="pageContent?.contactLinkedinLink || 'javascript:void(0)'"
-          :target="pageContent?.contactLinkedinLink ? '_blank' : '_self'"
-          rel="noopener noreferrer"
-          class="aspect-square bg-white border border-secondary/20 rounded-xl p-2 overflow-hidden shadow-sm transition-transform duration-300 hover:scale-105 flex items-center justify-center cursor-pointer"
-        >
-          <img
-            :src="pageContent?.contactLinkedinQR || defaultQrImg"
-            alt="LinkedIn QR Code"
-            title="LinkedIn"
+          <NuxtImg
+            v-else
+            :src="defaultQrImg"
+            alt="WeChat QR Code"
+            title="WeChat"
             class="w-full h-full object-contain"
             loading="lazy"
+            width="150"
+            height="150"
           />
         </a>
       </div>

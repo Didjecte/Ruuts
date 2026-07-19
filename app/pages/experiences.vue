@@ -1,5 +1,5 @@
 <template>
-  <ExperienceSection title="Private Experiences" catalog-type="b2c" />
+  <ExperienceSection :title="pageContent?.b2cTitle || 'Private Experiences'" catalog-type="b2c" />
 </template>
 
 <script setup>

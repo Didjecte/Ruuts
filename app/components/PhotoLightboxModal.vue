@@ -23,7 +23,7 @@
           <!-- Top Bar (Header) -->
           <div class="w-full flex items-center justify-between px-6 py-4 pointer-events-auto" @click.self="close">
             <!-- Photo index counter -->
-            <span class="font-body text-xs md:text-sm font-medium text-light/70 tracking-wider pointer-events-none">
+            <span class="font-body text-xs md:text-sm font-medium text-background/70 tracking-wider pointer-events-none">
               {{ currentIndex + 1 }} / {{ totalImages }}
             </span>
 
@@ -32,7 +32,7 @@
               <NuxtLink
                 :to="`/testimonials/${post.slug}`"
                 @click.prevent="closeAndNavigate"
-                class="text-xs font-medium uppercase text-light/70 hover:text-[#88A95B] flex items-center gap-1.5 transition-colors duration-200"
+                class="text-xs font-medium uppercase text-background/70 hover:text-[#88A95B] flex items-center gap-1.5 transition-colors duration-200"
                 title="Open as full page"
               >
                 <span>Full Page</span>
@@ -48,7 +48,7 @@
 
               <!-- Close Button -->
               <button
-                class="w-10 h-10 rounded-full bg-white/5 hover:bg-white/15 active:bg-white/25 text-white flex items-center justify-center cursor-pointer transition-all duration-300 backdrop-blur-sm border border-white/10"
+                class="w-10 h-10 -mr-3 sm:-mr-4 rounded-full bg-white/5 hover:bg-white/15 active:bg-white/25 text-white flex items-center justify-center cursor-pointer transition-all duration-300 backdrop-blur-sm border border-white/10"
                 @click="close"
                 aria-label="Close gallery"
               >
@@ -80,13 +80,16 @@
             </button>
 
             <!-- Active Image -->
-            <div class="max-w-full max-h-[70vh] md:max-h-[78vh] flex items-center justify-center" @click.self="close">
+            <div class="w-full h-full flex items-center justify-center" @click.self="close">
               <Transition name="fade-scale" mode="out-in">
-                <img
-                  :key="currentImage"
-                  :src="currentImage"
-                  alt="Testimonial Photo"
-                  class="max-w-full max-h-[70vh] md:max-h-[78vh] object-contain rounded-lg shadow-2xl animate-fade-in"
+                <NuxtImg
+                  provider="sanity"
+                  :key="currentIndex"
+                  :src="gallery[currentIndex]"
+                  alt="Gallery image"
+                  class="w-auto h-auto max-w-full max-h-[70vh] md:max-h-[78vh] object-contain rounded-lg shadow-[0_0_40px_rgba(0,0,0,0.5)]"
+                  sizes="sm:100vw md:100vw lg:1200px"
+                  loading="lazy"
                 />
               </Transition>
             </div>
@@ -119,7 +122,7 @@
                 :class="idx === currentIndex ? 'border-[#88A95B] scale-105 shadow-md shadow-[#88A95B]/20' : 'border-transparent opacity-50 hover:opacity-100'"
                 @click="selectImage(idx)"
               >
-                <img :src="img" class="w-full h-full object-cover pointer-events-none" />
+                <NuxtImg provider="sanity" :src="img" class="w-full h-full object-cover pointer-events-none" sizes="100px" loading="lazy" />
               </button>
             </div>
 

@@ -1,3 +1,14 @@
+<script setup>
+// Prefetch all major Sanity queries on the layout level.
+// During SSR or initial load, Nuxt waits for these queries.
+// On subsequent client navigations, they instantly return the payload cache.
+useSanitySiteSettings();
+useSanityHomepageContent();
+useSanityExperiences('b2c');
+useSanityExperiences('b2b');
+useSanityTestimonials();
+</script>
+
 <template>
   <div class="flex flex-col min-h-screen">
     <Navbar />
