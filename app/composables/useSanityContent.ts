@@ -235,6 +235,8 @@ export function useSanityHomepageContent() {
     aboutMetaDescription,
     contactTitle,
     contactDescription,
+    contactSuccessMessage,
+    contactErrorMessage,
     "contactImage": contactImage.asset._ref,
     contactEmail,
     contactPhone,
