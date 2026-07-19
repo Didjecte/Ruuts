@@ -22,8 +22,7 @@ export const experiencesB2C: Experience[] = [
     bullets: [
       '2 premium seasonal Chinese teas',
       'Each brewed in a specific ritual',
-      'Floor seating',
-      'Available in English, Chinese, and French (ENG/CN/FR)'
+      'Floor seating'
     ],
     image: 'https://images.unsplash.com/photo-1576092768241-dec231879fc3?q=80&w=600&auto=format&fit=crop'
   },
@@ -38,8 +37,7 @@ export const experiencesB2C: Experience[] = [
     bullets: [
       '4 premium Chinese teas',
       'Each brewed in a specific ritual',
-      'Floor seating',
-      'Available in English, Chinese, and French (ENG/CN/FR)'
+      'Floor seating'
     ],
     image: 'https://images.unsplash.com/photo-1563822249548-9a72b6353cd1?q=80&w=600&auto=format&fit=crop'
   },
@@ -54,8 +52,7 @@ export const experiencesB2C: Experience[] = [
     bullets: [
       '4 premium Chinese teas',
       'Live Pipa performance by a professional musician',
-      'Floor seating',
-      'Available in English, Chinese, and French (ENG/CN/FR)'
+      'Floor seating'
     ],
     image: 'https://images.unsplash.com/photo-1544787219-7f47ccb76574?q=80&w=600&auto=format&fit=crop'
   },
@@ -70,8 +67,7 @@ export const experiencesB2C: Experience[] = [
     bullets: [
       '4 premium seasonal Chinese teas',
       'Deeper analysis of terroirs and oxidation methods',
-      'Floor seating',
-      'Available in English, Chinese, and French (ENG/CN/FR)'
+      'Floor seating'
     ],
     image: 'https://images.unsplash.com/photo-1597481499750-3e6b22637e12?q=80&w=600&auto=format&fit=crop'
   },
@@ -86,8 +82,7 @@ export const experiencesB2C: Experience[] = [
     bullets: [
       '3 tea and artisan French cheese pairings',
       'Guided dialogue on flavor profiles and textures',
-      'Floor seating',
-      'Available in English, Chinese, and French (ENG/CN/FR)'
+      'Floor seating'
     ],
     image: 'https://images.unsplash.com/photo-1486299267070-8382e214434b?q=80&w=600&auto=format&fit=crop'
   },
@@ -102,8 +97,7 @@ export const experiencesB2C: Experience[] = [
     bullets: [
       '2 premium seasonal Chinese teas',
       'Guided Taichi movement and breathing class',
-      'Floor seating',
-      'Available in English, Chinese, and French (ENG/CN/FR)'
+      'Floor seating'
     ],
     image: 'https://images.unsplash.com/photo-1506126613408-eca07ce68773?q=80&w=600&auto=format&fit=crop'
   }

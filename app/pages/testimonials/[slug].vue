@@ -1,10 +1,10 @@
 <template>
-  <div v-if="post" class="bg-light pt-[150px] section-padding">
+  <div v-if="post" class="bg-background pt-[150px] section-padding">
     <div class="max-w-[900px] mx-auto px-6 sm:px-8 md:px-0">
       
       <!-- Back Link -->
       <div class="mb-10 reveal-item-detail">
-        <NuxtLink to="/testimonials" class="font-body text-xs font-medium uppercase text-dark inline-flex items-center gap-2 transition-colors duration-200 group hover:text-primary">
+        <NuxtLink to="/testimonials" class="font-body text-xs font-medium uppercase text-foreground inline-flex items-center gap-2 transition-colors duration-200 group hover:text-primary">
           <svg class="w-4 h-4 transform translate-x-0 transition-transform duration-200 group-hover:-translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <line x1="19" y1="12" x2="5" y2="12"></line>
             <polyline points="12 19 5 12 12 5"></polyline>
@@ -18,7 +18,7 @@
         <header class="mb-12 reveal-item-detail">
           <span class="font-body text-xs font-semibold uppercase tracking-[0.25em] text-secondary block mb-3">{{ post.type }}</span>
           <h1 class="text-3xl md:text-5xl leading-[1.25] mb-[1.2rem] text-primary font-heading">{{ post.title }}</h1>
-          <div class="font-body text-xs text-dark/60">
+          <div class="font-body text-xs text-foreground/60">
             <span>{{ formattedDate }}</span>
             <span v-if="post.readTime">&bull; {{ post.readTime }}</span>
           </div>
@@ -28,8 +28,8 @@
           <NuxtImg provider="sanity" :src="post.mediaUrl" :alt="post.title" class="w-full h-full object-cover" loading="lazy" sizes="sm:100vw md:100vw lg:1000px" />
         </div>
 
-        <div v-if="post.description" class="reveal-item-detail text-lg leading-[1.8] text-dark/90 font-medium mb-10 [&>p]:mb-4 [&>ul]:ml-6 [&>ul>li]:mb-2 [&>ol]:ml-6 [&>ol>li]:mb-2" v-html="post.description"></div>
-        <div class="reveal-item-detail [&>p]:text-base [&>p]:leading-[1.85] [&>p]:text-dark [&>p]:mb-[1.8rem] [&>h3]:text-2xl [&>h3]:mt-10 [&>h3]:mb-4 [&>h3]:text-dark [&>h3]:font-heading [&>ul]:ml-6 [&>ul]:mb-[1.8rem] [&>ol]:ml-6 [&>ol]:mb-[1.8rem] [&>ul>li]:text-base [&>ul>li]:leading-[1.7] [&>ul>li]:text-dark [&>ul>li]:mb-2 [&>blockquote]:font-heading [&>blockquote]:text-xl [&>blockquote]:italic [&>blockquote]:text-dark [&>blockquote]:border-l-[3px] [&>blockquote]:border-secondary [&>blockquote]:pl-6 [&>blockquote]:my-10" v-html="post.body"></div>
+        <div v-if="post.description" class="reveal-item-detail text-lg leading-[1.8] text-foreground/90 font-medium mb-10 [&>p]:mb-4 [&>ul]:ml-6 [&>ul>li]:mb-2 [&>ol]:ml-6 [&>ol>li]:mb-2" v-html="post.description"></div>
+        <div class="reveal-item-detail [&>p]:text-base [&>p]:leading-[1.85] [&>p]:text-foreground [&>p]:mb-[1.8rem] [&>h3]:text-2xl [&>h3]:mt-10 [&>h3]:mb-4 [&>h3]:text-foreground [&>h3]:font-heading [&>ul]:ml-6 [&>ul]:mb-[1.8rem] [&>ol]:ml-6 [&>ol]:mb-[1.8rem] [&>ul>li]:text-base [&>ul>li]:leading-[1.7] [&>ul>li]:text-foreground [&>ul>li]:mb-2 [&>blockquote]:font-heading [&>blockquote]:text-xl [&>blockquote]:italic [&>blockquote]:text-foreground [&>blockquote]:border-l-[3px] [&>blockquote]:border-secondary [&>blockquote]:pl-6 [&>blockquote]:my-10" v-html="post.body"></div>
       </article>
 
       <!-- Photo Post Layout -->
@@ -37,7 +37,7 @@
         <header class="mb-12 reveal-item-detail text-center">
           <span class="font-body text-xs font-semibold uppercase tracking-[0.25em] text-secondary block mb-3">{{ post.type }}</span>
           <h1 class="text-3xl md:text-5xl leading-[1.25] mb-[1.2rem] text-primary font-heading">{{ post.title }}</h1>
-          <div class="font-body text-xs text-dark/60">
+          <div class="font-body text-xs text-foreground/60">
             <span>Published on {{ formattedDate }}</span>
           </div>
         </header>
@@ -47,7 +47,7 @@
         </div>
 
         <div class="reveal-item-detail">
-          <div class="text-lg leading-[1.8] text-dark mb-12 [&>p]:mb-4 [&>ul]:ml-6 [&>ul>li]:mb-2 [&>ol]:ml-6 [&>ol>li]:mb-2" v-html="post.description"></div>
+          <div class="text-lg leading-[1.8] text-foreground mb-12 [&>p]:mb-4 [&>ul]:ml-6 [&>ul>li]:mb-2 [&>ol]:ml-6 [&>ol>li]:mb-2" v-html="post.description"></div>
 
           
           <div class="h-[1px] bg-gradient-to-r from-transparent via-secondary/30 to-transparent mb-12"></div>
@@ -79,7 +79,7 @@
         <header class="mb-12 reveal-item-detail text-center">
           <span class="font-body text-xs font-semibold uppercase tracking-[0.25em] text-secondary block mb-3">{{ post.type }}</span>
           <h1 class="text-3xl md:text-5xl leading-[1.25] mb-[1.2rem] text-primary font-heading">{{ post.title }}</h1>
-          <div class="font-body text-xs text-dark/60">
+          <div class="font-body text-xs text-foreground/60">
             <span>Published on {{ formattedDate }}</span>
           </div>
         </header>
@@ -108,7 +108,7 @@
               <NuxtImg provider="sanity" :src="post.mediaUrl" :alt="post.title" class="w-full h-full object-cover opacity-80" loading="lazy" sizes="sm:100vw md:100vw lg:1000px" />
               <div class="absolute inset-0 flex items-center justify-center bg-black/15">
                 <button
-                  class="w-[70px] h-[70px] rounded-full border border-[#88A95B] bg-[#88A95B]/85 text-light flex items-center justify-center cursor-pointer transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] hover:scale-110 hover:bg-secondary hover:text-dark hover:border-secondary shadow-2xl"
+                  class="w-[70px] h-[70px] rounded-full border border-[#88A95B] bg-[#88A95B]/85 text-background flex items-center justify-center cursor-pointer transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] hover:scale-110 hover:bg-secondary hover:text-foreground hover:border-secondary shadow-2xl"
                   aria-label="Play video"
                 >
                   <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor" stroke="none" class="ml-1">
@@ -208,7 +208,7 @@
         </div>
 
         <div class="reveal-item-detail">
-          <div class="text-base leading-[1.75] text-dark mb-8 [&>p]:mb-4 [&>ul]:ml-6 [&>ul>li]:mb-2 [&>ol]:ml-6 [&>ol>li]:mb-2" v-html="post.description"></div>
+          <div class="text-base leading-[1.75] text-foreground mb-8 [&>p]:mb-4 [&>ul]:ml-6 [&>ul>li]:mb-2 [&>ol]:ml-6 [&>ol>li]:mb-2" v-html="post.description"></div>
           <div class="bg-primary/[0.03] border border-secondary/20 rounded-2xl p-6 font-body text-sm flex flex-col gap-2">
 
             <p><strong>Producer:</strong> Ruuts Production</p>
@@ -231,7 +231,7 @@
                 <span class="font-body text-xs font-semibold uppercase tracking-[0.25em] text-[#88A95B]">Previous</span>
                 <h4 class="font-heading text-lg text-primary leading-snug group-hover:text-[#88A95B] transition-colors">{{ prevPost.title }}</h4>
               </div>
-              <span class="font-body text-xs text-dark/50 mt-4 flex items-center gap-1.5 group-hover:text-[#88A95B] transition-colors">
+              <span class="font-body text-xs text-foreground/50 mt-4 flex items-center gap-1.5 group-hover:text-[#88A95B] transition-colors">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                   <line x1="19" y1="12" x2="5" y2="12"></line>
                   <polyline points="12 19 5 12 12 5"></polyline>
@@ -252,7 +252,7 @@
                 <span class="font-body text-xs font-semibold uppercase tracking-[0.25em] text-[#88A95B] text-right">Next</span>
                 <h4 class="font-heading text-lg text-primary leading-snug text-right group-hover:text-[#88A95B] transition-colors">{{ nextPost.title }}</h4>
               </div>
-              <span class="font-body text-xs text-dark/50 mt-4 flex items-center gap-1.5 self-end group-hover:text-[#88A95B] transition-colors">
+              <span class="font-body text-xs text-foreground/50 mt-4 flex items-center gap-1.5 self-end group-hover:text-[#88A95B] transition-colors">
                 Read story
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                   <line x1="5" y1="12" x2="19" y2="12"></line>
@@ -269,7 +269,7 @@
   
   <div v-else class="pt-[180px] text-center max-w-[1200px] mx-auto px-6 w-full section-padding">
     <h2 class="font-heading text-3xl text-primary mb-4">Post Not Found</h2>
-    <p class="text-base text-dark mb-6">The requested testimonial entry could not be located.</p>
+    <p class="text-base text-foreground mb-6">The requested testimonial entry could not be located.</p>
     <NuxtLink to="/testimonials" class="btn-primary mt-4 inline-block">Return to Testimonials</NuxtLink>
   </div>
 
@@ -285,7 +285,7 @@
       >
         <!-- Top Bar -->
         <div class="w-full flex items-center justify-between px-6 py-4 z-10" @click.self="closeLightbox">
-          <span class="font-body text-xs md:text-sm font-medium text-light/70 tracking-wider pointer-events-none">
+          <span class="font-body text-xs md:text-sm font-medium text-background/70 tracking-wider pointer-events-none">
             {{ activeLightboxIndex + 1 }} / {{ post.gallery.length }}
           </span>
 

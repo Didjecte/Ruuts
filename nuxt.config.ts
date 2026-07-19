@@ -8,7 +8,7 @@ export default defineNuxtConfig({
   },
 
   css: ['~/assets/css/main.css'],
-  modules: ['@nuxtjs/tailwindcss', '@nuxtjs/sanity', '@nuxtjs/sitemap', '@nuxtjs/robots', '@nuxt/image'],
+  modules: ['@nuxtjs/tailwindcss', '@nuxtjs/sanity', '@nuxtjs/sitemap', '@nuxtjs/robots', '@nuxt/image', 'nuxt-swiper'],
 
   image: {
     sanity: {

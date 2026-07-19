@@ -23,7 +23,7 @@
           <!-- Top Bar (Header) -->
           <div class="w-full flex items-center justify-between px-6 py-4 pointer-events-auto" @click.self="close">
             <!-- Photo index counter -->
-            <span class="font-body text-xs md:text-sm font-medium text-light/70 tracking-wider pointer-events-none">
+            <span class="font-body text-xs md:text-sm font-medium text-background/70 tracking-wider pointer-events-none">
               {{ currentIndex + 1 }} / {{ totalImages }}
             </span>
 
@@ -32,7 +32,7 @@
               <NuxtLink
                 :to="`/testimonials/${post.slug}`"
                 @click.prevent="closeAndNavigate"
-                class="text-xs font-medium uppercase text-light/70 hover:text-[#88A95B] flex items-center gap-1.5 transition-colors duration-200"
+                class="text-xs font-medium uppercase text-background/70 hover:text-[#88A95B] flex items-center gap-1.5 transition-colors duration-200"
                 title="Open as full page"
               >
                 <span>Full Page</span>
@@ -48,7 +48,7 @@
 
               <!-- Close Button -->
               <button
-                class="w-10 h-10 rounded-full bg-white/5 hover:bg-white/15 active:bg-white/25 text-white flex items-center justify-center cursor-pointer transition-all duration-300 backdrop-blur-sm border border-white/10"
+                class="w-10 h-10 -mr-3 sm:-mr-4 rounded-full bg-white/5 hover:bg-white/15 active:bg-white/25 text-white flex items-center justify-center cursor-pointer transition-all duration-300 backdrop-blur-sm border border-white/10"
                 @click="close"
                 aria-label="Close gallery"
               >

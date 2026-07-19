@@ -51,43 +51,16 @@
             :key="index"
             class="flex items-start gap-1.5 text-xs text-foreground/85 leading-[1.4]"
           >
-            <template v-if="isLanguageBullet(bullet)">
-              <svg
-                class="w-[13px] h-[13px] text-primary mt-[2px] shrink-0"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-              >
-                <polyline points="20 6 9 17 4 12"></polyline>
-              </svg>
-              <div class="flex items-center gap-2 flex-wrap">
-                <span class="inline-flex items-center gap-1 font-medium">
-                  <span class="fi fi-gb rounded-sm shadow-sm"></span>
-                  <span>EN</span>
-                </span>
-                <span class="inline-flex items-center gap-1 font-medium">
-                  <span class="fi fi-fr rounded-sm shadow-sm"></span>
-                  <span>FR</span>
-                </span>
-                <span class="inline-flex items-center gap-1 font-medium">
-                  <span class="fi fi-cn rounded-sm shadow-sm"></span>
-                  <span>CN</span>
-                </span>
-              </div>
-            </template>
-            <template v-else>
-              <svg
-                class="w-[13px] h-[13px] text-primary mt-[2px] shrink-0"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-              >
-                <polyline points="20 6 9 17 4 12"></polyline>
-              </svg>
-              <span>{{ bullet }}</span>
-            </template>
+            <svg
+              class="w-[13px] h-[13px] text-primary mt-[2px] shrink-0"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+            <span>{{ bullet }}</span>
           </li>
         </ul>
       </div>
@@ -124,11 +97,12 @@ const props = defineProps({
 });
 
 const bullets = computed(() => {
-  return props.isB2b ? props.experience.highlights : props.experience.bullets;
+  const list = props.isB2b ? props.experience.highlights : props.experience.bullets;
+  if (!list) return [];
+  // Ensure we strip any legacy language bullets coming from Sanity
+  return list.filter(bullet => {
+    const lower = bullet.toLowerCase();
+    return !lower.includes("available in english") && !lower.includes("bilingual execution");
+  });
 });
-
-const isLanguageBullet = (bullet) => {
-  const lower = bullet.toLowerCase();
-  return lower.includes("available in english") || lower.includes("bilingual execution");
-};
 </script>
