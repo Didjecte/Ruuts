@@ -169,16 +169,10 @@
                 ></textarea>
               </div>
 
-              <button type="submit" class="btn-primary w-full !py-3.5 mt-2">
-                Send Request
+              <button type="submit" :disabled="isSubmitting" class="btn-primary w-full !py-3.5 mt-2 disabled:opacity-70 disabled:cursor-not-allowed flex justify-center items-center gap-2">
+                <span v-if="isSubmitting" class="w-4 h-4 border-2 border-background border-t-transparent rounded-full animate-spin"></span>
+                {{ isSubmitting ? 'Sending...' : 'Send Request' }}
               </button>
-
-              <p
-                v-if="submitted"
-                class="text-sm text-primary font-medium text-center bg-primary/[0.06] p-3 border-l-[3px] border-secondary mt-2"
-              >
-                Thank you for your message. Ophélie will get in touch with you shortly.
-              </p>
             </form>
           </div>
         </div>
@@ -300,20 +294,16 @@
             ></textarea>
           </div>
 
-          <button type="submit" class="btn-primary w-full !py-4 mt-2">
-            Send Request
+          <button type="submit" :disabled="isSubmitting" class="btn-primary w-full !py-4 mt-2 disabled:opacity-70 disabled:cursor-not-allowed flex justify-center items-center gap-2">
+            <span v-if="isSubmitting" class="w-4 h-4 border-2 border-background border-t-transparent rounded-full animate-spin"></span>
+            {{ isSubmitting ? 'Sending...' : 'Send Request' }}
           </button>
 
-          <p
-            v-if="submitted"
-            class="text-sm text-primary font-medium text-center bg-primary/[0.06] p-3 border-l-[3px] border-secondary mt-2"
-          >
-            Thank you for your message. Ophélie will get in touch with you
-            shortly.
-          </p>
         </form>
       </div>
     </div>
+
+    <ToastAlert :show="toast.show" :message="toast.message" :type="toast.type" />
   </section>
 </template>
 
@@ -332,21 +322,62 @@ const form = reactive({
   message: "",
 });
 
-const submitted = ref(false);
+const isSubmitting = ref(false);
 
-const handleSubmit = () => {
-  // Mock form submission
-  console.log("Form data:", form);
-  submitted.value = true;
+const toast = reactive({
+  show: false,
+  message: "",
+  type: "success"
+});
 
-  // Reset fields
-  form.name = "";
-  form.email = "";
-  form.message = "";
-
+const showToast = (message, type = "success") => {
+  toast.message = message;
+  toast.type = type;
+  toast.show = true;
+  
   setTimeout(() => {
-    submitted.value = false;
+    toast.show = false;
   }, 5000);
+};
+
+const handleSubmit = async () => {
+  if (isSubmitting.value) return;
+  
+  isSubmitting.value = true;
+  toast.show = false;
+
+  try {
+    const response = await fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify({
+        access_key: "5a4536f8-8f56-4950-ada3-b0f258b83c32",
+        name: form.name,
+        email: form.email,
+        message: form.message,
+      }),
+    });
+
+    const result = await response.json();
+
+    if (response.status === 200) {
+      showToast(pageContent.value?.contactSuccessMessage || "Thank you for your message. Ophélie will get in touch with you shortly.", "success");
+      
+      // Reset fields
+      form.name = "";
+      form.email = "";
+      form.message = "";
+    } else {
+      showToast(pageContent.value?.contactErrorMessage || result.message || "Something went wrong. Please try again.", "error");
+    }
+  } catch (error) {
+    showToast(pageContent.value?.contactErrorMessage || "Network error. Please try again later.", "error");
+  } finally {
+    isSubmitting.value = false;
+  }
 };
 
 let ctx;
