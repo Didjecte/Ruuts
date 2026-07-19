@@ -367,6 +367,20 @@ export const homepageContent = defineType({
       group: 'contact',
     }),
     defineField({
+      name: 'contactSuccessMessage',
+      title: 'Form Success Message',
+      type: 'string',
+      description: 'The message shown when a user successfully submits the contact form.',
+      group: 'contact',
+    }),
+    defineField({
+      name: 'contactErrorMessage',
+      title: 'Form Error Message',
+      type: 'string',
+      description: 'The message shown when a form submission fails.',
+      group: 'contact',
+    }),
+    defineField({
       name: 'contactImage',
       title: 'Contact Image',
       type: 'image',
