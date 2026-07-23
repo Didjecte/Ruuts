@@ -13,6 +13,7 @@ export const homepageContent = defineType({
     { name: 'privateExperiences', title: 'B2C' },
     { name: 'about', title: 'About Section' },
     { name: 'contact', title: 'Contact Section' },
+    { name: 'footer', title: 'Footer Section' },
   ],
   fields: [
     defineField({
@@ -446,6 +447,36 @@ export const homepageContent = defineType({
       title: 'LinkedIn Link/URL',
       type: 'string',
       group: 'contact',
+    }),
+
+    // FOOTER SECTION
+    defineField({
+      name: 'footerExplorerTitle',
+      title: 'Explorer Section Title',
+      type: 'string',
+      description: 'Heading for the Explorer column in footer (default: EXPLORER)',
+      group: 'footer',
+    }),
+    defineField({
+      name: 'footerServicesTitle',
+      title: 'Services Section Title',
+      type: 'string',
+      description: 'Heading for the Services Overview column in footer (default: Services Overview)',
+      group: 'footer',
+    }),
+    defineField({
+      name: 'footerServicesItem1',
+      title: 'Services Subcontent 1 Label',
+      type: 'string',
+      description: 'Label for 1st service link in footer (default: Blind tea tasting)',
+      group: 'footer',
+    }),
+    defineField({
+      name: 'footerServicesItem2',
+      title: 'Services Subcontent 2 Label',
+      type: 'string',
+      description: 'Label for 2nd service link in footer (default: Curated Cultural tea experiences)',
+      group: 'footer',
     }),
   ],
 })
