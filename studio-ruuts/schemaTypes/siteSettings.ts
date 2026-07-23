@@ -50,6 +50,14 @@ export const siteSettings = defineType({
       options: { hotspot: true },
       group: 'seo',
     }),
+    defineField({
+      name: 'errorPageMessage',
+      title: '404 Error Page Message',
+      type: 'text',
+      rows: 3,
+      description: 'Custom message displayed on the 404 Page Not Found error page.',
+      group: 'seo',
+    }),
 
     // Organization & GEO Facts
     defineField({

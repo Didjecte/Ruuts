@@ -170,7 +170,8 @@ export function useSanitySiteSettings() {
     founderName,
     contactEmail,
     contactPhone,
-    location
+    location,
+    errorPageMessage
   }`
 
   const { data, pending, error } = useAsyncData(
@@ -247,9 +248,12 @@ export function useSanityHomepageContent() {
     "contactInstagramQR": contactInstagramQR.asset._ref,
     contactInstagramLink,
     "contactLinkedinQR": contactLinkedinQR.asset._ref,
-    contactLinkedinLink,
     contactMetaTitle,
-    contactMetaDescription
+    contactMetaDescription,
+    footerExplorerTitle,
+    footerServicesTitle,
+    footerServicesItem1,
+    footerServicesItem2
   }`
 
   const { data, pending, error } = useAsyncData(
